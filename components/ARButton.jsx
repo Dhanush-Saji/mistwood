@@ -10,7 +10,7 @@ const ARButton = () => {
     var parser = new UAParser();
     console.log(parser.getResult());
   return (
-      <Button onClick={()=>router.push('https://false-opalescent-ravioli.glitch.me/')} className='w-fit rounded-full px-5 mt-5 font-semibold text-md bg-[#27282a]'>Explore</Button>
+      <Button isDisabled onClick={()=>router.push('https://false-opalescent-ravioli.glitch.me/')} className='w-fit rounded-full px-5 mt-5 font-semibold text-md bg-[#27282a]'>Explore</Button>
   )
 }
 
