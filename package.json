@@ -22,7 +22,8 @@
     "react-dom": "^18",
     "tailwind-merge": "^2.2.0",
     "tailwindcss-animate": "^1.0.7",
-    "three": "^0.160.0"
+    "three": "^0.160.0",
+    "ua-parser-js": "^1.0.37"
   },
   "devDependencies": {
     "autoprefixer": "^10.0.1",
