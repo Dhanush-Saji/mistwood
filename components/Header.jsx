@@ -24,7 +24,7 @@ const Header = () => {
   return (
     <div className=' justify-between flex px-5 py-5 items-center fixed w-full'>
         <div>Logo</div>
-        <div className='flex gap-3 items-center'>
+        <div className='gap-3 items-center hidden sm:flex'>
         <Select>
   <SelectTrigger className="w-[180px] bg-transparent border border-[#27282a3a] focus:ring-0 focus:ring-offset-0">
     <SelectValue placeholder="Theme" />
