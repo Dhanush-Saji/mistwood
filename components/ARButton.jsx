@@ -12,8 +12,8 @@ const ARButton = () => {
     var parser = new UAParser();
     let os = (parser.getResult())?.os?.name
     const submitFn = () =>{
-      alert('hi')
       if(os == 'Android'){
+        alert('hi')
         router.push('https://false-opalescent-ravioli.glitch.me/')
       }else{
         toast.error('This feature is only available on mobile!', {
@@ -30,7 +30,9 @@ const ARButton = () => {
   return (
     <>
     <ToastContainer />
+    <Link>
     <Button isDisabled onClick={submitFn} className='w-fit rounded-full px-5 mt-5 font-semibold text-md bg-[#27282a]'>Explore</Button>
+    </Link>
     </>
   )
 }
