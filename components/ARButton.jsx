@@ -14,7 +14,7 @@ const ARButton = () => {
     const submitFn = () =>{
       if(os == 'Android'){
         alert('hi')
-        router.push('https://false-opalescent-ravioli.glitch.me/')
+        router.push('https://www.npmjs.com/package/ua-parser-js')
       }else{
         toast.error('This feature is only available on mobile!', {
           position: "top-center",
