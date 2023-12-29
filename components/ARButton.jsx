@@ -12,10 +12,6 @@ const ARButton = () => {
     var parser = new UAParser();
     let os = (parser.getResult())?.os?.name
     const submitFn = () =>{
-      if(os == 'Android'){
-        alert('hi')
-        router.push('https://www.npmjs.com/package/ua-parser-js')
-      }else{
         toast.error('This feature is only available on mobile!', {
           position: "top-center",
           autoClose: 3000,
@@ -25,12 +21,17 @@ const ARButton = () => {
           draggable: false,
           theme: "light",
           });
-      }
     }
   return (
     <>
     <ToastContainer />
-    <Button isDisabled onClick={submitFn} className='w-fit rounded-full px-5 mt-5 font-semibold text-md bg-[#27282a]'>Explore</Button>
+    {
+      os == 'Android' ?
+      <Link href={'https://false-opalescent-ravioli.glitch.me/'}>
+        <Button className='w-fit rounded-full px-5 mt-5 font-semibold text-md bg-[#27282a]'>Show me</Button>
+      </Link>:
+    <Button isDisabled onClick={submitFn} className='w-fit rounded-full px-5 mt-5 font-semibold text-md bg-[#27282a]'>Show me</Button>
+    }
     </>
   )
 }
