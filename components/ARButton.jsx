@@ -12,6 +12,7 @@ const ARButton = () => {
     var parser = new UAParser();
     let os = (parser.getResult())?.os?.name
     const submitFn = () =>{
+      alert('hi')
       if(os == 'Android'){
         router.push('https://false-opalescent-ravioli.glitch.me/')
       }else{
