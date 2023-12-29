@@ -10,7 +10,7 @@ export default function Home() {
       <Header />
       <Section1 />
       <Section2 />
-      {app}
+      {/* {app} */}
     </>
   );
 }

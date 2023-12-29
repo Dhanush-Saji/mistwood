@@ -11,6 +11,7 @@ import {
     DropdownMenuContent,
     DropdownMenuGroup,
     DropdownMenuItem,
+    DropdownMenuLabel,
     DropdownMenuSeparator,
     DropdownMenuTrigger,
   } from "@/components/ui/dropdown-menu"
@@ -39,11 +40,11 @@ const Header = () => {
 <h1>About Us</h1>
 <h1>Contact</h1>
 <DropdownMenu>
-      <DropdownMenuTrigger asChild className="focus-visible:ring-0 focus-visible:ring-offset-0">
+      <DropdownMenuTrigger asChild className="focus-visible:!ring-0 focus-visible:!ring-offset-0">
         <Button variant="outline"><UserRound className='text-[#27282aa2]' /></Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56">
-        <DropdownMenuSeparator />
+      <DropdownMenuLabel>Welcome Dhanush!</DropdownMenuLabel>
         <DropdownMenuGroup>
           <DropdownMenuItem>
             Profile

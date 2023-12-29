@@ -3,7 +3,7 @@ import { Button } from './ui/button'
 
 const Section1 = () => {
   return (
-    <div className='home-section flex w-screen h-screen px-10 flex-col pt-[3rem] justify-start text-[#27282a]'>
+    <div className='home-section flex w-screen h-screen px-10 flex-col pt-[10vh] justify-start text-[#27282a]'>
       <div className='flex flex-col'>
       <span className='text-[6rem] font-[800] m-0'>Furniture</span>
       <span className='text-[6rem] font-[800] m-0 mt-[-53px]'>you will love</span>
