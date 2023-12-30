@@ -25,13 +25,14 @@ const ARButton = () => {
   return (
     <>
     <ToastContainer />
-    {
-      os != 'Android' ?
+    {/* {
+      os != 'Android' ? */}
       <Link href={'https://false-opalescent-ravioli.glitch.me/'} prefetch={false}>
         <Button className='w-fit rounded-full px-5 mt-5 font-semibold text-md bg-[#27282a]'>Show me</Button>
-      </Link>:
+      </Link>
+      {/* :
     <Button isDisabled onClick={submitFn} className='w-fit rounded-full px-5 mt-5 font-semibold text-md bg-[#27282a]'>Show me</Button>
-    }
+    } */}
     </>
   )
 }
