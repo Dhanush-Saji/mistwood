@@ -18,12 +18,20 @@ import {
 import { ShoppingCart, UserRound } from 'lucide-react'
 import Link from 'next/link'
 import { Button } from './ui/button'
+import Image from 'next/image'
   
 
 const Header = () => {
   return (
-    <div className=' justify-between flex px-5 py-5 items-center fixed w-full'>
-        <div>Logo</div>
+    <div className=' justify-between flex px-4 py-2 items-center fixed w-full'>
+        <div className='flex gap-1 items-center'>
+          <Image src={'/images/logo.png'} alt='logo' height={52} width={52} />
+          <div className='flex flex-col ml-1'>
+          <span className='text-[1.4rem] font-[800] text-[#27282a]'>Mistwood</span>
+          <span className='text-[0.9rem] font-[700] text-[#27282a] mt-[-10px]'>Furniture</span>
+
+          </div>
+        </div>
         <div className='gap-3 items-center hidden sm:flex'>
         <Select>
   <SelectTrigger className="w-[180px] bg-transparent border border-[#27282a3a] focus:ring-0 focus:ring-offset-0">
