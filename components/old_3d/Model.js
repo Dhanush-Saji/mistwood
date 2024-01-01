@@ -24,20 +24,17 @@ function Model() {
   const tl = gsap.timeline()
   // const { cameraPosition, scenePosition, sceneRotation } = useControls({
 	// 	cameraPosition: {
-	// 		value: {
-	// 			x: 5,
-	// 			y: 4,
-	// 			z: 2.8,
+	// 		value: {x:1.39,y:-2,z:5.48
 	// 		},
 	// 		step: 0.05,
 	// 	},
 	// 	scenePosition: {
-	// 		value: { x: 3.01, y: 0.76, z: 3.7 },
+	// 		value: {x:-0.25,y:1.2,z:3.05},
 	// 		step: 0.05,
 	// 	},
 
 	// 	sceneRotation: {
-	// 		value: { x: -0.53, y: -3.48, z: -0.21 },
+	// 		value: {x:0.25,y:-3.86,z:0.03},
 	// 		step: 0.01,
 	// 	},
 	// });
@@ -55,10 +52,12 @@ function Model() {
 	// 	scene.rotation.y = sceneRotation.y;
 	// 	scene.rotation.z = sceneRotation.z;
 	// });
+
+
   useLayoutEffect(()=>{
     new ScrollTrigger({})
 tl
-.to(camera.position,{x:6.2,y:4.65,z:1.95,
+.to(camera.position,{x:1.39,y:-2,z:5.48,
   scrollTrigger:{
     trigger:'.second-section',
     start:"top bottom",
@@ -67,7 +66,7 @@ tl
     immediateRender:false
   }
 })
-.to(scene.position,{x:3.11,y:2.16,z:2,
+.to(scene.position,{x:-0.25,y:1.2,z:2.5,
   scrollTrigger:{
     trigger:'.second-section',
     start:"top bottom",
@@ -76,7 +75,7 @@ tl
     immediateRender:false
   }
 })
-.to(scene.rotation,{x:-0.41,y:-2.76,z:-0.3,
+.to(scene.rotation,{x:0.14,y:-3.86,z:0.03,
   scrollTrigger:{
     trigger:'.second-section',
     start:"top bottom",
@@ -85,7 +84,7 @@ tl
     immediateRender:false
   }
 })
-.to(camera.position,{x:3.49,y:2.04,z:1.09,
+.to(camera.position,{x:0.44,y:-0.95,z:5.88,
   scrollTrigger:{
     trigger:'.third-section',
     start:"top bottom",
@@ -94,7 +93,7 @@ tl
     immediateRender:false
   }
 })
-.to(scene.position,{x:3.1,y:1.36,z:-4.25,
+.to(scene.position,{x:3.2,y:1,z:3.9,
   scrollTrigger:{
     trigger:'.third-section',
     start:"top bottom",
@@ -103,7 +102,7 @@ tl
     immediateRender:false
   }
 })
-.to(scene.rotation,{x:0.97,y:2,z:-1.03,
+.to(scene.rotation,{x:0.34,y:-18.32,z:-0.04,
   scrollTrigger:{
     trigger:'.third-section',
     start:"top bottom",
@@ -113,6 +112,86 @@ tl
   }
 })
   },[])
+
+// useLayoutEffect(() => {
+//   new ScrollTrigger({});
+//   // component About.tsx
+//   tl.to(camera.position, {
+//     x: 5,
+//     y: 4.0,
+//     z: 2.8,
+//     scrollTrigger: {
+//       trigger: ".second-section",
+//       start: "top bottom",
+//       end: "top top",
+//       scrub: true,
+//       immediateRender: false,
+//     },
+//   })
+//     .to(scene.position, {
+//       x: 3.01,
+//       y: 0.76,
+//       z: 3.7,
+//       scrollTrigger: {
+//         trigger: ".second-section",
+//         start: "top bottom",
+//         end: "top top",
+//         scrub: true,
+//         immediateRender: false,
+//       },
+//     })
+
+//     .to(scene.rotation, {
+//       x: -0.53,
+//       y: -3.48,
+//       z: -0.21,
+//       scrollTrigger: {
+//         trigger: ".second-section",
+//         start: "top bottom",
+//         end: "top top",
+//         scrub: true,
+//         immediateRender: false,
+//       },
+//     })
+
+//     // component - BuyNow.tsx
+//     .to(camera.position, {
+//       x: 5,
+//       y: 3.8,
+//       z: 2.8,
+//       scrollTrigger: {
+//         trigger: ".third-section",
+//         start: "top bottom",
+//         end: "top top",
+//         scrub: true,
+//         immediateRender: false,
+//       },
+//     })
+//     .to(scene.position, {
+//       x: 2.31,
+//       y: 0.01,
+//       z: -0.7,
+//       scrollTrigger: {
+//         trigger: ".third-section",
+//         start: "top bottom",
+//         end: "top top",
+//         scrub: true,
+//         immediateRender: false,
+//       },
+//     })
+//     .to(scene.rotation, {
+//       x: 0.67,
+//       y: -12.9,
+//       z: 0.79,
+//       scrollTrigger: {
+//         trigger: ".third-section",
+//         start: "top bottom",
+//         end: "top top",
+//         scrub: true,
+//         immediateRender: false,
+//       },
+//     });
+// }, []);
   return (
     <>
     <ambientLight intensity={4} />
