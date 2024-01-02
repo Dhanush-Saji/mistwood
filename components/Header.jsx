@@ -19,6 +19,7 @@ import { ShoppingCart, UserRound } from 'lucide-react'
 import Link from 'next/link'
 import { Button } from './ui/button'
 import Image from 'next/image'
+import { DarkModeToggle } from './DarkModeToggle'
   
 
 const Header = () => {
@@ -27,15 +28,15 @@ const Header = () => {
         <div className='flex gap-1 items-center'>
           <Image src={'/images/logo.png'} alt='logo' height={52} width={52} />
           <div className='flex flex-col ml-1'>
-          <span className='text-[1.4rem] font-[800] text-[#27282a]'>Mistwood</span>
-          <span className='text-[0.9rem] font-[700] text-[#27282a] mt-[-10px]'>Furniture</span>
+          <span className='text-[1.4rem] font-[800] text-[#27282a] dark:text-[#eeeeee]'>Mistwood</span>
+          <span className='text-[0.9rem] font-[700] text-[#27282a] dark:text-[#eeeeee] mt-[-10px]'>Furniture</span>
 
           </div>
         </div>
         <div className='gap-3 items-center hidden sm:flex'>
         <Select>
-  <SelectTrigger className="w-[180px] bg-transparent border border-[#27282a3a] focus:ring-0 focus:ring-offset-0">
-    <SelectValue placeholder="Theme" />
+  <SelectTrigger className="w-[180px] bg-transparent border border-[#27282a3a] focus:ring-0 focus:ring-offset-0 text-[#27282a]">
+    <SelectValue placeholder="Language" />
   </SelectTrigger>
   <SelectContent>
     <SelectItem value="light">Light</SelectItem>
@@ -44,9 +45,10 @@ const Header = () => {
   </SelectContent>
 </Select>
 
-<h1>Shop</h1>
-<h1>About Us</h1>
-<h1>Contact</h1>
+<h1 className='text-[#464646]'>Shop</h1>
+<h1 className='text-[#464646]'>About Us</h1>
+<h1 className='text-[#464646]'>Contact</h1>
+<DarkModeToggle />
 <DropdownMenu>
       <DropdownMenuTrigger asChild className="focus-visible:!ring-0 focus-visible:!ring-offset-0">
         <Button variant="outline"><UserRound className='text-[#27282aa2]' /></Button>

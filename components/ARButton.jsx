@@ -31,7 +31,7 @@ const ARButton = () => {
         Show me
       </Link>
       :
-    <Button onClick={submitFn} className='w-fit rounded-full px-5 mt-5 font-semibold text-md bg-[#27282a]'>Show me</Button>
+    <Button onClick={submitFn} className='w-fit rounded-full px-5 mt-5 font-semibold text-md bg-[#27282a] dark:bg-[#eeeeee]'>Show me</Button>
     }
     </>
   )

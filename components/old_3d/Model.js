@@ -38,9 +38,6 @@ function Model() {
 	// 		step: 0.01,
 	// 	},
 	// });
-
-  // ---- used for debug ----
-
 	// useFrame(() => {
 	// 	camera.position.x = cameraPosition.x;
 	// 	camera.position.y = cameraPosition.y;
@@ -54,15 +51,27 @@ function Model() {
 	// });
 
 
+
   useLayoutEffect(()=>{
     new ScrollTrigger({})
 tl
+// Rotate the 'nodes.koltuk' mesh based on scroll
+
 .to(camera.position,{x:1.39,y:-2,z:5.48,
   scrollTrigger:{
     trigger:'.second-section',
     start:"top bottom",
     end:"top top",
     scrub:0.5,
+    immediateRender:false
+  }
+})
+.to('.home-section-div',{opacity:0,xPercent:'-150',
+  scrollTrigger:{
+    trigger:'.second-section',
+    start:"top bottom",
+    end:"top top",
+    scrub:1,
     immediateRender:false
   }
 })
@@ -84,7 +93,7 @@ tl
     immediateRender:false
   }
 })
-.to(camera.position,{x:0.44,y:-0.95,z:5.88,
+.to(scene.position,{x:10.2,
   scrollTrigger:{
     trigger:'.third-section',
     start:"top bottom",
@@ -93,105 +102,28 @@ tl
     immediateRender:false
   }
 })
-.to(scene.position,{x:3.2,y:1,z:3.9,
-  scrollTrigger:{
-    trigger:'.third-section',
-    start:"top bottom",
-    end:"top top",
-    scrub:0.5,
-    immediateRender:false
+.to(modelRef.current.rotation, {
+  y: -Math.PI * 2.2,
+  scrollTrigger: {
+    trigger: '.third-section',
+    start: "top bottom",
+    end: "top center",
+    scrub: 0.5,
+    immediateRender: false
   }
 })
-.to(scene.rotation,{x:0.34,y:-18.32,z:-0.04,
-  scrollTrigger:{
-    trigger:'.third-section',
-    start:"top bottom",
-    end:"top top",
-    scrub:0.5,
-    immediateRender:false
+.to('#webgi-canvas', {
+  opacity:0,
+  scrollTrigger: {
+    trigger: '.forth-section',
+    start: "top bottom",
+    end: "top bottom-=100",
+    scrub: 0.5,
+    immediateRender: false,
   }
 })
   },[])
 
-// useLayoutEffect(() => {
-//   new ScrollTrigger({});
-//   // component About.tsx
-//   tl.to(camera.position, {
-//     x: 5,
-//     y: 4.0,
-//     z: 2.8,
-//     scrollTrigger: {
-//       trigger: ".second-section",
-//       start: "top bottom",
-//       end: "top top",
-//       scrub: true,
-//       immediateRender: false,
-//     },
-//   })
-//     .to(scene.position, {
-//       x: 3.01,
-//       y: 0.76,
-//       z: 3.7,
-//       scrollTrigger: {
-//         trigger: ".second-section",
-//         start: "top bottom",
-//         end: "top top",
-//         scrub: true,
-//         immediateRender: false,
-//       },
-//     })
-
-//     .to(scene.rotation, {
-//       x: -0.53,
-//       y: -3.48,
-//       z: -0.21,
-//       scrollTrigger: {
-//         trigger: ".second-section",
-//         start: "top bottom",
-//         end: "top top",
-//         scrub: true,
-//         immediateRender: false,
-//       },
-//     })
-
-//     // component - BuyNow.tsx
-//     .to(camera.position, {
-//       x: 5,
-//       y: 3.8,
-//       z: 2.8,
-//       scrollTrigger: {
-//         trigger: ".third-section",
-//         start: "top bottom",
-//         end: "top top",
-//         scrub: true,
-//         immediateRender: false,
-//       },
-//     })
-//     .to(scene.position, {
-//       x: 2.31,
-//       y: 0.01,
-//       z: -0.7,
-//       scrollTrigger: {
-//         trigger: ".third-section",
-//         start: "top bottom",
-//         end: "top top",
-//         scrub: true,
-//         immediateRender: false,
-//       },
-//     })
-//     .to(scene.rotation, {
-//       x: 0.67,
-//       y: -12.9,
-//       z: 0.79,
-//       scrollTrigger: {
-//         trigger: ".third-section",
-//         start: "top bottom",
-//         end: "top top",
-//         scrub: true,
-//         immediateRender: false,
-//       },
-//     });
-// }, []);
   return (
     <>
     <ambientLight intensity={4} />
