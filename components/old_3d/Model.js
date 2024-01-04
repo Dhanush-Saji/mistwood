@@ -19,6 +19,7 @@ function Model() {
   dracoLoader.setDecoderPath("/draco-gltf/");
   let modelLink = process.env.NEXT_PUBLIC_MODEL_LINK;
   const {nodes,materials} = useGLTF(modelLink,dracoLoader); // Adjust path as needed
+  console.log('chair model',nodes,materials)
   let {camera,scene} = useThree()
   const modelRef = useRef();
   const tl = gsap.timeline()

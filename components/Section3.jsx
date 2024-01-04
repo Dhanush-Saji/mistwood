@@ -8,7 +8,8 @@ import ARButton from './ARButton'
 const Section3 = () => {
     
   return (
-    <div className='third-section flex w-screen h-screen px-7 sm:px-10 flex-col justify-center text-[#27282a] bg-[#ffde3c1c]'>
+    <div className='third-section flex w-screen h-screen px-7 items-center sm:px-10 text-[#27282a] bg-[#ffde3c1c]'>
+      <div>
       <div className='flex flex-col sm:flex-row items-start sm:items-center'>
       <span className='text-[4rem] sm:text-[5rem] md:text-[6rem] font-[800] m-0 text-[#27282a] dark:text-[#eeeeee]'>See it.</span>
       <span className='text-[4rem] sm:text-[5rem] md:text-[6rem] font-[800] m-0 text-[#ffde3c] mt-[-35px] sm:mt-0'>Love it.</span>
@@ -19,6 +20,11 @@ const Section3 = () => {
       <div className='mt-5 sm:mt-0'>
       <ARButton />
       </div>
+      </div>
+      <div>
+        <video id='mobile-video' autoPlay muted loop src="/video/mobile.mp4"></video>
+      </div>
+      
       </div>
   )
 }

@@ -8,7 +8,7 @@ import { ViewerApp, AssetManagerPlugin,TonemapPlugin ,
 import gsap from 'gsap'
 import {ScrollTrigger} from 'gsap/ScrollTrigger'
 
-
+let needsUpdate = true
 let viewer
 gsap.registerPlugin(ScrollTrigger)
 
@@ -69,7 +69,7 @@ camera.target.set(0, 0, 2.5);         // Initial target
   }
   setupScrollAnimation()
 
-  let needsUpdate = true
+
   function onUpdate(){
     needsUpdate = true
     viewer.renderer.resetShadows()

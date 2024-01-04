@@ -84,14 +84,14 @@ body {
   width: 100% !important;
   height: 100% !important;
   position: fixed !important;
-  pointer-events: none !important;
+  /* pointer-events: none !important; */
   top: 0 !important;
   right: 0 !important;
 }
 #webgi-canvas-container{
   width: 100vw;
   height: 100vh;
-  pointer-events: none;
+  /* pointer-events: none; */
   position: fixed;
 }
 .home-section{
@@ -99,4 +99,28 @@ body {
   background-size: cover; /* This ensures the image covers the entire div */
   background-position: center;
   background-repeat: no-repeat;
+}
+.overlay {
+  position: absolute;
+  top: -100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: top 0.5s;
+}
+
+.category1:hover .overlay,.category2:hover .overlay,.category3:hover .overlay,.category4:hover .overlay {
+  top: 0;
+}
+
+.category1:hover img,.category2:hover img,.category3:hover img,.category4:hover img{
+  transform: scale(1.2);
+}
+
+#mobile-video{
+  height: 70vh;
 }
