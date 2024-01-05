@@ -88,6 +88,13 @@ body {
   top: 0 !important;
   right: 0 !important;
 }
+#sofa-canvas{
+  /* width: 100% !important;
+  height: 100% !important; */
+  pointer-events: none !important;
+  /* position: absolute;
+  z-index: 99; */
+}
 #webgi-canvas-container{
   width: 100vw;
   height: 100vh;
@@ -123,4 +130,7 @@ body {
 
 #mobile-video{
   height: 70vh;
+}
+.text-transition{
+  height: auto !important;
 }

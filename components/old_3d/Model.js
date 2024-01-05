@@ -55,7 +55,7 @@ function Model() {
   useLayoutEffect(()=>{
     new ScrollTrigger({})
     tl
-    .set('#mobile-gif', { xPercent: '150'})
+    .set('#mobile-gif', { xPercent: '180'})
 
 .to(camera.position,{x:1.39,y:-2,z:5.48,
   scrollTrigger:{
@@ -113,11 +113,11 @@ function Model() {
   }
 })
 .to('#webgi-canvas', {
-  opacity:0,
+  opacity:0,duration:0.5,
   scrollTrigger: {
-    trigger: '.forth-section',
-    start: "top bottom",
-    end: "top bottom-=100",
+    trigger: '.third-section',
+    start: "top bottom-=200",
+    end: "top bottom",
     scrub: 0.5,
     immediateRender: false,
   }
@@ -130,6 +130,7 @@ function Model() {
     end: "top top",
     scrub: 1.5,
     immediateRender: false,
+    
   }
 })
   },[])

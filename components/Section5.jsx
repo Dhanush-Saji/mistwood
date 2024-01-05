@@ -1,9 +1,11 @@
 import React from 'react'
 import Sofa3d from './sofa-3d/Sofa3d'
+import Bulb from '../public/images/bulb.png'
+import Image from 'next/image'
 
 const Section5 = () => {
   return (
-    <div className='forth-section flex w-screen h-screen px-7 sm:px-10 flex-col justify-center bg-white'>
+    <div className='fifth-section flex w-screen h-screen flex-col justify-center bg-white relative z-0'>
       <Sofa3d />
     </div>
   )
