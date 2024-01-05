@@ -3,6 +3,8 @@ import React from 'react'
 import { Button } from './ui/button'
 import Link from 'next/link'
 import ARButton from './ARButton'
+import Image from 'next/image'
+import MobGif from '../public/video/mobile.gif'
 
 
 const Section3 = () => {
@@ -22,7 +24,7 @@ const Section3 = () => {
       </div>
       </div>
       <div>
-        <video id='mobile-video' autoPlay muted loop src="/video/mobile.mp4"></video>
+        <Image alt='mobile-gif' id='mobile-gif' src={MobGif}></Image>
       </div>
       
       </div>

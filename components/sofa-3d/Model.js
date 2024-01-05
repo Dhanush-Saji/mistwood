@@ -1,3 +1,4 @@
+"use client"
 import React, { Suspense, useLayoutEffect, useRef } from 'react';
 import {
   AdaptiveDpr,
@@ -71,7 +72,7 @@ function Model() {
     <ambientLight intensity={4} />
          */}
     <OrbitControls  />
-    <group ref={modelRef} dispose={null} scale={0.4}> 
+    <group ref={modelRef} dispose={null} scale={0.3} rotation={[1.5,0,0]}> 
     <group position={[0, -0.658, 0]} scale={0.039}>
         <mesh
           castShadow

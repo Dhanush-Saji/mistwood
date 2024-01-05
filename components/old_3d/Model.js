@@ -19,7 +19,6 @@ function Model() {
   dracoLoader.setDecoderPath("/draco-gltf/");
   let modelLink = process.env.NEXT_PUBLIC_MODEL_LINK;
   const {nodes,materials} = useGLTF(modelLink,dracoLoader); // Adjust path as needed
-  console.log('chair model',nodes,materials)
   let {camera,scene} = useThree()
   const modelRef = useRef();
   const tl = gsap.timeline()
@@ -55,8 +54,8 @@ function Model() {
 
   useLayoutEffect(()=>{
     new ScrollTrigger({})
-tl
-// Rotate the 'nodes.koltuk' mesh based on scroll
+    tl
+    .set('#mobile-gif', { xPercent: '150'})
 
 .to(camera.position,{x:1.39,y:-2,z:5.48,
   scrollTrigger:{
@@ -120,6 +119,16 @@ tl
     start: "top bottom",
     end: "top bottom-=100",
     scrub: 0.5,
+    immediateRender: false,
+  }
+})
+.to('#mobile-gif', {
+  xPercent:'-20',
+  scrollTrigger: {
+    trigger: '.third-section',
+    start: "top bottom",
+    end: "top top",
+    scrub: 1.5,
     immediateRender: false,
   }
 })

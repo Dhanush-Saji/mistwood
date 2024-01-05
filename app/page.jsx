@@ -19,8 +19,8 @@ export default function Home() {
       <Section4 />
       <Section5 />
       {/* {app} */}
-      {/* <Three /> */}
-      <Sofa3d />
+      <Three />
+      
     </>
   );
 }

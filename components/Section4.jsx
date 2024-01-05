@@ -8,7 +8,7 @@ import Image from 'next/image'
 
 const Section4 = () => {
   return (
-    <div className='forth-section flex w-screen py-10 px-7 sm:px-10 flex-col justify-center'>
+    <div className='forth-section flex w-screen py-10 px-7 sm:px-10 flex-col justify-center bg-white dark:bg-[#313131]'>
       <div className='relative'>
         <h1 className='text-6xl md:text-7xl font-bold text-center text-[#ecedef] m-0'>Category</h1>
         <p className='text-[#27282a] text-sm md:text-lg font-bold absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 m-0'>MistWood Furniture</p>
