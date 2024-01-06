@@ -11,12 +11,8 @@ import ModalColorChangeBtns from '../ModalColorChangeBtns';
 gsap.registerPlugin(ScrollTrigger)
 const Sofa3d = () => {
   const [switchLight, setswitchLight] = useState({first:false,second:false})
-  const [isClient, setIsClient] = useState(false)
   const [currentColor, setCurrentColor] = useState('');
-  useEffect(() => {
-    setIsClient(true)
-  }, [])
-  return isClient?(
+  return(
     <>
     <SofaModelLights switchLight={switchLight} setswitchLight={setswitchLight} />
     <ModalColorChangeBtns setCurrentColor={setCurrentColor} />
@@ -27,7 +23,7 @@ const Sofa3d = () => {
     </Suspense>
   </Canvas>
     </>
-  ):(<h1>Loading..</h1>)
+  )
 };
 
 

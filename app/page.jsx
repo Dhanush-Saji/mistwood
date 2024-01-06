@@ -1,3 +1,4 @@
+import DisableMobileWrapper from "@/components/DisableMobileWrapper";
 import Header from "@/components/Header";
 import ScrollAnimations from "@/components/ScrollAnimations";
 import Section1 from "@/components/Section1";
@@ -15,7 +16,7 @@ export default function Home() {
       <Section2 />
       <Section3 />
       <Section4 />
-      <Section5 />
+      <DisableMobileWrapper><Section5 /></DisableMobileWrapper>
       <ScrollAnimations />
       <Three />
       

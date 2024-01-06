@@ -13,11 +13,16 @@ import {gsap} from 'gsap';
 import { useFrame, useThree } from '@react-three/fiber';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import { useControls } from "leva";
+
+const dracoLoader = new DRACOLoader();
+let modelLink = process.env.NEXT_PUBLIC_MODEL_LINK;
+// Preload the model outside of any component
+useGLTF.preload('/scene.glb', dracoLoader);
+
 gsap.registerPlugin(ScrollTrigger)
+
 function Model() {
-    const dracoLoader = new DRACOLoader();
   dracoLoader.setDecoderPath("/draco-gltf/");
-  let modelLink = process.env.NEXT_PUBLIC_MODEL_LINK;
   const {nodes,materials} = useGLTF('/scene.glb',dracoLoader); // Adjust path as needed
   let {camera,scene} = useThree()
   const modelRef = useRef();

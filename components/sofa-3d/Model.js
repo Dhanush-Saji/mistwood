@@ -19,6 +19,8 @@ import { useControls } from "leva";
 
 const dracoLoader = new DRACOLoader();
 let modelLink = process.env.NEXT_PUBLIC_SOFA_LINK;
+// Preload the model outside of any component
+useGLTF.preload('/sofa1.glb', dracoLoader);
 
 function Model({switchLight,currentColor}) {
   dracoLoader.setDecoderPath("/draco-gltf/");
