@@ -6,7 +6,7 @@ import Image from 'next/image'
 const Section5 = () => {
   return (
     <div className='fifth-section flex w-screen h-screen flex-col justify-center bg-white relative z-0'>
-      <Sofa3d />
+      {/* <Sofa3d /> */}
     </div>
   )
 }

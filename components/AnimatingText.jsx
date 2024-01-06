@@ -4,7 +4,7 @@ import TextTransition, { presets } from 'react-text-transition';
 
 const AnimatingText = () => {
     const [index, setIndex] = useState(0);
-    const TEXTS = ['Love it.', 'Dream it.'];
+    const TEXTS = ['Love it.', 'Dream it.','Place it.'];
     useEffect(() => {
         const intervalId = setInterval(
           () => setIndex((index) => index + 1),

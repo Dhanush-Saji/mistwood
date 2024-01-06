@@ -13,12 +13,12 @@ import {gsap} from 'gsap';
 import { useFrame, useThree } from '@react-three/fiber';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import { useControls } from "leva";
-
+gsap.registerPlugin(ScrollTrigger)
 function Model() {
     const dracoLoader = new DRACOLoader();
   dracoLoader.setDecoderPath("/draco-gltf/");
   let modelLink = process.env.NEXT_PUBLIC_MODEL_LINK;
-  const {nodes,materials} = useGLTF(modelLink,dracoLoader); // Adjust path as needed
+  const {nodes,materials} = useGLTF('/scene.glb',dracoLoader); // Adjust path as needed
   let {camera,scene} = useThree()
   const modelRef = useRef();
   const tl = gsap.timeline()
@@ -55,23 +55,12 @@ function Model() {
   useLayoutEffect(()=>{
     new ScrollTrigger({})
     tl
-    .set('#mobile-gif', { xPercent: '180'})
-
 .to(camera.position,{x:1.39,y:-2,z:5.48,
   scrollTrigger:{
     trigger:'.second-section',
     start:"top bottom",
     end:"top top",
     scrub:0.5,
-    immediateRender:false
-  }
-})
-.to('.home-section-div',{opacity:0,xPercent:'-150',
-  scrollTrigger:{
-    trigger:'.second-section',
-    start:"top bottom",
-    end:"top top",
-    scrub:1,
     immediateRender:false
   }
 })
@@ -120,17 +109,6 @@ function Model() {
     end: "top bottom",
     scrub: 0.5,
     immediateRender: false,
-  }
-})
-.to('#mobile-gif', {
-  xPercent:'-20',
-  scrollTrigger: {
-    trigger: '.third-section',
-    start: "top bottom",
-    end: "top top",
-    scrub: 1.5,
-    immediateRender: false,
-    
   }
 })
   },[])

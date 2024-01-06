@@ -5,7 +5,6 @@ const Section1 = () => {
   return (
     <div className='home-section flex w-screen h-screen px-7 sm:px-10 flex-col pt-[10vh] justify-start text-[#27282a]'>
       <div className="home-section-div">
-
       <div className='home-section-hero flex flex-col'>
       <span className='text-[4rem] sm:text-[5rem] md:text-[6rem] font-[800] m-0'>Furniture</span>
       <div className='flex flex-col sm:flex-row'>
