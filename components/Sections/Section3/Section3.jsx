@@ -1,17 +1,31 @@
-
-import React from 'react'
-import { Button } from './ui/button'
-import Link from 'next/link'
-import ARButton from './ARButton'
+'use client'
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import React, { useLayoutEffect,useRef } from 'react'
 import Image from 'next/image'
-import MobGif from '../public/video/mobile.gif'
-import AnimatingText from './AnimatingText'
+import MobGif from '../../../public/video/mobile.gif'
+import AnimatingText from '@/components/AnimatingText'
+import ARButton from '@/components/ARButton'
 
 
 const Section3 = () => {
+  gsap.registerPlugin(ScrollTrigger)
+  const sectionRef = useRef(null)
+  useLayoutEffect(()=>{
+    let elem = sectionRef.current
+    let trigger = ScrollTrigger.create({
+      trigger: elem,
+      start: "top top",
+      pin:true,
+      pinSpacing:false
+    });
+    return()=>{
+      if(trigger) trigger.kill()
+    }
+  },[])
   return (
-    <div className='third-section flex flex-col md:flex-row w-screen h-screen px-7 items-center sm:px-10 text-[#27282a] bg-[#ffde3c1c] overflow-hidden relative'>
-      <div className='order-2 md:order-1 pb-5 md:pb-0 relative z-20'>
+    <div ref={sectionRef} className='third-section flex flex-col md:flex-row w-screen h-screen px-7 items-center sm:px-10 text-[#27282a] bg-[#FFFBEA] overflow-hidden relative'>
+      <div className='order-2 md:order-1 pb-5 md:pb-0 relative z-20 pt-14'>
       <div className='flex flex-col sm:flex-row items-start sm:items-center'>
       <span className='text-[4rem] sm:text-[5rem] md:text-[6rem] font-[800] m-0 text-[#27282a] dark:text-[#eeeeee]'>See it.</span>
       <AnimatingText />

@@ -21,11 +21,13 @@ import { Button } from './ui/button'
 import Image from 'next/image'
 import { DarkModeToggle } from './DarkModeToggle'
 import Avatar from '../public/images/avatar.png'
+import MobileNavbar from './MobileNavbar'
   
 
 const Header = () => {
   return (
-    <div className=' justify-between flex px-4 py-2 items-center fixed w-full z-[999]'>
+    <div className='justify-between flex px-6 sm:px-4 py-3 sm:py-2 items-center fixed w-full z-[10]'>
+      
         <div className='flex gap-1 items-center'>
           <Image src={'/images/logo.png'} alt='logo' height={52} width={52} />
           <div className='flex flex-col ml-1'>
@@ -50,7 +52,8 @@ const Header = () => {
 <h1 className='text-[#464646]'>Contact</h1>
 <DarkModeToggle />
 <Link href={'/cart'} prefetch={false}>
-<div className='rounded-full text-[#27282a] p-1.5 relative flex items-center justify-center'><ShoppingCart />
+<div className='rounded-full text-[#27282a] p-1.5 relative flex items-center justify-center'>
+  <ShoppingCart />
 <span className='w-5 h-5 flex items-center justify-center bg-[#ffde3c] absolute right-[-5px] top-[-5px] text-xs font-bold rounded-full'>12</span>
 </div>
 </Link>
@@ -76,6 +79,14 @@ const Header = () => {
       </DropdownMenuContent>
 </DropdownMenu>
 
+        </div>
+        <div className='flex sm:hidden gap-2'>
+        <Link href={'/cart'} prefetch={false}>
+        <div className='rounded-full text-[#27282a] p-1.5 relative flex items-center justify-center'><ShoppingCart />
+        <span className='w-5 h-5 flex items-center justify-center bg-[#ffde3c] absolute right-[-5px] top-[-5px] text-xs font-bold rounded-full'>12</span>
+        </div>
+        </Link>
+          <MobileNavbar />
         </div>
 
     </div>

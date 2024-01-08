@@ -25,7 +25,6 @@ useGLTF.preload('/sofa1.glb', dracoLoader);
 function Model({switchLight,currentColor}) {
   dracoLoader.setDecoderPath("/draco-gltf/");
   const {nodes,materials} = useGLTF('/sofa1.glb',dracoLoader); // Adjust path as needed
-  console.log(materials.wire_000000000)
   let {camera,scene} = useThree()
   const modelRef = useRef();
   // const ambientRef = useRef()
@@ -167,8 +166,8 @@ function Model({switchLight,currentColor}) {
       <spotLight ref={spotRef} /> */}
         {/* <spotLight intensity={0.6} position={[30, 30, 50]} angle={0.2} penumbra={1} castShadow /> */}
         {/* <directionalLight position={[0, 2, 0]} intensity={2} /> */}
-        {switchLight.second && <pointLight intensity={1} position={[1.1, 0.4,-1.6]} />}
-        {switchLight.first && <pointLight intensity={1} position={[-1.1, 0.4,-1.6]} />}
+        {switchLight.second && <pointLight intensity={2} position={[1.1, 0.4,-1.6]} />}
+        {switchLight.first && <pointLight intensity={2} position={[-1.1, 0.4,-1.6]} />}
         <AdaptiveDpr pixelated />
         <AdaptiveEvents />
          <Environment files='/gem_2.hdr' />

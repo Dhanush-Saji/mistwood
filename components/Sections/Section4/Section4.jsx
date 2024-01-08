@@ -1,9 +1,9 @@
 import Link from 'next/link'
 import React from 'react'
-import category1 from '../public/images/category1.jpg'
-import category2 from '../public/images/category2.jpg'
-import category3 from '../public/images/category3.jpg'
-import category4 from '../public/images/category4.jpg'
+import category1 from '../../../public/images/category1.jpg'
+import category2 from '../../../public/images/category2.jpg'
+import category3 from '../../../public/images/category3.jpg'
+import category4 from '../../../public/images/category4.jpg'
 import Image from 'next/image'
 
 const Section4 = () => {

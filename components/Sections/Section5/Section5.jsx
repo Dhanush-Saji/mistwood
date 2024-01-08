@@ -1,7 +1,5 @@
 import React from 'react'
-import Sofa3d from './sofa-3d/Sofa3d'
-import Bulb from '../public/images/bulb.png'
-import Image from 'next/image'
+import Sofa3d from '@/components/sofa-3d/Sofa3d'
 
 const Section5 = () => {
   return (
