@@ -4,7 +4,6 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import React, { useLayoutEffect, useRef } from 'react'
 
 const Section2Wrapper = ({children}) => {
-    console.log('client component')
   gsap.registerPlugin(ScrollTrigger)
   const sectionRef = useRef(null)
   useLayoutEffect(()=>{
