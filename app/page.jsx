@@ -6,6 +6,7 @@ import Section2 from "@/components/Sections/Section2/Section2";
 import Section3 from "@/components/Sections/Section3/Section3";
 import Section4 from "@/components/Sections/Section4/Section4";
 import Section5 from "@/components/Sections/Section5/Section5";
+import Section6 from "@/components/Sections/Section6/Section6";
 import Chair3d from "@/components/chair-3d/Chair3d";
 
 export default function Home() {
@@ -19,7 +20,7 @@ export default function Home() {
       <DisableMobileWrapper><Section5 /></DisableMobileWrapper>
       <ScrollAnimations />
       <Chair3d />
-      
+      <Section6 />
     </>
   );
 }

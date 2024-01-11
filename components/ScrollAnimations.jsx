@@ -33,6 +33,24 @@ const ScrollAnimations = () => {
           
         }
       })
+      let secondElem = ScrollTrigger.create({
+        trigger: '.second-section',
+        start: "top top",
+        scrub: 3,
+        pin:true,
+        pinSpacing:false
+      });
+      let thirdElem = ScrollTrigger.create({
+        trigger: '.third-section',
+        start: "top top",
+        scrub: 3,
+        pin:true,
+        pinSpacing:false,
+      });
+      return()=>{
+        if(secondElem) secondElem.kill()
+        if(thirdElem) thirdElem.kill()
+      }
       },[])
 
   return (

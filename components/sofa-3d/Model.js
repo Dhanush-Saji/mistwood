@@ -147,7 +147,7 @@ function Model({switchLight,currentColor}) {
       }
     })
     .to(modelRef.current.position, {
-      z: -2,
+      z: -2,y:0,
       scrollTrigger: {
         trigger: '.fifth-section',
         start: "top bottom-=300",

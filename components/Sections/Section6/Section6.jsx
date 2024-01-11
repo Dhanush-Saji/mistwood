@@ -3,14 +3,14 @@ import React from "react";
 const Section6 = () => {
   return (
     <div
-      class="sexth-section bg-[#ecedef] w-screen h-screen py-10 px-5 md:px-32"
+      class="sixth-section bg-[#ecedef] w-screen h-screen py-10 px-5 md:px-32 relative"
     >
       <div class="mt-10">
         <span class="text-5xl md:text-5xl font-extrabold">
           Love to here from you, <br />
           Get in touch👋
         </span>
-        <div class="grid grid-cols-2 gap-5 mt-10">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mt-10">
           <div class="flex flex-col gap-2">
             <label for="">Your name</label>
             <input
