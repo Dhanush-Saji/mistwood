@@ -175,7 +175,7 @@ function Model({switchLight,currentColor}) {
     <ambientLight intensity={4} />
          */}
     <OrbitControls  />
-    <group ref={modelRef} dispose={null} scale={0.8} rotation={[1.5,0,0]} position={[0,0,0]}> 
+    <group ref={modelRef} dispose={null} scale={0.8} rotation={[1.5,0,0]} position={[0,0.018,0]}> 
     <group position={[0, -0.658, 0]} scale={0.039}>
         <mesh
           castShadow

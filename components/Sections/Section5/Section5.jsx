@@ -1,11 +1,12 @@
 import React from 'react'
-import Sofa3d from '@/components/sofa-3d/Sofa3d'
+import Section5Wrapper from './Section5Wrapper'
+import Section5Content from './Section5Content'
 
 const Section5 = () => {
   return (
-    <div className='fifth-section flex w-screen h-screen flex-col justify-center bg-white relative z-0'>
-      <Sofa3d />
-    </div>
+    <Section5Wrapper>
+      <Section5Content />
+    </Section5Wrapper>
   )
 }
 
