@@ -1,5 +1,6 @@
 import DisableMobileWrapper from "@/components/DisableMobileWrapper";
 import Header from "@/components/Header";
+import LocomotiveScroll from "@/components/LocomotiveScroll";
 import ScrollAnimations from "@/components/ScrollAnimations";
 import Section1 from "@/components/Sections/Section1/Section1";
 import Section2 from "@/components/Sections/Section2/Section2";
@@ -12,6 +13,7 @@ import Chair3d from "@/components/chair-3d/Chair3d";
 export default function Home() {
   return (
     <>
+    <LocomotiveScroll />
       <Header />
       <Section1 />
       <Section2 />

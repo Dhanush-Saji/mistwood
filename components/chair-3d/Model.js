@@ -87,7 +87,7 @@ function Model() {
     immediateRender:false
   }
 })
-.to(scene.position,{x:10.2,
+.to(scene.position,{x:7,
   scrollTrigger:{
     trigger:'.third-section',
     start:"top bottom",
@@ -96,16 +96,16 @@ function Model() {
     immediateRender:false
   }
 })
-.to(modelRef.current.rotation, {
-  y: -Math.PI * 2.2,
-  scrollTrigger: {
-    trigger: '.third-section',
-    start: "top bottom",
-    end: "top center",
-    scrub: 0.5,
-    immediateRender: false
-  }
-})
+// .to(modelRef.current.rotation, {
+//   y: -Math.PI * 2.2,
+//   scrollTrigger: {
+//     trigger: '.third-section',
+//     start: "top bottom",
+//     end: "top center",
+//     scrub: 0.5,
+//     immediateRender: false
+//   }
+// })
 .to('#webgi-canvas', {
   opacity:0,duration:0.5,
   scrollTrigger: {

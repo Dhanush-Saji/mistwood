@@ -1,3 +1,4 @@
+@import '/node_modules/locomotive-scroll/dist/locomotive-scroll';
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

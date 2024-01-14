@@ -7,7 +7,7 @@ import MobGif from '../../../public/video/mobile.gif'
 
 const Section3 = () => {
   return (
-    <div className='third-section flex flex-col md:flex-row w-screen h-screen px-7 items-center sm:px-10 text-[#27282a] bg-[#FFFBEA] overflow-hidden relative'>
+    <div className=' third-section flex flex-col md:flex-row w-screen h-screen px-7 items-center sm:px-10 text-[#27282a overflow-hidden relative bg-[#FFFBEA]'>
  <div className='see-it-text order-2 md:order-1 pb-5 md:pb-0 relative z-20 pt-14'>
       <div className='flex flex-col sm:flex-row items-start sm:items-center'>
       <span className=' text-[4rem] sm:text-[5rem] md:text-[6rem] font-[800] m-0 text-[#27282a] dark:text-[#eeeeee]'>See it.</span>

@@ -13,15 +13,6 @@ const ScrollAnimations = () => {
         new ScrollTrigger({})
         tl
     .set('#mobile-gif', { x: '500'})
-    .to('.home-section-div',{opacity:0,xPercent:'-150',
-      scrollTrigger:{
-        trigger:'.second-section',
-        start:"top bottom",
-        end:"top top",
-        scrub:0.5,
-        immediateRender:false
-      }
-    })
     .to('#mobile-gif', {
         x:os == 'Android'?'0':'-20',
         scrollTrigger: {
@@ -33,6 +24,7 @@ const ScrollAnimations = () => {
           
         }
       })
+    
       let secondElem = ScrollTrigger.create({
         trigger: '.second-section',
         start: "top top",
