@@ -135,3 +135,6 @@ body {
 .text-transition{
   height: auto !important;
 }
+.comic-text{
+  font-family: 'Comic Neue', cursive;
+}
