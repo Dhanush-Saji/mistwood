@@ -5,8 +5,11 @@ import category1 from '../../../public/images/category1.jpg'
 import category2 from '../../../public/images/category2.jpg'
 import category3 from '../../../public/images/category3.jpg'
 import category4 from '../../../public/images/category4.jpg'
+import { getCategories } from '@/actions/server-action'
 
-const Section4 = () => {
+const Section4 = async() => {
+  const category = await getCategories() || []
+  console.log(category)
   return (
     <div className='fourth-section flex-col justify-center bg-white dark:bg-[#313131] w-screen min-h-screen py-10 px-5 md:px-32 relative'>
  <div className='relative bg-white'>
@@ -15,7 +18,17 @@ const Section4 = () => {
         </div>
 
         <div className='categories relative grid grid-cols-1 md:grid-cols-3 gap-3 mt-10 md:mt-16 bg-white'>
-          <Link className='category1 overflow-hidden rounded-lg md:rounded-none md:rounded-tl-[4rem] max-h-[50vh] cursor-pointer relative' href={'/product-page?category=Chair'} prefetch={false}>
+          {
+            category?.map((cate,index)=>(
+              <Link className='category1 overflow-hidden rounded-lg md:rounded-none md:rounded-tl-[4rem] max-h-[50vh] cursor-pointer relative' href={'/product-page?category=Chair'} prefetch={false}>
+            <img src={cate?.category_image?.url} alt="" className='transition-all object-cover w-full h-full duration-500' />
+            <div class="overlay">
+              <button className='text-[#27282a] px-4 cursor-pointer py-2 rounded-full bg-white text-sm font-medium'>Chair category</button>
+            </div>
+          </Link>
+            ))
+          }
+          {/* <Link className='category1 overflow-hidden rounded-lg md:rounded-none md:rounded-tl-[4rem] max-h-[50vh] cursor-pointer relative' href={'/product-page?category=Chair'} prefetch={false}>
             <Image src={category1} alt="" className='transition-all object-cover w-full h-full duration-500' />
             <div class="overlay">
               <button className='text-[#27282a] px-4 cursor-pointer py-2 rounded-full bg-white text-sm font-medium'>Chair category</button>
@@ -40,7 +53,7 @@ const Section4 = () => {
           <div class="overlay">
               <button className='text-[#27282a] px-4 cursor-pointer py-2 rounded-full bg-white text-sm font-medium'>Sofa category</button>
             </div>
-          </Link>
+          </Link> */}
         </div>
 </div>
   )
