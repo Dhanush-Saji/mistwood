@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-let url = 'mongodb+srv://dhanush:dhanush@cluster0.myrr0cr.mongodb.net/?retryWrites=true&w=majority'
+let url = process.env.MONGO_URL
 export async function connectDb() {
   try {
     mongoose.connect(url,{
