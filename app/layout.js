@@ -1,6 +1,7 @@
 import { DM_Sans,Comic_Neue } from 'next/font/google'
 import './globals.css'
 import { ThemeProvider } from '@/components/ThemeProvider'
+import Header from '@/components/Header';
 
 const inter = DM_Sans({ subsets: ['latin'], weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900', '1000'] });
 const comic = Comic_Neue({ subsets: ['latin'], weight: ['300', '400', '700'] });
@@ -15,6 +16,7 @@ export default function RootLayout({ children }) {
     <html lang="en" style={{ colorScheme: 'light' }}>
       <body className={inter.className}>
       <ThemeProvider attribute='class' defaultTheme='system'>
+      <Header />
         {children}
       </ThemeProvider>
         </body>

@@ -14,7 +14,6 @@ export default function Home() {
   return (
     <>
     <LocomotiveScroll />
-      <Header />
       <Section1 />
       <Section2 />
       <Section3 />
