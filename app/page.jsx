@@ -19,7 +19,7 @@ export default function Home() {
       <Section3 />
       <Section4 />
       <DisableMobileWrapper><Section5 /></DisableMobileWrapper>
-      <ScrollAnimations />
+      {/* <ScrollAnimations /> */}
       <Chair3d />
       <Section6 />
     </>

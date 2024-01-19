@@ -19,7 +19,7 @@ import MobileNavbar from './MobileNavbar'
 const Header = () => {
   return (
     <div className='justify-between flex px-6 sm:px-4 py-3 sm:py-2 items-center fixed w-full z-[10]'>
-      <Link href={'/'}>
+      <Link href={'/'} prefetch={false}>
         <div className='flex gap-1 items-center'>
           <Image src={'/images/logo.png'} alt='logo' height={52} width={52} />
           <div className='flex flex-col ml-1'>
@@ -30,18 +30,18 @@ const Header = () => {
         </div>
           </Link>
         <div className='gap-3 items-center hidden sm:flex'>
-<Link href={'/shop'}>
+<Link href={'/shop'} prefetch={false}>
 <h1 className='text-[#464646]'>Shop</h1>
 </Link>
 <h1 className='text-[#464646]'>Contact</h1>
-{/* <DarkModeToggle /> */}
+<DarkModeToggle />
 <Link href={'/cart'}>
 <div className='rounded-full text-[#27282a] p-1.5 relative flex items-center justify-center'>
-  {/* <ShoppingCart /> */}
+  <ShoppingCart />
 <span className='w-5 h-5 flex items-center justify-center bg-[#ffde3c] absolute right-[-5px] top-[-5px] text-xs font-bold rounded-full'>12</span>
 </div>
 </Link>
-{/* <DropdownMenu>
+<DropdownMenu>
       <DropdownMenuTrigger asChild className="focus-visible:!ring-0 focus-visible:!ring-offset-0">
         <Image alt='avatar' src={Avatar} width='45' className='' />
       </DropdownMenuTrigger>
@@ -60,7 +60,7 @@ const Header = () => {
           Log out
         </DropdownMenuItem>
       </DropdownMenuContent>
-</DropdownMenu> */}
+</DropdownMenu>
 
         </div>
         <div className='flex sm:hidden gap-2'>
