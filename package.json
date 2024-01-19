@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@lottiefiles/react-lottie-player": "^3.5.3",
     "@radix-ui/react-dialog": "^1.0.5",
     "@radix-ui/react-dropdown-menu": "^2.0.6",
     "@radix-ui/react-select": "^2.0.0",
@@ -22,6 +23,7 @@
     "gsap": "^3.12.4",
     "leva": "^0.9.35",
     "locomotive-scroll": "^5.0.0-beta.11",
+    "lottie-react": "^2.4.0",
     "lucide-react": "^0.306.0",
     "mongoose": "^8.1.0",
     "next": "14.0.4",
