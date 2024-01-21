@@ -18,6 +18,7 @@ module.exports = {
     },
     extend: {
       colors: {
+        customPrimary:"var(--custom-primary)",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
