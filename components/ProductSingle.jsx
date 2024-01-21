@@ -8,7 +8,7 @@ const ProductSingle = ({ product }) => {
   return (
     <Link
       href={`/product-page/${product._id}`}
-      className="product border-2 border-slate-100 rounded-xl transition-all hover:scale-105 cursor-pointer relative p-7"
+      className="product border border-[rgba(0,0,0,0.1)] rounded-xl transition-all hover:scale-105 cursor-pointer relative p-2"
     >
       <div className="wishIcon bg-white flex items-center justify-center rounded-full w-8 h-8">
         <AiFillHeart className="text-[#f22749] " />
@@ -24,9 +24,16 @@ const ProductSingle = ({ product }) => {
         />
       )}
       <h1 className="text-md font-semibold">{product?.product_name}</h1>
-      <h1 className="text-lg font-bold">
+      <h1 className="text-md opacity-60">{product?.category?.category_name}</h1>
+      <div className='flex gap-2 items-center'>
+      <h1 className="text-md font-bold">
         ₹{changeNumberFormat(product?.sellingprice)}
       </h1>
+      <h1 className="text-xs line-through opacity-60">
+        ₹{changeNumberFormat(product?.price)}
+      </h1>
+        
+      </div>
     </Link>
   );
 };

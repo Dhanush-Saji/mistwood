@@ -34,7 +34,7 @@
     --ring: 222.2 84% 4.9%;
  
     --radius: 0.5rem;
-    --custom-primary:rgb(255, 222, 60);
+    --custom-primary:#ffde3c;
   }
  
   .dark {

@@ -50,22 +50,16 @@ const page = () => {
     getPro();
   }, [search]);
   return (
-    <div className="flex-col items-center bg-white dark:bg-[#313131] w-screen min-h-screen relative p-16">
-      {/* <div className="relative bg-white">
-        <h1 className="text-6xl md:text-7xl font-bold text-center text-[#ecedef] m-0">
-          Shop
-        </h1>
-        <p className="text-[#27282a] text-sm md:text-lg font-bold absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 m-0">
-          MistWood Furniture
-        </p>
-      </div> */}
+    <div className="flex-col items-center bg-white dark:bg-[#313131] w-screen min-h-screen relative p-2 sm:p-7 md:p-16">
+
       <div>
         <Image className='w-full rounded-[8px]' src={ProductBanner} alt="product-banner" />
       </div>
       {categoryTab.length == 0?<div className='w-full flex justify-center  mt-[2rem]'>
       <LoadingCircle />
       </div>
-      :<div className="grid grid-cols-5 gap-[1.5rem] w-full justify-center mt-[2rem]">
+      :(<>
+      <div className="hidden md:grid grid-cols-5 gap-[1.5rem] w-full justify-center mt-[2rem]">
         {
           categoryTab?.length>0 && categoryTab?.map((category,index)=>(
             <Link scroll={false} href={`/shop?category=${category.name}`} className={`${((search == category.name) || (category.name == 'All' && search == null))?'bg-[#ffde3c] border-[#e6ca43]':'border-[rgba(0,0,0,0.2)] hover:border-slate-400'} border  flex rounded-[8px] p-2 gap-3 ease-in transition-all duration-200 hover:scale-105  hover:shadow-md`} key={index}>
@@ -79,7 +73,17 @@ const page = () => {
               </Link>
           ))
         }
-      </div>}
+      </div>
+      <div className="grid grid-cols-5 md:hidden gap-[0.5rem] md:gap-[1.5rem] w-full justify-center mt-[0.7rem] md:mt-[1rem]">
+      {
+          categoryTab?.length>0 && categoryTab?.map((category,index)=>(
+            <Link scroll={false} href={`/shop?category=${category.name}`} className={`${((search == category.name) || (category.name == 'All' && search == null))?'bg-[#ffde3c] border-[#e6ca43]':'border-[rgba(0,0,0,0.2)] hover:border-slate-400'} border  flex rounded-full px-[0.5rem] py-[0.2rem]  md:p-2 gap-3 ease-in transition-all duration-200 hover:scale-105  hover:shadow-md`} key={index}>
+              <p className="font-medium">{category?.name}</p>
+              </Link>
+          ))
+        }
+      </div>
+      </>)}
       {isLoading?<div className='w-full flex justify-center  mt-[2rem]'>
       <LoadingCircle />
       </div>:productData?.length == 0? <NoData />:null}
