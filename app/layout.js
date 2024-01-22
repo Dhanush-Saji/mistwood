@@ -2,6 +2,7 @@ import { DM_Sans } from 'next/font/google'
 import './globals.css'
 import { ThemeProvider } from '@/components/ThemeProvider'
 import Header from '@/components/Header';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 const inter = DM_Sans({ subsets: ['latin'], weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900', '1000'] });
 
@@ -17,6 +18,7 @@ export default function RootLayout({ children }) {
       <ThemeProvider attribute='class' defaultTheme='system'>
       <Header />
         {children}
+        <SpeedInsights />
       </ThemeProvider>
         </body>
     </html>

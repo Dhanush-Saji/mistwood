@@ -18,6 +18,7 @@
     "@radix-ui/react-tooltip": "^1.0.7",
     "@react-three/drei": "^9.93.0",
     "@react-three/fiber": "^8.15.13",
+    "@vercel/speed-insights": "^1.0.5",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "gsap": "^3.12.4",
