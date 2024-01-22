@@ -17,7 +17,7 @@ const NoData = dynamic(() => import("@/components/Loaders/NoData"), {
   ssr: false,
 });
 
-const page = () => {
+const Page = () => {
   const searchParams = useSearchParams()
   const search = searchParams.get('category')
   const ImageArray = [AllImage,ChairImage,BedImage,TableImage,SofaImage]
@@ -98,4 +98,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
