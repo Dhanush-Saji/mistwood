@@ -17,7 +17,7 @@ const NoData = dynamic(() => import("@/components/Loaders/NoData"), {
   ssr: false,
 });
 
-const Page = () => {
+const page = () => {
   const searchParams = useSearchParams()
   const search = searchParams.get('category')
   const ImageArray = [AllImage,ChairImage,BedImage,TableImage,SofaImage]
@@ -59,7 +59,7 @@ const Page = () => {
       <LoadingCircle />
       </div>
       :(<>
-      <div className="hidden md:grid grid-cols-5 gap-[1.5rem] w-full justify-center mt-[2rem]">
+      <div className="hidden md:grid grid-cols-5 gap-[1.5rem] w-full justify-center mt-[0.7rem]">
         {
           categoryTab?.length>0 && categoryTab?.map((category,index)=>(
             <Link scroll={false} href={`/shop?category=${category.name}`} className={`${((search == category.name) || (category.name == 'All' && search == null))?'bg-[#ffde3c] border-[#e6ca43]':'border-[rgba(0,0,0,0.2)] hover:border-slate-400'} border  flex rounded-[8px] p-2 gap-3 ease-in transition-all duration-200 hover:scale-105  hover:shadow-md`} key={index}>
@@ -74,10 +74,10 @@ const Page = () => {
           ))
         }
       </div>
-      <div className="grid grid-cols-5 md:hidden gap-[0.5rem] md:gap-[1.5rem] w-full justify-center mt-[0.7rem] md:mt-[1rem]">
+      <div className="grid grid-cols-5 md:hidden gap-[0.5rem] w-full justify-center mt-[0.7rem]">
       {
           categoryTab?.length>0 && categoryTab?.map((category,index)=>(
-            <Link scroll={false} href={`/shop?category=${category.name}`} className={`${((search == category.name) || (category.name == 'All' && search == null))?'bg-[#ffde3c] border-[#e6ca43]':'border-[rgba(0,0,0,0.2)] hover:border-slate-400'} border  flex rounded-full px-[0.5rem] py-[0.2rem]  md:p-2 gap-3 ease-in transition-all duration-200 hover:scale-105  hover:shadow-md`} key={index}>
+            <Link scroll={false} href={`/shop?category=${category.name}`} className={`${((search == category.name) || (category.name == 'All' && search == null))?'bg-[#ffde3c] border-[#e6ca43]':'border-[rgba(0,0,0,0.2)] hover:border-slate-400'} border  flex rounded-full px-[0.5rem] py-[0.2rem]  md:p-2 gap-3 ease-in transition-all duration-200 hover:scale-105  hover:shadow-md justify-center items-center`} key={index}>
               <p className="font-medium">{category?.name}</p>
               </Link>
           ))
@@ -87,7 +87,7 @@ const Page = () => {
       {isLoading?<div className='w-full flex justify-center  mt-[2rem]'>
       <LoadingCircle />
       </div>:productData?.length == 0? <NoData />:null}
-      <div className="grid grid-cols-5 gap-2 w-full mt-5">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 md:gap-4 w-full mt-5">
       {productData?.length>0 && productData?.map((product, index) => (
         <React.Fragment key={index}>
         <ProductSingle product={product} />
@@ -98,4 +98,4 @@ const Page = () => {
   );
 };
 
-export default Page;
+export default page;

@@ -22,7 +22,7 @@ const MobileNavbar = () => {
         <h1 className='text-[#27282a] dark:text-[#919191] text-lg'>Profile</h1>
         </Link>
         <Separator className='dark:bg-[#919191]' />
-        <Link href={'/'}>
+        <Link href={'/shop'}>
         <h1 className='text-[#27282a] dark:text-[#919191] text-lg'>Shop</h1>
         </Link>
         <Separator className='dark:bg-[#919191]' />
