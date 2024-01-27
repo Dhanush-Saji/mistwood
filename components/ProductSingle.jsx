@@ -8,7 +8,7 @@ const ProductSingle = ({ product }) => {
   return (
     <Link
       href={`/shop/${product._id}`}
-      className="product border border-[rgba(0,0,0,0.1)] rounded-xl transition-all hover:scale-105 cursor-pointer relative p-2 px-4 sm:px-0 sm:p-4 flex flex-col"
+      className="product border border-[rgba(0,0,0,0.1)] rounded-xl transition-all hover:scale-105 cursor-pointer relative p-2 px-4 sm:p-4 flex flex-col"
     >
       <div className="wishIcon bg-white flex items-center justify-center rounded-full w-8 h-8">
         <AiFillHeart className="text-[#f22749] " />

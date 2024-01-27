@@ -18,13 +18,13 @@ import MobileNavbar from './MobileNavbar'
 
 const Header = () => {
   return (
-    <div className='justify-between flex px-6 sm:px-4 py-3 sm:py-2 items-center fixed w-full z-[10]'>
+    <div className='justify-between flex px-6 sm:px-4 py-3items-center fixed w-full z-[10] bg-white h-[10vh] items-center'>
       <Link href={'/'} prefetch={false}>
         <div className='flex gap-1 items-center'>
-          <Image src={'/images/logo.png'} alt='logo' height={52} width={52} />
+          <Image src={'/images/logo.png'} alt='logo' height={50} width={50} />
           <div className='flex flex-col ml-1'>
-          <span className='text-[1.4rem] font-[800] text-[#27282a] dark:text-[#eeeeee]'>Mistwood</span>
-          <span className='text-[0.9rem] font-[700] text-[#27282a] dark:text-[#eeeeee] mt-[-10px]'>Furniture</span>
+          <span className='text-[1.2rem] font-[800] text-[#27282a] dark:text-[#eeeeee]'>Mistwood</span>
+          <span className='text-[0.7rem] font-[700] text-[#27282a] dark:text-[#eeeeee] mt-[-10px]'>Furniture</span>
 
           </div>
         </div>

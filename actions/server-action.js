@@ -13,19 +13,3 @@ export async function getCategories() {
         console.log(error) 
     }
   }
-  export async function getCategoryCount() {
-    let response = []
-    try {
-        await connectDb(); 
-        let count = await ProductModel.countDocuments({isActive:true})
-        response.push({name:"All",count})
-        const categories = await CategoryModel.find({})
-        for(const category of categories){
-            let count = await ProductModel.countDocuments({category:category._id,isActive:true})
-            response.push({name:category.category_name,count})
-        }
-        return response
-    } catch (error) {
-        console.log(error)
-    }
-}
