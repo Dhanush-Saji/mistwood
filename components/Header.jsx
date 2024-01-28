@@ -18,7 +18,7 @@ import MobileNavbar from './MobileNavbar'
 
 const Header = () => {
   return (
-    <div className='justify-between flex px-6 sm:px-4 py-3items-center fixed w-full z-[10] bg-white h-[10vh] items-center'>
+    <div className='justify-between flex px-6 sm:px-4 py-3items-center fixed w-full z-[10] bg-white h-[4rem] items-center shadow-md'>
       <Link href={'/'} prefetch={false}>
         <div className='flex gap-1 items-center'>
           <Image src={'/images/logo.png'} alt='logo' height={50} width={50} />

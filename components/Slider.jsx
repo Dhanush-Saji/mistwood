@@ -7,6 +7,7 @@ import 'swiper/css/pagination'
 import 'swiper/css/free-mode'
 
 import {FreeMode,Pagination} from 'swiper/modules'
+import Image from "next/image";
 
 const SliderComponent = ({ imageArray:slides }) => {
   return (
@@ -15,7 +16,8 @@ const SliderComponent = ({ imageArray:slides }) => {
 {
     slides?.map((slide,index)=>(
         <SwiperSlide key={index}>
-            <img src={slide} alt="" />
+            <Image src={slide} alt="image" width={500}
+            height={500} />
         </SwiperSlide>
     ))
 }
