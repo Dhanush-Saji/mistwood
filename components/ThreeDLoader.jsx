@@ -1,6 +1,8 @@
 'use client'
 import { Html, useProgress } from '@react-three/drei'
 import React from 'react'
+import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
+import 'react-circular-progressbar/dist/styles.css';
 
 const ThreeDLoader = () => {
   const { progress } = useProgress();
@@ -13,18 +15,16 @@ const ThreeDLoader = () => {
       justifyContent: "center",
       alignItems: "center",
       flexDirection: "column",
+      width:'100vw',
+      height:'100vh',
+      position:'absolute',
+      zIndex:9999,
+      backgroundColor:'white'
     }}
   >
-    <span className='canvas-loader'></span>
-    <p
-      style={{
-        fontSize: 14,
-        fontWeight: 800,
-        marginTop: 40,
-      }}
-    >
-      {progress.toFixed(2)}%
-    </p>
+    <div style={{ width: 50, height: 50 }} className='text-black'>
+    <CircularProgressbar styles={buildStyles({textSize:'25px'})} value={Number(progress)} maxValue={1} text={`${Number(progress)}%`} />
+    </div>
   </Html>
   )
 }
