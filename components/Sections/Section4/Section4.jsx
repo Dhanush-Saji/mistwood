@@ -40,12 +40,12 @@ const Section4 = async() => {
               <button className='text-[#27282a] px-4 cursor-pointer py-2 rounded-full bg-white text-sm font-medium'>{category[1]?.category_name} category</button>
             </div>
             </Link>
-            {/* <Link className=' overflow-hidden rounded-lg md:rounded-none category3 cursor-pointer relative' prefetch={false} href={'/shop?category=Table'}>
+            <Link className=' overflow-hidden rounded-lg md:rounded-none category3 cursor-pointer relative' prefetch={false} href={'/shop?category=Table'}>
             <img src={category[2]?.category_image?.url} alt="" className='transition-all object-cover w-full h-full duration-500' />
             <div class="overlay">
               <button className='text-[#27282a] px-4 cursor-pointer py-2 rounded-full bg-white text-sm font-medium'>{category[2]?.category_name} category</button>
             </div>
-            </Link> */}
+            </Link>
           </div>
           <Link className='category4 overflow-hidden rounded-lg md:rounded-none md:rounded-br-[4rem] max-h-[50vh] cursor-pointer relative' prefetch={false} href={'/shop?category=Sofa'}>
           <img src={category[3]?.category_image?.url} alt="" className='transition-all object-cover w-full h-full duration-500' />
