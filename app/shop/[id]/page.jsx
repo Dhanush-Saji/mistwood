@@ -53,7 +53,32 @@ const Page = ({ params }) => {
     <div className="w-full flex flex-col p-5 sm:p-3 pt-[16vh] sm:pt-[16vh]">
       <div className="w-full flex flex-col sm:flex-row">
         <SliderComponent imageArray={imageArray} />
-      
+        
+        <div className="pl-0 sm:pl-3 mt-4 sm:mt-0">
+          <h1 className="text-md font-semibold whitespace-nowrap overflow-hidden text-ellipsis">
+            {product[0]?.product_name}
+          </h1>
+          <h1 className="text-md">{product[0]?.description}</h1>
+          <h1 className="text-md opacity-60">
+            {product[0]?.category?.category_name}
+          </h1>
+          <div className="flex gap-2 items-center mt-auto">
+            <h1 className="text-md font-bold m-0">
+              ₹{changeNumberFormat(product[0]?.sellingprice)}
+            </h1>
+            <h1 className="text-xs line-through opacity-60 m-0">
+              ₹{changeNumberFormat(product[0]?.price)}
+            </h1>
+          </div>
+          <div className="mt-[1rem] flex items-center">
+            <Button disabled={qnty == 1} variant="outline" onClick={()=>setqnty((prev)=>prev-1)}>-</Button>
+            <div className="min-w-[2rem] flex items-center justify-center">
+            <span className=" font-[700]">{qnty}</span>
+            </div>
+            <Button variant="outline" onClick={()=>setqnty((prev)=>prev+1)}>+</Button>
+          </div>
+          <Button className="mt-[1rem] w-[100%] sm:w-auto">Add to Cart</Button>
+        </div>
       </div>
       <div>
         <h1 className='text-center mt-7 text-lg font-bold'>Customers Also Viewed</h1>
