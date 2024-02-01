@@ -53,7 +53,16 @@ const Page = ({ params }) => {
     <div className="w-full flex flex-col p-5 sm:p-3 pt-[16vh] sm:pt-[16vh]">
       <div className="w-full flex flex-col sm:flex-row">
         <SliderComponent imageArray={imageArray} />
-        
+        <div className="hidden sm:flex justify-center flex-row  sm:flex-col gap-2">
+          <div className="bg-[#EAEEF0]">
+          <Image
+            width={500}
+            height={500} className="w-[15rem] h-[15rem] sm:h-auto sm:w-auto object-cover m-auto mix-blend-multiply"
+            alt="image"
+            src={imageArray[imageIndex]}
+          />
+          </div>
+        </div>
         <div className="pl-0 sm:pl-3 mt-4 sm:mt-0">
           <h1 className="text-md font-semibold whitespace-nowrap overflow-hidden text-ellipsis">
             {product[0]?.product_name}
