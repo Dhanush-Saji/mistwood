@@ -65,7 +65,7 @@ const Page = ({ params }) => {
           <div className="flex flex-col sm:flex-row gap-2 justify-center">
             {
               imageArray?.map((imageUrl,index)=>(
-                <div onClick={()=>setimageIndex(index)} className={`rounded-md cursor-pointer flex p-1 border`}>
+                <div key={index} onClick={()=>setimageIndex(index)} className={`rounded-md cursor-pointer flex p-1 ${imageIndex == index?'border-2 border-[#27282a]':'border'}`}>
               <Image
             width={100}
             height={100} className="w-[1.9rem] sm:w-[3rem] h-[1.9rem] sm:h-[3rem] object-cover rounded-md m-auto"
