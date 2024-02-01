@@ -23,7 +23,7 @@ const ThreeDLoader = () => {
     }}
   >
     <div style={{ width: 50, height: 50 }} className='text-black'>
-    <CircularProgressbar styles={buildStyles({textSize:'25px'})} value={Number(progress).toFixed(2)} maxValue={1} text={`${Number(progress)}%`} />
+    <CircularProgressbar styles={buildStyles({textSize:'25px'})} value={Number(progress).toFixed(2)} maxValue={1} text={`${Number(progress).toFixed(0)}%`} />
     </div>
   </Html>
   )
