@@ -52,63 +52,7 @@ const Page = ({ params }) => {
   (
     <div className="w-full flex flex-col p-5 sm:p-3 pt-[16vh] sm:pt-[16vh]">
       <div className="w-full flex flex-col sm:flex-row">
-        <div className="hidden sm:flex justify-center flex-row  sm:flex-col gap-2">
-          <div className="bg-[#EAEEF0]">
-          <Image
-            width={500}
-            height={500} className="w-[15rem] h-[15rem] sm:h-auto sm:w-auto object-cover m-auto mix-blend-multiply"
-            alt="image"
-            src={imageArray[imageIndex]}
-          />
-          </div>
-          <div className="flex flex-col sm:flex-row gap-2 justify-center">
-            {
-              imageArray?.map((imageUrl,index)=>(
-                <div onClick={()=>setimageIndex(index)} className={`rounded-md cursor-pointer flex p-1 ${imageArray == product[0]?.product_image?.img1?.url?'border-2 border-[#27282a]':'border'}`}>
-              <Image
-            width={100}
-            height={100} className="w-[1.9rem] sm:w-[3rem] h-[1.9rem] sm:h-[3rem] object-cover rounded-md m-auto"
-            alt="image"
-            src={imageUrl}
-          /></div>
-              ))
-            }
-          </div>
-        </div>
-        <div className="pl-0 sm:pl-3 mt-4 sm:mt-0">
-          <h1 className="text-md font-semibold whitespace-nowrap overflow-hidden text-ellipsis">
-            {product[0]?.product_name}
-          </h1>
-          <h1 className="text-md">{product[0]?.description}</h1>
-          <h1 className="text-md opacity-60">
-            {product[0]?.category?.category_name}
-          </h1>
-          <div className="flex gap-2 items-center mt-auto">
-            <h1 className="text-md font-bold m-0">
-              ₹{changeNumberFormat(product[0]?.sellingprice)}
-            </h1>
-            <h1 className="text-xs line-through opacity-60 m-0">
-              ₹{changeNumberFormat(product[0]?.price)}
-            </h1>
-          </div>
-          <div className="mt-[1rem] flex items-center">
-            <Button disabled={qnty == 1} variant="outline" onClick={()=>setqnty((prev)=>prev-1)}>-</Button>
-            <div className="min-w-[2rem] flex items-center justify-center">
-            <span className=" font-[700]">{qnty}</span>
-            </div>
-            <Button variant="outline" onClick={()=>setqnty((prev)=>prev+1)}>+</Button>
-          </div>
-          <Button className="mt-[1rem] w-[100%] sm:w-auto">Add to Cart</Button>
-        </div>
-      </div>
-      <div>
-        <h1 className='text-center mt-7 text-lg font-bold'>Customers Also Viewed</h1>
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 md:gap-4 w-full mt-5">
-    {relatedProduct?.length>0 && relatedProduct?.map((product, index) => (
-      <React.Fragment key={index}>
-      </React.Fragment>
-    ))}
-    </div>
+        <SliderComponent imageArray={imageArray} />
       </div>
     </div>
   );
