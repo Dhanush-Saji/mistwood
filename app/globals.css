@@ -157,3 +157,35 @@ body {
   border-radius: 50%;
   object-fit: cover;
 }
+.product-grid-list{
+    display: grid;
+    height: max-content;
+    width: 100%;
+  grid-template-columns: repeat(auto-fill,minmax(150px,1fr));
+}
+@media only screen and (min-width: 768px){
+  .product-grid-list {
+    grid-template-columns: repeat(auto-fill,minmax(200px,1fr));
+}
+}
+
+.prod-details .name:after {
+  background-color: rgba(141,45,226,.239);
+  content: "";
+  display: block;
+  height: 2px;
+  margin: auto;
+  width: 100px;
+}
+.prod-details .desc {
+  color: rgba(0,0,0,.459);
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1;
+  margin: auto auto 10px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 170px;
+}

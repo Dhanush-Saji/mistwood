@@ -62,7 +62,7 @@ const Page = () => {
     {isLoading?<div className='w-full flex justify-center  mt-[2rem]'>
     <LoadingCircle />
     </div>:productData?.length == 0? <NoData />:null}
-    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 md:gap-4 w-full mt-5">
+    <div className="product-grid-list mt-5">
     {productData?.length>0 && productData?.map((product, index) => (
       <React.Fragment key={index}>
       <ProductSingle product={product} />

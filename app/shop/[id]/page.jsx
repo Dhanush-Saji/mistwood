@@ -9,7 +9,7 @@ import Image from "next/image";
 import React, { useState,useEffect } from "react";
 
 const Page = ({ params }) => {
-  const [qnty, setqnty] = useState(0)
+  const [qnty, setqnty] = useState(1)
   const [product, setproduct] = useState([])
   const [isLoading, setisLoading] = useState(false)
   const [imageArray, setimageArray] = useState([])
@@ -50,14 +50,14 @@ const Page = ({ params }) => {
   },[])
   return isLoading?<div className="w-[100vw] h-[100vh] flex items-center justify-center"><LoadingCircle /></div>:
   (
-    <div className="w-full flex flex-col p-5 sm:p-3 pt-[16vh] sm:pt-[16vh]">
+    <div className="w-full flex flex-col p-5 pb-16 sm:p-3 sm:px-[5rem] pt-[16vh] sm:pt-[16vh]">
       <div className="w-full flex flex-col sm:flex-row">
         <SliderComponent imageArray={imageArray} />
         <div className="hidden sm:flex justify-center flex-row  sm:flex-col gap-2">
-          <div className="bg-[#EAEEF0]">
+          <div className="bg-[rgba(0,0,0,.05)]" >
           <Image
             width={500}
-            height={500} className="w-[15rem] h-[15rem] sm:h-auto sm:w-auto object-cover m-auto mix-blend-multiply"
+            height={500} className="w-[15rem] h-[15rem] sm:w-auto sm:h-auto object-cover m-auto mix-blend-multiply"
             alt="image"
             src={imageArray[imageIndex]}
           />
@@ -76,35 +76,35 @@ const Page = ({ params }) => {
             }
           </div>
         </div>
-        <div className="pl-0 sm:pl-3 mt-4 sm:mt-0">
-          <h1 className="text-md font-semibold whitespace-nowrap overflow-hidden text-ellipsis">
+        <div className="pl-0 sm:pl-3 mt-4 sm:mt-0 flex gap-1 flex-col">
+          <h1 className="text-[24px] font-semibold whitespace-nowrap overflow-hidden text-ellipsis">
             {product[0]?.product_name}
           </h1>
-          <h1 className="text-md">{product[0]?.description}</h1>
-          <h1 className="text-md opacity-60">
-            {product[0]?.category?.category_name}
-          </h1>
-          <div className="flex gap-2 items-center mt-auto">
-            <h1 className="text-md font-bold m-0">
+          <div className="flex gap-2 items-center">
+            <h1 className="text-[18px] font-bold m-0">
               ₹{changeNumberFormat(product[0]?.sellingprice)}
             </h1>
-            <h1 className="text-xs line-through opacity-60 m-0">
+            <h1 className="text-[15px] line-through opacity-60 m-0">
               ₹{changeNumberFormat(product[0]?.price)}
             </h1>
           </div>
+          <h1 className="text-md opacity-60">
+            {product[0]?.category?.category_name}
+          </h1>
+          <h1 className="text-[16px]">{product[0]?.description}</h1>
           <div className="mt-[1rem] flex items-center">
-            <Button disabled={qnty == 1} variant="outline" onClick={()=>setqnty((prev)=>prev-1)}>-</Button>
+            <Button disabled={qnty == 1} variant="secondary" onClick={()=>setqnty((prev)=>prev-1)}>-</Button>
             <div className="min-w-[2rem] flex items-center justify-center">
             <span className=" font-[700]">{qnty}</span>
             </div>
-            <Button variant="outline" onClick={()=>setqnty((prev)=>prev+1)}>+</Button>
+            <Button variant="secondary" onClick={()=>setqnty((prev)=>prev+1)}>+</Button>
+          <Button className="w-[100%] sm:w-auto ml-[1rem]">Add to Cart</Button>
           </div>
-          <Button className="mt-[1rem] w-[100%] sm:w-auto">Add to Cart</Button>
         </div>
       </div>
       <div>
-        <h1 className='text-center mt-7 text-lg font-bold'>Customers Also Viewed</h1>
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 md:gap-4 w-full mt-5">
+        <h1 className='text-left mt-7 text-[18px] font-bold'>Customers Also Viewed</h1>
+        <div className="product-grid-list mt-5 gap-[3rem] sm:gap-[1rem]">
     {relatedProduct?.length>0 && relatedProduct?.map((product, index) => (
       <React.Fragment key={index}>
       <ProductSingle product={product} />
