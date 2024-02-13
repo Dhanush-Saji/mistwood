@@ -13,6 +13,7 @@ import Chair3d from "@/components/chair-3d/Chair3d";
 export default function Home() {
   return (
     <>
+    <Header />
     <LocomotiveScroll />
       <Section1 />
       <Section2 />

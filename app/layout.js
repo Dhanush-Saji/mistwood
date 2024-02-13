@@ -3,6 +3,7 @@ import './globals.css'
 import { ThemeProvider } from '@/components/ThemeProvider'
 import Header from '@/components/Header';
 import { SpeedInsights } from '@vercel/speed-insights/next';
+import AuthContext from '@/components/context/AuthContext';
 
 const inter = DM_Sans({ subsets: ['latin'], weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900', '1000'] });
 
@@ -16,8 +17,9 @@ export default function RootLayout({ children }) {
     <html lang="en" style={{ colorScheme: 'light' }}>
       <body className={inter.className}>
       <ThemeProvider attribute='class' defaultTheme='system'>
-      <Header />
-        {children}
+      <AuthContext>
+      {children}
+    </AuthContext>
         <SpeedInsights />
       </ThemeProvider>
         </body>

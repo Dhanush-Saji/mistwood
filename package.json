@@ -30,6 +30,7 @@
     "lucide-react": "^0.306.0",
     "mongoose": "^8.1.0",
     "next": "14.0.4",
+    "next-auth": "^4.24.5",
     "next-themes": "^0.2.1",
     "react": "^18",
     "react-circular-progressbar": "^2.1.0",

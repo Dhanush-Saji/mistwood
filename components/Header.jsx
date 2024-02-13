@@ -14,9 +14,14 @@ import Image from 'next/image'
 import { DarkModeToggle } from './DarkModeToggle'
 import Avatar from '../public/images/avatar.png'
 import MobileNavbar from './MobileNavbar'
+import { Button } from './ui/button'
+import { getServerSession } from 'next-auth'
+import { authOptions } from '@/app/api/auth/[...nextauth]/route'
   
 
-const Header = () => {
+const Header = async() => {
+  const session = await getServerSession(authOptions)
+  console.log(session)
   return (
     <div className='justify-between flex px-6 sm:px-4 py-3items-center fixed w-full z-[10] bg-white h-[4rem] items-center shadow-md'>
       <Link href={'/'} prefetch={false}>
@@ -41,7 +46,10 @@ const Header = () => {
 <span className='w-5 h-5 flex items-center justify-center bg-[#ffde3c] absolute right-[-5px] top-[-5px] text-xs font-bold rounded-full'>12</span>
 </div>
 </Link>
-<DropdownMenu>
+<Link href={'/login'} prefetch={false}>
+<Button>Login</Button>
+</Link>
+{/* <DropdownMenu>
       <DropdownMenuTrigger asChild className="focus-visible:!ring-0 focus-visible:!ring-offset-0">
         <Image alt='avatar' src={Avatar} width='45' className='' />
       </DropdownMenuTrigger>
@@ -60,7 +68,7 @@ const Header = () => {
           Log out
         </DropdownMenuItem>
       </DropdownMenuContent>
-</DropdownMenu>
+</DropdownMenu> */}
 
         </div>
         <div className='flex sm:hidden gap-2'>
