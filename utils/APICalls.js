@@ -38,3 +38,12 @@ export const getRelatedProduct = async(id) =>{
         console.log(error)
     }
 }
+export const registerFn = async(formData) =>{
+    try {
+        const res = await axios.post(`/api/register`,formData)
+       console.log(res.data) 
+        return res.data
+    } catch (error) {
+        console.log(error)
+    }
+}

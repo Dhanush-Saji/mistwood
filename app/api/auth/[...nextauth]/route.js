@@ -1,6 +1,9 @@
 import GoogleProvider from 'next-auth/providers/google'
 import CredentialsProvider from 'next-auth/providers/credentials'
 import NextAuth from 'next-auth/next'
+import { connectDb } from '@/config/dbConfig';
+import { UserModel } from '@/models/User.model';
+import bcryptjs from "bcryptjs";
 
 export const authOptions = {
     providers:[
@@ -15,10 +18,23 @@ export const authOptions = {
                 password:{label:'Password',type:'password'},
                 username:{label:'Username',type:'text',placeholder:"dhanu"},
             },
-            async authorize(credentials){
-                const user = {id:1,name:'Dhanush',email:'dhanu@gmail.com'}
-                return user
-            }
+            async authorize(credentials) {
+                const { email, password } = credentials;
+                try {
+                  await connectDb();
+                  const user = await UserModel.findOne({ email });
+                  if (!user) {
+                    throw new Error('User not found!')
+                  }
+                  const passwordMatch = await bcryptjs.compare(password, user.password);
+                  if (!passwordMatch) {
+                    throw new Error('Incorrect password!')
+                  }
+                  return user;
+                } catch (error) {
+                    throw new Error(error.message);
+                }
+              },
         })
     ],
     secret:process.env.SECRET,
