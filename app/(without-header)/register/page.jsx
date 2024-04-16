@@ -1,41 +1,67 @@
 'use client'
 
+import { useToast } from "@/components/ui/use-toast";
 import { registerFn } from "@/utils/APICalls";
-import { useState,useEffect } from "react"
+import Image from "next/image";
+import { useState, useEffect } from "react"
+import { ReloadIcon } from "@radix-ui/react-icons"
+import { toast } from "react-toastify";
+import { useSession } from "next-auth/react";
 
 export default function Register() {
-  const [formData, setformData] = useState({username:'',email:'',password:''})
+  const data = useSession()
+  console.log(JSON.stringify(data))
+  const [isLoading, setisLoading] = useState(false)
+  const [formData, setformData] = useState({ username: '', email: '', password: '' })
   const registerUser = async (e) => {
     e.preventDefault()
+    if(!formData?.username || !formData?.email || !formData?.password){
+      toast.error('Please fill the fields')
+      return
+    }
+    setisLoading(true)
     try {
       const res = await registerFn(formData)
-      console.log(res)
+      if (res?.status) {
+        toast.success(`${res?.message}`)
+      } else {
+        toast.error(`${res?.message}`)
+      }
+      setisLoading(false)
     } catch (error) {
       console.error(error);
+      toast.error(`${error?.message}`)
+      setisLoading(false)
     }
   };
   return (
     <>
-      <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
+      <div className="flex min-h-[100vh] flex-1 flex-col justify-center px-6 py-12 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-          <img
-            className="mx-auto h-10 w-auto"
-            src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-            alt="Your Company"
-          />
-          <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
-           Register an account
+          <div className='flex gap-1 items-center justify-center'>
+            <Image src={'/images/logo.png'} alt='logo' height={50} width={50} />
+            {/* <div className='flex flex-col ml-1'>
+          <span className='text-[1.2rem] font-[800] text-[#27282a] dark:text-[#eeeeee]'>Mistwood</span>
+          <span className='text-[0.7rem] font-[700] text-[#27282a] dark:text-[#eeeeee] mt-[-10px]'>Furniture</span>
+
+          </div> */}
+          </div>
+          <h2 className="mt-2 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
+            Register account
           </h2>
         </div>
+        <h1>
+          {JSON.stringify(data)}
+        </h1>
 
-        <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-          <form className="space-y-6" onSubmit={registerUser}>
+        <div className="mt-3 sm:mx-auto sm:w-full sm:max-w-sm">
+          <form className="space-y-4" onSubmit={registerUser}>
             <div>
               <label htmlFor="username" className="block text-sm font-medium leading-6 text-gray-900">
                 Username
               </label>
               <div className="mt-2">
-                <input value={formData?.username} onChange={(e)=>setformData({...formData,username:e.target.value})}
+                <input value={formData?.username} onChange={(e) => setformData({ ...formData, username: e.target.value })}
                   id="username"
                   name="username"
                   type="text"
@@ -49,7 +75,7 @@ export default function Register() {
                 Email address
               </label>
               <div className="mt-2">
-                <input value={formData?.email} onChange={(e)=>setformData({...formData,email:e.target.value})}
+                <input value={formData?.email} onChange={(e) => setformData({ ...formData, email: e.target.value })}
                   id="email"
                   name="email"
                   type="email"
@@ -72,7 +98,7 @@ export default function Register() {
                 </div>
               </div>
               <div className="mt-2">
-                <input value={formData?.password} onChange={(e)=>setformData({...formData,password:e.target.value})}
+                <input value={formData?.password} onChange={(e) => setformData({ ...formData, password: e.target.value })}
                   id="password"
                   name="password"
                   type="password"
@@ -84,19 +110,22 @@ export default function Register() {
             </div>
 
             <div>
-              <button
+              <button disabled={isLoading}
                 type="submit"
                 className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
               >
-                Register
+                {
+                  isLoading?<ReloadIcon className="mr-2 h-4 w-4 animate-spin" />:'Register'
+                }
+                
               </button>
             </div>
           </form>
 
-          <p className="mt-10 text-center text-sm text-gray-500">
-            Not a member?{' '}
-            <a href="#" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
-              Start a 14 day free trial
+          <p className="mt-4 text-center text-sm text-gray-500">
+            {`Already have an account?`}
+            <a href="/login" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500 ml-2">
+              Login
             </a>
           </p>
         </div>

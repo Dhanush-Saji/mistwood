@@ -13,7 +13,7 @@ export async function POST(req){
         const { email, password} = data
         const isUserExist = await UserModel.findOne({ email });
         if (isUserExist) {
-        return NextResponse.json({data:'User already exists',status:false},{status:400})
+        return NextResponse.json({data:'User already exists',message:'User already exists',status:false},{status:400})
         }
         const hashedPassword = await bcrypt.hash(password, saltRounds);
         const newUser = new UserModel({...data,password:hashedPassword});
@@ -26,9 +26,9 @@ export async function POST(req){
           // Add any other user-related information you want in the token
         };
         const token = jwt.sign(payload, secretKey, { expiresIn: '1h' });
-        return NextResponse.json({data:token,status:true},{status:200})
+        return NextResponse.json({data:token,status:true,message:`Welcome ${payload?.username}!`},{status:200})
     } catch (error) {
         console.log('error',error)
-        return NextResponse.json({data:error,status:false},{status:500})
+        return NextResponse.json({data:error,status:false,message:error},{status:500})
     }
 }

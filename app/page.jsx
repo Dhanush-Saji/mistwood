@@ -9,8 +9,11 @@ import Section4 from "@/components/Sections/Section4/Section4";
 import Section5 from "@/components/Sections/Section5/Section5";
 import Section6 from "@/components/Sections/Section6/Section6";
 import Chair3d from "@/components/chair-3d/Chair3d";
+import { getServerSession } from "next-auth";
+import { authOptions } from "./api/auth/[...nextauth]/route";
 
-export default function Home() {
+export default async function Home() {
+  const session = await getServerSession(authOptions)
   return (
     <>
     <Header />
