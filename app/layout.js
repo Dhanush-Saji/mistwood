@@ -2,6 +2,7 @@ import { DM_Sans } from 'next/font/google'
 import './globals.css'
 import { ThemeProvider } from '@/components/ThemeProvider'
 import Header from '@/components/Header';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import AuthContext from '@/context/AuthContext';
 import ToastContext from '@/context/ToastContext';
 
@@ -21,6 +22,7 @@ export default function RootLayout({ children }) {
       <AuthContext>
       {children}
     </AuthContext>
+        <SpeedInsights />
       </ThemeProvider>
       </ToastContext>
         </body>
