@@ -7,8 +7,10 @@ import { toast } from 'react-toastify'
 import Image from 'next/image'
 import { ReloadIcon } from "@radix-ui/react-icons";
 import GoogleButton from "react-google-button";
+import { useRouter } from "next/navigation";
 
 export default function Login() {
+  const router = useRouter()
   const data = useSession()
   const [isLoading, setisLoading] = useState(false)
   const [formData, setformData] = useState({ email: '', password: '' })
@@ -25,6 +27,7 @@ export default function Login() {
         toast.error(res?.error)
       } else if (res?.ok) {
         toast.success('Login Successful')
+        router.push('/')
       }
       setisLoading(false)
     } catch (error) {

@@ -7,10 +7,10 @@ import { useState, useEffect } from "react"
 import { ReloadIcon } from "@radix-ui/react-icons"
 import { toast } from "react-toastify";
 import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 export default function Register() {
-  const data = useSession()
-  console.log(JSON.stringify(data))
+  const router = useRouter()
   const [isLoading, setisLoading] = useState(false)
   const [formData, setformData] = useState({ username: '', email: '', password: '' })
   const registerUser = async (e) => {
@@ -24,6 +24,7 @@ export default function Register() {
       const res = await registerFn(formData)
       if (res?.status) {
         toast.success(`${res?.message}`)
+        router.push('/')
       } else {
         toast.error(`${res?.message}`)
       }
@@ -50,10 +51,6 @@ export default function Register() {
             Register account
           </h2>
         </div>
-        <h1>
-          {JSON.stringify(data)}
-        </h1>
-
         <div className="mt-3 sm:mx-auto sm:w-full sm:max-w-sm">
           <form className="space-y-4" onSubmit={registerUser}>
             <div>

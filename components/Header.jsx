@@ -1,3 +1,4 @@
+'use client'
 import React from 'react'
   import {
     DropdownMenu,
@@ -17,11 +18,11 @@ import MobileNavbar from './MobileNavbar'
 import { Button } from './ui/button'
 import { getServerSession } from 'next-auth'
 import { authOptions } from '@/app/api/auth/[...nextauth]/route'
+import { signOut, useSession } from 'next-auth/react'
   
 
 const Header = async() => {
-  const session = await getServerSession(authOptions)
-  console.log(session)
+  const { data: session, status } = useSession()
   return (
     <div className='justify-between flex px-6 sm:px-4 py-3items-center fixed w-full z-[10] bg-white h-[4rem] items-center shadow-md'>
       <Link href={'/'} prefetch={false}>
@@ -40,35 +41,32 @@ const Header = async() => {
 </Link>
 <h1 className='text-[#464646]'>Contact</h1>
 <DarkModeToggle />
-<Link href={'/cart'}>
+{status == 'authenticated' && <Link href={'/cart'}>
 <div className='rounded-full text-[#27282a] p-1.5 relative flex items-center justify-center'>
   <ShoppingCart />
 <span className='w-5 h-5 flex items-center justify-center bg-[#ffde3c] absolute right-[-5px] top-[-5px] text-xs font-bold rounded-full'>12</span>
 </div>
-</Link>
-<Link href={'/login'} prefetch={false}>
+</Link>}
+{status != 'authenticated' && <Link href={'/login'} prefetch={false}>
 <Button>Login</Button>
-</Link>
-{/* <DropdownMenu>
-      <DropdownMenuTrigger asChild className="focus-visible:!ring-0 focus-visible:!ring-offset-0">
+</Link>}
+{status == 'authenticated' &&<DropdownMenu>
+      <DropdownMenuTrigger asChild className="focus-visible:!ring-0 focus-visible:!ring-offset-0 cursor-pointer">
         <Image alt='avatar' src={Avatar} width='45' className='' />
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56">
-      <DropdownMenuLabel>Welcome Dhanush!</DropdownMenuLabel>
+      <DropdownMenuLabel>Welcome {session?.user?.name}!</DropdownMenuLabel>
         <DropdownMenuGroup>
           <DropdownMenuItem>
             Profile
           </DropdownMenuItem>
-          <DropdownMenuItem>
-            Billing
-          </DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
-        <DropdownMenuItem>
+        <DropdownMenuItem onClick={()=>{signOut()}}>
           Log out
         </DropdownMenuItem>
       </DropdownMenuContent>
-</DropdownMenu> */}
+</DropdownMenu>}
 
         </div>
         <div className='flex sm:hidden gap-2'>

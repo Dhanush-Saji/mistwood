@@ -30,4 +30,4 @@ const userSchema = mongoose.Schema({
   }
 
 },{timestamps:true})
-export const UserModel = mongoose.models.users || mongoose.model('users',userSchema)
+export const UserModel = mongoose?.models?.users || mongoose.model('users',userSchema)
