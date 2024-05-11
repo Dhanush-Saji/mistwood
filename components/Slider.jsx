@@ -1,6 +1,4 @@
 import React, { useRef, useState } from "react";
-import "react-responsive-carousel/lib/styles/carousel.min.css";
-import { Carousel } from "react-responsive-carousel";
 import { Swiper,SwiperSlide } from 'swiper/react';
 import 'swiper/css'
 import 'swiper/css/pagination'

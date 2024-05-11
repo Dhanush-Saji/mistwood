@@ -12,7 +12,6 @@ import {
 import {gsap} from 'gsap';
 import { useFrame, useThree } from '@react-three/fiber';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
-import { useControls } from "leva";
 
 const dracoLoader = new DRACOLoader();
 let modelLink = process.env.NEXT_PUBLIC_MODEL_LINK;

@@ -7,7 +7,7 @@ import { changeNumberFormat } from "@/services/Formatter";
 const ProductSingle = ({ product }) => {
   return (
     <Link
-      href={`/shop/${product._id}`} className="overflow-hidden"
+      href={`/shop/${product._id}`} className={`overflow-hidden opacity-${product?.isActive?'100':'50'}`}
     >
       <div className="wishIcon bg-white flex items-center justify-center rounded-full w-8 h-8">
         <AiFillHeart className="text-[#f22749] " />

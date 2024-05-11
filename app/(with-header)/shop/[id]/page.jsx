@@ -5,6 +5,7 @@ import SliderComponent from "@/components/Slider";
 import { Button } from "@/components/ui/button";
 import { changeNumberFormat } from "@/services/Formatter";
 import { getRelatedProduct, getSingleProduct } from "@/utils/APICalls";
+import { Truck } from "lucide-react";
 import Image from "next/image";
 import React, { useState,useEffect } from "react";
 
@@ -50,8 +51,8 @@ const Page = ({ params }) => {
   },[])
   return isLoading?<div className="w-[100vw] h-[100vh] flex items-center justify-center"><LoadingCircle /></div>:
   (
-    <div className="w-full flex flex-col p-5 pb-16 sm:p-3 sm:px-[5rem] pt-[16vh] sm:pt-[16vh]">
-      <div className="w-full flex flex-col sm:flex-row">
+    <div className="bg-[rgba(245,247,248,1)] w-full flex flex-col p-5 pb-16 sm:p-3 sm:px-[5rem] pt-[16vh] sm:pt-[16vh]">
+      <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-x-0 md:gap-x-4 gap-y-4 md:gap-y-0">
         <SliderComponent imageArray={imageArray} />
         <div className="hidden sm:flex justify-center flex-row  sm:flex-col gap-2">
           <div className="bg-[rgba(0,0,0,.05)]" >
@@ -76,18 +77,26 @@ const Page = ({ params }) => {
             }
           </div>
         </div>
-        <div className="pl-0 sm:pl-3 mt-4 sm:mt-0 flex gap-1 flex-col">
+        <div className="p-5 px-10 flex gap-1 flex-col bg-white w-full rounded-lg">
           <h1 className="text-[24px] font-semibold whitespace-nowrap overflow-hidden text-ellipsis">
             {product[0]?.product_name}
           </h1>
+            {
+              product[0]?.discounts?
           <div className="flex gap-2 items-center">
-            <h1 className="text-[18px] font-bold m-0">
-              ₹{changeNumberFormat(product[0]?.sellingprice)}
+            <h1 className="text-[15px] m-0">
+              ₹{changeNumberFormat(product[0]?.sellingprice * (100 - product[0]?.discounts?.percentage)/100)}
             </h1>
             <h1 className="text-[15px] line-through opacity-60 m-0">
-              ₹{changeNumberFormat(product[0]?.price)}
+              ₹{changeNumberFormat(product[0]?.sellingprice)}
+            </h1>
+          </div>:
+          <div className="flex gap-2 items-center">
+            <h1 className="text-[15px] m-0">
+              ₹{changeNumberFormat(product[0]?.sellingprice)}
             </h1>
           </div>
+            }
           <h1 className="text-md opacity-60">
             {product[0]?.category?.category_name}
           </h1>
@@ -99,6 +108,23 @@ const Page = ({ params }) => {
             </div>
             <Button variant="secondary" onClick={()=>setqnty((prev)=>prev+1)}>+</Button>
           <Button className="w-[100%] sm:w-auto ml-[1rem]">Add to Cart</Button>
+          </div>
+          <div className="flex gap-4 mt-3">
+            <h2>Availability: </h2>
+          {
+            product[0]?.isActive?
+            <h2 className="text-green-600">In Stock</h2>:
+            <h2 className="text-red-600">Out of Stock</h2>
+          }
+          </div>
+          <div>
+            <div className="flex gap-4 px-[0.8rem] py-[0.5rem] rounded-[8px] border-2 border-gray-300">
+            <Truck />
+            <div>
+              <h2 className="font-[700]">Free Shipping</h2>
+              <p className="text-[0.8rem]">Free Shipping World Wide</p>
+            </div>
+            </div>
           </div>
         </div>
       </div>

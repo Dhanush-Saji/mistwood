@@ -9,7 +9,7 @@ export async function GET(req){
         const query = req.nextUrl.searchParams.get('category')
         const categories = await CategoryModel.find({})
         const reqCategory = categories.find((category)=>category.category_name == query)
-        const products = await ProductModel.find((query != null && query != 'All' && query != 'null')?{category:reqCategory?._id,isActive:true}:{isActive:true}).select('-__v').populate('category')
+        const products = await ProductModel.find((query != null && query != 'All' && query != 'null')?{category:reqCategory?._id}:{}).select('-__v').populate('category')
         products?.map((product,index)=>{
             if(product?.price){
               let tax = (product?.price*product?.gst*0.01)-(product?.purchase_cost*product?.gst*0.01)

@@ -7,11 +7,11 @@ connectDb() //connecting to database
 export async function GET(req){
     let response = []
     try {
-        let count = await ProductModel.countDocuments({isActive:true})
+        let count = await ProductModel.countDocuments({})
         response.push({name:"All",count})
         const categories = await CategoryModel.find({})
         for(const category of categories){
-            let count = await ProductModel.countDocuments({category:category._id,isActive:true})
+            let count = await ProductModel.countDocuments({category:category._id})
             response.push({name:category.category_name,count})
         }
         return NextResponse.json(response,{status:200})
