@@ -9,8 +9,8 @@ import Image from "next/image";
 
 const SliderComponent = ({ imageArray:slides }) => {
   return (
-    <div className='flex sm:hidden'>
-        <Swiper pagination={true} modules={[Pagination]} className="max-w-[90%]">
+    <div className='flex sm:hidden w-full'>
+        <Swiper pagination={true} modules={[Pagination]} className="w-full">
 {
     slides?.map((slide,index)=>(
         <SwiperSlide key={index}>

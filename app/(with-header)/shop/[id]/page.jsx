@@ -82,10 +82,10 @@ const Page = ({ params }) => {
             {product[0]?.product_name}
           </h1>
             {
-              product[0]?.discounts?
+              product[0]?.discountedPrice?
           <div className="flex gap-2 items-center">
             <h1 className="text-[15px] m-0">
-              ₹{changeNumberFormat(product[0]?.sellingprice * (100 - product[0]?.discounts?.percentage)/100)}
+              ₹{changeNumberFormat((product[0]?.sellingprice * (100 - product[0]?.discountedPrice))/100)}
             </h1>
             <h1 className="text-[15px] line-through opacity-60 m-0">
               ₹{changeNumberFormat(product[0]?.sellingprice)}
@@ -106,8 +106,8 @@ const Page = ({ params }) => {
             <div className="min-w-[2rem] flex items-center justify-center">
             <span className=" font-[700]">{qnty}</span>
             </div>
-            <Button variant="secondary" onClick={()=>setqnty((prev)=>prev+1)}>+</Button>
-          <Button className="w-[100%] sm:w-auto ml-[1rem]">Add to Cart</Button>
+            <Button variant="secondary" onClick={()=>setqnty((prev)=>prev+1)} disabled={!product[0]?.isActive}>+</Button>
+          <Button className="w-[100%] sm:w-auto ml-[1rem]" disabled={!product[0]?.isActive}>Add to Cart</Button>
           </div>
           <div className="flex gap-4 mt-3">
             <h2>Availability: </h2>

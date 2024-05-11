@@ -7,13 +7,13 @@ import { changeNumberFormat } from "@/services/Formatter";
 const ProductSingle = ({ product }) => {
   return (
     <Link
-      href={`/shop/${product._id}`} className={`overflow-hidden opacity-${product?.isActive?'100':'50'}`}
+      href={`/shop/${product._id}`} className={`overflow-hidden opacity-${product?.isActive?'100':'50'} bg-white p-2 rounded-[10px]`}
     >
       <div className="wishIcon bg-white flex items-center justify-center rounded-full w-8 h-8">
         <AiFillHeart className="text-[#f22749] " />
       </div>
       {product?.product_image?.img1 && (
-        <div className="h-[200px] items-center bg-[rgba(0,0,0,.15)] rounded-[10px] flex mb-[10px] p-[25px] w-[100%]">
+        <div className="h-[200px] items-center bg-[rgba(0,0,0,.15)] rounded-[20px] flex mb-[10px] p-[25px] w-[100%]">
         <Image
           width="200"
           height="200"
