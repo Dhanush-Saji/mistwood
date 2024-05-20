@@ -7,10 +7,6 @@ import bcryptjs from "bcryptjs";
 
 export const authOptions = {
     providers:[
-        GoogleProvider({
-            clientId:process.env.GOOGLE_ID,
-            clientSecret:process.env.GOOGLE_SECRET,
-        }),
         CredentialsProvider({
             name:"credentials",
             credentials:{
@@ -20,24 +16,65 @@ export const authOptions = {
             },
             async authorize(credentials) {
                 const { email, password } = credentials;
+                console.log(email, password)
                 try {
                   await connectDb();
                   const user = await UserModel.findOne({ email });
+                  console.log(user)
                   if (!user) {
                     throw new Error('User not found!')
                   }
                   const passwordMatch = await bcryptjs.compare(password, user.password);
+                  console.log(passwordMatch)
                   if (!passwordMatch) {
                     throw new Error('Incorrect password!')
                   }
                   return user;
                 } catch (error) {
+                  console.log(error)
                     throw new Error(error.message);
                 }
               },
-        })
+        }),
+        GoogleProvider({
+          clientId:process.env.GOOGLE_ID,
+          clientSecret:process.env.GOOGLE_SECRET,
+      })
     ],
-    secret:process.env.SECRET,
+    callbacks: {
+      async jwt({ token, trigger, session }) {
+        if (trigger === 'update' && session?.name) {
+          token.name = session.name
+        }
+  
+        return token
+      },
+      async signIn({user,account}){
+        if(account?.provider == 'credentials'){
+          return true
+        }
+        if (account.provider && account.provider === "google") {
+          const { email, name } = user;
+          try {
+            await connectDb();
+            const isUserExist = await UserModel.findOne({ email });
+            if (!isUserExist) {
+              const newUser = new UserModel({username:name,email})
+              const newData = await newUser.save();
+              return true
+            }else{
+              return true
+            }
+          } catch (error) {
+            console.error("Error saving user to MongoDB:", error);
+          return null;
+          }
+        }
+      }
+    },
+    pages: {
+      signIn: '/login'
+    },
     session: {
         strategy: "jwt",
       },

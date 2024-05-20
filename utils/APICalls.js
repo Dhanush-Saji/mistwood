@@ -46,3 +46,27 @@ export const registerFn = async(formData) =>{
         return error.response.data
     }
 }
+export const forgotPasswordFn = async(formData) =>{
+    try {
+        const res = await axios.post(`/api/forgot-password`,formData)
+        return res.data
+    } catch (error) {
+        return error.response.data
+    }
+}
+export const resetPasswordFn = async(formData) =>{
+    try {
+        const res = await axios.post(`/api/reset-password`,formData)
+        return res.data
+    } catch (error) {
+        return error.response.data
+    }
+}
+export const verifyTokenFn = async(payload) =>{
+    try {
+        const res = await axios.post(`/api/verify-token`,payload)
+        return res.data
+    } catch (error) {
+        return error.response.data
+    }
+}

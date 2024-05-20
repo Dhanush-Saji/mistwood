@@ -52,17 +52,24 @@ const Header = async() => {
 </Link>}
 {status == 'authenticated' &&<DropdownMenu>
       <DropdownMenuTrigger asChild className="focus-visible:!ring-0 focus-visible:!ring-offset-0 cursor-pointer">
-        <Image alt='avatar' src={Avatar} width='45' className='' />
+        <Image alt='avatar' src={session?.user?.image?session?.user?.image:Avatar} width='45' height='45' className='rounded-full' />
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56">
       <DropdownMenuLabel>Welcome {session?.user?.name}!</DropdownMenuLabel>
         <DropdownMenuGroup>
           <DropdownMenuItem>
-            Profile
+          <Link href={'/address'} prefetch={false}>
+            My Address
+            </Link>
+          </DropdownMenuItem>
+          <DropdownMenuItem>
+          <Link href={'/orders'} prefetch={false}>
+            My Orders
+            </Link>
           </DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
-        <DropdownMenuItem onClick={()=>{signOut()}}>
+        <DropdownMenuItem onClick={()=>{signOut()}} className='cursor-pointer'>
           Log out
         </DropdownMenuItem>
       </DropdownMenuContent>

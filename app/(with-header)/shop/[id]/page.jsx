@@ -54,28 +54,29 @@ const Page = ({ params }) => {
     <div className="bg-[rgba(245,247,248,1)] w-full flex flex-col p-5 pb-16 sm:p-3 sm:px-[5rem] pt-[16vh] sm:pt-[16vh]">
       <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-x-0 md:gap-x-4 gap-y-4 md:gap-y-0">
         <SliderComponent imageArray={imageArray} />
-        <div className="hidden sm:flex justify-center flex-row  sm:flex-col gap-2">
-          <div className="bg-[rgba(0,0,0,.05)]" >
-          <Image
-            width={500}
-            height={500} className="w-[15rem] h-[15rem] sm:w-auto sm:h-auto object-cover m-auto mix-blend-multiply"
-            alt="image"
-            src={imageArray[imageIndex]}
-          />
-          </div>
-          <div className="flex flex-col sm:flex-row gap-2 justify-center">
+        <div className="hidden sm:flex justify-center flex-row gap-2">
+        <div className="flex flex-col gap-2">
             {
               imageArray?.map((imageUrl,index)=>(
-                <div key={index} onClick={()=>setimageIndex(index)} className={`rounded-md cursor-pointer flex p-1 ${imageIndex == index?'border-2 border-[#27282a]':'border'}`}>
+                <div key={index} onClick={()=>setimageIndex(index)} className={`rounded-md w-[3rem] h-[3rem] cursor-pointer flex p-1 ${imageIndex == index?'border-2 border-[#27282a]':'border'}`}>
               <Image
             width={100}
-            height={100} className="w-[1.9rem] sm:w-[3rem] h-[1.9rem] sm:h-[3rem] object-cover rounded-md m-auto"
+            height={100} className="object-cover rounded-md"
             alt="image"
             src={imageUrl}
           /></div>
               ))
             }
           </div>
+          <div className="bg-[rgba(0,0,0,.05)] rounded-md" >
+          <Image
+            width={500}
+            height={500} className="w-[100%] h-[100%] object-cover m-auto mix-blend-multiply"
+            alt="image"
+            src={imageArray[imageIndex]}
+          />
+          </div>
+          
         </div>
         <div className="p-5 px-10 flex gap-1 flex-col bg-white w-full rounded-lg">
           <h1 className="text-[24px] font-semibold whitespace-nowrap overflow-hidden text-ellipsis">

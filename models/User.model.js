@@ -26,8 +26,14 @@ const userSchema = mongoose.Schema({
       type:String
   },
   user_image:{
-      type:Object
-  }
+      type:String
+  },
+  resetToken:{
+      type:String
+  },
+  resetTokenExpiry:{
+      type:Date
+  },
 
 },{timestamps:true})
 export const UserModel = mongoose?.models?.users || mongoose.model('users',userSchema)

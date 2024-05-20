@@ -2,18 +2,25 @@
 
 import { registerFn } from "@/utils/APICalls";
 import { signIn, useSession, } from "next-auth/react";
-import { useState, useEffect } from "react"
+import { useState, useEffect, useLayoutEffect } from "react"
 import { toast } from 'react-toastify'
 import Image from 'next/image'
 import { ReloadIcon } from "@radix-ui/react-icons";
 import GoogleButton from "react-google-button";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export default function Login() {
-  const router = useRouter()
-  const data = useSession()
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const router = useRouter();
+  const { data: session, status } = useSession()
   const [isLoading, setisLoading] = useState(false)
   const [formData, setformData] = useState({ email: '', password: '' })
+  useLayoutEffect(() => {
+    if (status === 'authenticated') {
+      router.replace('/'); // Redirect to homepage on successful login
+    }
+  }, [session, status, router])
   const loginUser = async (e) => {
     e.preventDefault()
     if (!formData?.email || !formData?.password) {
@@ -23,6 +30,7 @@ export default function Login() {
     setisLoading(true)
     try {
       const res = await signIn('credentials', { ...formData, redirect: false })
+      console.log(res)
       if (!res?.ok) {
         toast.error(res?.error)
       } else if (res?.ok) {
@@ -37,34 +45,50 @@ export default function Login() {
   };
   return (
     <>
-      <div className="flex min-h-[100vh] flex-1 flex-col justify-center px-6 py-12 lg:px-8">
-        <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-          <div className='flex gap-1 items-center justify-center'>
+      <div className="bg-white overflow-hidden h-[100vh]">
+      <header className="absolute inset-x-0 top-0 z-50 p-6 lg:px-8">
+          <div className="flex lg:flex-1">
+          <Link href={'/'}>
             <Image src={'/images/logo.png'} alt='logo' height={50} width={50} />
-            {/* <div className='flex flex-col ml-1'>
-          <span className='text-[1.2rem] font-[800] text-[#27282a] dark:text-[#eeeeee]'>Mistwood</span>
-          <span className='text-[0.7rem] font-[700] text-[#27282a] dark:text-[#eeeeee] mt-[-10px]'>Furniture</span>
-
-          </div> */}
+            </Link>
           </div>
-          <h2 className="mt-2 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
-            Sign in to your account
-          </h2>
-        </div>
+      </header>
 
-        <div className="mt-3 sm:mx-auto sm:w-full sm:max-w-sm">
+      <div className="relative isolate px-6 lg:px-8">
+        <div
+          className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80"
+          aria-hidden="true"
+        >
+          <div
+            className="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]"
+            style={{
+              clipPath:
+                'polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)',
+            }}
+          />
+        </div>
+        <div className="h-[100vh] flex">
+          <div className="text-center m-auto min-w-[84vw] sm:min-w-[25rem]">
+            <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+              Welcome back
+            </h1>
+            <p className="mt-0 text-lg leading-8 text-gray-600">
+             Login to your account
+            </p>
+            <div className="mt-3">
           <form className="space-y-4" onSubmit={loginUser}>
             <div>
-              <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
+              <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900 text-left">
                 Email address
               </label>
-              <div className="mt-2">
+              <div className="mt-1">
                 <input value={formData?.email} onChange={(e) => setformData({ ...formData, email: e.target.value })}
                   id="email"
                   name="email"
                   type="email"
                   autoComplete="email"
                   required
+                  placeholder="Enter email"
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
               </div>
@@ -76,19 +100,20 @@ export default function Login() {
                   Password
                 </label>
               </div>
-              <div className="mt-2">
+              <div className="mt-1">
                 <input value={formData?.password} onChange={(e) => setformData({ ...formData, password: e.target.value })}
                   id="password"
                   name="password"
                   type="password"
                   autoComplete="current-password"
                   required
+                  placeholder="Enter password"
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
                 <div className="text-sm w-full flex">
-                  <a href="#" className="font-semibold text-indigo-600 hover:text-indigo-500  ml-auto">
+                  <Link href="/forgot-password" className="font-semibold text-indigo-600 hover:text-indigo-500  ml-auto">
                     Forgot password?
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -105,19 +130,32 @@ export default function Login() {
               </button>
             </div>
           </form>
-          <div className="flex w-full mt-2 justify-center items-center">
-            <GoogleButton
-              onClick={() => signIn('google')}
-            />
+          <div className="flex w-fit mt-2 cursor-pointer mx-auto p-1 justify-center items-center border-2 shadow-md rounded-full" onClick={() => signIn('google')}>
+            <Image alt="google" width={40} height={40} src={'https://i.imgur.com/wY7ghvs.png'} />
           </div>
           <p className="mt-4 text-center text-sm text-gray-500">
             {`Don't have an account?`}
-            <a href="/register" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500 ml-2">
+            <Link href="/register" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500 ml-2">
               Sign Up
-            </a>
+            </Link>
           </p>
         </div>
+          </div>
+        </div>
+        <div
+          className="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]"
+          aria-hidden="true"
+        >
+          <div
+            className="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]"
+            style={{
+              clipPath:
+                'polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)',
+            }}
+          />
+        </div>
       </div>
+    </div>
     </>
   )
 }
