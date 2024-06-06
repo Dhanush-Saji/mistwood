@@ -16,16 +16,13 @@ export const authOptions = {
             },
             async authorize(credentials) {
                 const { email, password } = credentials;
-                console.log(email, password)
                 try {
                   await connectDb();
                   const user = await UserModel.findOne({ email });
-                  console.log(user)
                   if (!user) {
                     throw new Error('User not found!')
                   }
                   const passwordMatch = await bcryptjs.compare(password, user.password);
-                  console.log(passwordMatch)
                   if (!passwordMatch) {
                     throw new Error('Incorrect password!')
                   }
@@ -42,11 +39,13 @@ export const authOptions = {
       })
     ],
     callbacks: {
-      async jwt({ token, trigger, session }) {
+      async jwt({ token, trigger, session,user }) {
         if (trigger === 'update' && session?.name) {
           token.name = session.name
         }
-  
+        if (user) {
+          token.uid = user;
+        }
         return token
       },
       async signIn({user,account}){
@@ -70,14 +69,16 @@ export const authOptions = {
           return null;
           }
         }
-      }
+      },
+      session: async ({ session, token }) => {
+        session.userData = {...token?.uid}
+      return session;
+    },
     },
     pages: {
       signIn: '/login'
     },
-    session: {
-        strategy: "jwt",
-      },
+    strategy: "jwt",
 }
 
 const handler = NextAuth(authOptions)

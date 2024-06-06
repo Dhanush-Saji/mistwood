@@ -1,4 +1,5 @@
 "use client";
+import { addCartProduct } from "@/actions/server-action";
 import LoadingCircle from "@/components/Loaders/LoadingCircle";
 import ProductSingle from "@/components/ProductSingle";
 import SliderComponent from "@/components/Slider";
@@ -6,10 +7,15 @@ import { Button } from "@/components/ui/button";
 import { changeNumberFormat } from "@/services/Formatter";
 import { getRelatedProduct, getSingleProduct } from "@/utils/APICalls";
 import { Truck } from "lucide-react";
+import { useSession } from "next-auth/react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import React, { useState,useEffect } from "react";
 
 const Page = ({ params }) => {
+  const router = useRouter();
+  const data = useSession()
+  console.log(data?.data);
   const [qnty, setqnty] = useState(1)
   const [product, setproduct] = useState([])
   const [isLoading, setisLoading] = useState(false)
@@ -38,7 +44,7 @@ const Page = ({ params }) => {
   };
   const getRelatedPro = async () => {
     try {
-      const res = await getRelatedProduct(params.id) || []
+      const res = await getRelatedProduct(params?.id) || []
       setrelatedProduct(res)
     } catch (error) {
       console.error(error);
@@ -49,6 +55,22 @@ const Page = ({ params }) => {
     getSinglepro()
     getRelatedPro()
   },[])
+  const addProductToCart = async () => {
+    if(!data?.data){
+      router.push('/login')
+    }
+    try {
+      let payload = {
+        productId:params?.id,
+        userId:data?.data?.userData?._id,
+        qnty
+      }
+      const res = await addCartProduct(payload)
+      console.log(res);
+    } catch (error) {
+      console.error(error);
+    }
+  };
   return isLoading?<div className="w-[100vw] h-[100vh] flex items-center justify-center"><LoadingCircle /></div>:
   (
     <div className="bg-[rgba(245,247,248,1)] w-full flex flex-col p-5 pb-16 sm:p-3 sm:px-[5rem] pt-[16vh] sm:pt-[16vh]">
@@ -101,14 +123,17 @@ const Page = ({ params }) => {
           <h1 className="text-md opacity-60">
             {product[0]?.category?.category_name}
           </h1>
-          <h1 className="text-[16px]">{product[0]?.description}</h1>
+          <div className="flex flex-col">
+          <h1 className="text-[16px]">Decription</h1>
+          <h1 className="text-md opacity-60">{product[0]?.description}</h1>
+          </div>
           <div className="mt-[1rem] flex items-center">
             <Button disabled={qnty == 1} variant="secondary" onClick={()=>setqnty((prev)=>prev-1)}>-</Button>
             <div className="min-w-[2rem] flex items-center justify-center">
             <span className=" font-[700]">{qnty}</span>
             </div>
             <Button variant="secondary" onClick={()=>setqnty((prev)=>prev+1)} disabled={!product[0]?.isActive}>+</Button>
-          <Button className="w-[100%] sm:w-auto ml-[1rem]" disabled={!product[0]?.isActive}>Add to Cart</Button>
+          <Button onClick={()=>addProductToCart()} className="w-[100%] sm:w-auto ml-[1rem]" disabled={!product[0]?.isActive}>Add to Cart</Button>
           </div>
           <div className="flex gap-4 mt-3">
             <h2>Availability: </h2>
