@@ -3,7 +3,7 @@ import './LoadingCircle.css'
 
 const LoadingCircleText = ({children}) => {
   return (
-    <div class="loader">
+    <div className="loader">
         {children}
     </div>
   )

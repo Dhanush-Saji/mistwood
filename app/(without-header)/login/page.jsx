@@ -16,11 +16,14 @@ export default function Login() {
   const { data: session, status } = useSession()
   const [isLoading, setisLoading] = useState(false)
   const [formData, setformData] = useState({ email: '', password: '' })
+const [redirectPath, setRedirectPath] = useState(router.asPath); // Capture the previous path
+
   useLayoutEffect(() => {
     if (status === 'authenticated') {
-      router.replace('/'); // Redirect to homepage on successful login
+      router.replace(redirectPath); // Redirect to the captured previous path on successful login
     }
-  }, [session, status, router])
+  }, [session, status, router, redirectPath]);
+  
   const loginUser = async (e) => {
     e.preventDefault()
     if (!formData?.email || !formData?.password) {

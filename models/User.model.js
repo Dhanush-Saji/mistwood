@@ -1,5 +1,10 @@
 import mongoose from "mongoose"
 
+const cartItemSchema = new mongoose.Schema({
+    productId: { type: mongoose.Schema.Types.ObjectId, ref: "products" },
+    quantity: { type: Number,default: 1 }
+  });
+
 const userSchema = mongoose.Schema({
   username:{
       type:String
@@ -19,6 +24,7 @@ const userSchema = mongoose.Schema({
       unique:true,
       required:[true,"Please enter email"]
   },
+  cart: [cartItemSchema],
   delivery_address:[{
       type:Object
   }],
