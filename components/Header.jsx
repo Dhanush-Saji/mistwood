@@ -23,7 +23,9 @@ import SignoutBtn from './Button/SignoutBtn'
 
 const Header = async() => {
   // const { data: session, status } = useSession()
-  const {userData,user} = await getServerSession(authOptions)
+  const sessionData = await getServerSession(authOptions)
+  const userData = sessionData?.userData
+  const user = sessionData?.user
   return (
     <div className='justify-between flex px-6 sm:px-4 py-3items-center fixed w-full z-[10] bg-white h-[4rem] items-center shadow-md'>
       <Link href={'/'} prefetch={false}>

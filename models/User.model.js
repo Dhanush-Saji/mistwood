@@ -24,7 +24,10 @@ const userSchema = mongoose.Schema({
       unique:true,
       required:[true,"Please enter email"]
   },
-  cart: [cartItemSchema],
+  cart: {
+    type: [cartItemSchema],
+    default: []
+  },
   delivery_address:[{
       type:Object
   }],

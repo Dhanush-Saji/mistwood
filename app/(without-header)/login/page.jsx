@@ -18,11 +18,7 @@ export default function Login() {
   const [formData, setformData] = useState({ email: '', password: '' })
 const [redirectPath, setRedirectPath] = useState(router.asPath); // Capture the previous path
 
-  useLayoutEffect(() => {
-    if (status === 'authenticated') {
-      router.replace(redirectPath); // Redirect to the captured previous path on successful login
-    }
-  }, [session, status, router, redirectPath]);
+
   
   const loginUser = async (e) => {
     e.preventDefault()
@@ -46,6 +42,7 @@ const [redirectPath, setRedirectPath] = useState(router.asPath); // Capture the 
       setisLoading(false)
     }
   };
+  
   return (
     <>
       <div className="bg-white overflow-hidden h-[100vh]">

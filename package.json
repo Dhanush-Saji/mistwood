@@ -48,7 +48,8 @@
     "tailwind-merge": "^2.2.2",
     "tailwindcss-animate": "^1.0.7",
     "three": "^0.160.0",
-    "ua-parser-js": "^1.0.37"
+    "ua-parser-js": "^1.0.37",
+    "zustand": "^4.5.2"
   },
   "devDependencies": {
     "autoprefixer": "^10.0.1",
