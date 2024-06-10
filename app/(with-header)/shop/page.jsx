@@ -23,8 +23,8 @@ const Page = () => {
   const search = searchParams.get('category')
   const ImageArray = [AllImage,ChairImage,BedImage,TableImage,SofaImage]
   const [productData, setproductData] = useState([]);
-  const [categoryTab, setcategoryTab] = useState([])
   const [isLoading, setisLoading] = useState(false)
+  
   const getPro = async () => {
     setproductData([])
     setisLoading(true)
@@ -36,17 +36,6 @@ const Page = () => {
     }
     setisLoading(false)
   };
-  const getProCount = async () => {
-    try {
-      const res = await getCategoryCount();
-      setcategoryTab(res);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  useEffect(() => {
-    getProCount()
-  }, []);
   useEffect(() => {
     getPro();
   }, [search]);
@@ -55,10 +44,7 @@ const Page = () => {
     <div>
       <Image width={'150px'} height={400} className='w-full rounded-[8px]' src={ProductBanner} alt="product-banner" />
     </div>
-    {categoryTab.length>0?<CategoryListCount search={search} categoryTab={categoryTab} />
-    :<div className='w-full flex justify-center  mt-[2rem]'>
-    <LoadingCircle />
-    </div>}
+    <CategoryListCount />
     {isLoading?<div className='w-full flex justify-center  mt-[2rem]'>
     <LoadingCircle />
     </div>:productData?.length == 0? <NoData />:null}

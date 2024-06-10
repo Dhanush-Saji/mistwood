@@ -72,7 +72,7 @@ const Page = ({ params }) => {
   };
   return isLoading?<div className="w-[100vw] h-[100vh] flex items-center justify-center"><LoadingCircle /></div>:
   (
-    <div className="bg-[rgba(245,247,248,1)] w-full flex flex-col p-5 pb-16 sm:p-3 sm:px-[2rem] pt-[16vh] sm:pt-[16vh]">
+    <div className="bg-[rgba(245,247,248,1)] w-full flex flex-col p-5 pb-16 sm:p-3 sm:px-[2rem] pt-[16vh] sm:pt-[14vh]">
       <div className="bg-white rounded-lg p-6 py-4 w-full grid grid-cols-1 md:grid-cols-2 gap-x-0 md:gap-x-4 gap-y-4 md:gap-y-0">
         {imageArray?.length>0 &&
         <SliderComponent imageArray={imageArray} />}
@@ -82,7 +82,7 @@ const Page = ({ params }) => {
           priority={false}
           placeholder = 'empty'
             width={500}
-            height={500} className="w-[100%] h-[100%] object-contain m-auto mix-blend-multiply"
+            height={500} className="w-[100%] max-h-[35rem] object-contain m-auto mix-blend-multiply"
             alt="image"
             src={imageArray[imageIndex]}
           />}
@@ -147,7 +147,7 @@ const Page = ({ params }) => {
             <Button variant="secondary" onClick={()=>setqnty((prev)=>prev+1)} disabled={!product[0]?.isActive}>+</Button>
           <Button onClick={()=>addProductToCart()} className="w-[100%] sm:w-auto ml-[1rem]" disabled={!product[0]?.isActive}>Add to Cart</Button>
           </div>
-          <div>
+          <div className="mt-4">
             <div className="flex gap-4 px-[0.8rem] py-[0.5rem] rounded-[8px] border-2 border-gray-300">
             <Truck />
             <div>

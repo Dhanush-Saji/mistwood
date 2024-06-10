@@ -13,7 +13,7 @@ export const getProduct = async(query) =>{
 
 export const getCategoryCount = async() =>{
     try {
-        const res = await fetch(`/api/countCategory`)
+        const res = await fetch(`/api/countCategory`,{ next: { revalidate: 3600 } })
         const data = await res.json()
         return data
     } catch (error) {
