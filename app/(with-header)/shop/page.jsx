@@ -5,11 +5,6 @@ import dynamic from "next/dynamic";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import ProductBanner from '@/public/images/product-page-banner.png'
-import ChairImage from '@/public/images/chair.svg'
-import BedImage from '@/public/images/bed.svg'
-import TableImage from '@/public/images/table.svg'
-import SofaImage from '@/public/images/sofa.svg'
-import AllImage from '@/public/images/allfurniture.svg'
 import Link from "next/link";
 import LoadingCircle from "@/components/Loaders/LoadingCircle";
 import { useSearchParams } from "next/navigation";
@@ -21,7 +16,6 @@ const NoData = dynamic(() => import("@/components/Loaders/NoData"), {
 const Page = () => {
   const searchParams = useSearchParams()
   const search = searchParams.get('category')
-  const ImageArray = [AllImage,ChairImage,BedImage,TableImage,SofaImage]
   const [productData, setproductData] = useState([]);
   const [isLoading, setisLoading] = useState(false)
   
