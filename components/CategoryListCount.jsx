@@ -8,13 +8,24 @@ import AllImage from '@/public/images/allfurniture.svg'
 import Image from 'next/image'
 import { getCategoryCount } from '@/utils/APICalls'
 import LoadingCircle from './Loaders/LoadingCircle'
+import { headers } from 'next/headers'
+import { NextRequest } from 'next/server'
+const url = process.env.BACKEND_URL
 
 const CategoryListCount = async() => {
+  const headersList = headers()
+const referer = headersList.get("referer")
+let request
+if (referer) {
+   request = new NextRequest(referer)
+  console.log('tstdfdfdfdf',request.nextUrl.search?.split('=')[1])
+}
   const search = ''
   const countList = await getData()
     const ImageArray = [AllImage,ChairImage,BedImage,TableImage,SofaImage]
   return (
     <>
+    <h1>test {`${request.nextUrl.search?.split('=')[1]}`}</h1>
     {
       countList?.length>0?
       <>
@@ -54,7 +65,7 @@ const CategoryListCount = async() => {
 export default CategoryListCount
 
 async function getData() {
-  const res = await fetch(`/api/countCategory`)
+  const res = await fetch(`${url}/api/countCategory`,{next:{revalidate:1800}})
  
   if (!res.ok) {
     // This will activate the closest `error.js` Error Boundary
