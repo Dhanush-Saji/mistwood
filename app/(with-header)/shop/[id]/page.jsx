@@ -6,7 +6,7 @@ import SliderComponent from "@/components/Slider";
 import { Button } from "@/components/ui/button";
 import { useUserStore } from "@/lib/zustandStore";
 import { changeNumberFormat } from "@/services/Formatter";
-import { getRelatedProduct, getSingleProduct } from "@/utils/APICalls";
+import { addProductToCartFn, getRelatedProduct, getSingleProduct } from "@/utils/APICalls";
 import { Truck } from "lucide-react";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
@@ -18,7 +18,7 @@ const Page = ({ params }) => {
   const addToCart = useUserStore(state => state.addToCart)
   const router = useRouter();
   const data = useSession()
-  const [qnty, setqnty] = useState(1)
+  const [quantity, setquantity] = useState(1)
   const [product, setproduct] = useState([])
   const [isLoading, setisLoading] = useState(false)
   const [imageArray, setimageArray] = useState([])
@@ -65,20 +65,22 @@ const Page = ({ params }) => {
       let payload = {
         productId:params?.id,
         userId:data?.data?.userData?._id,
-        qnty
+        quantity
       }
-      console.log('test');
-      const res = await addCartProduct(payload)
-      console.log('test');
+      const res = await addProductToCartFn(payload)
       console.log(res);
       if(res?.status){
         toast.success('Added to cart')
-        // addToCart(res?.data)
+        console.log('updated data',res?.data)
+        addToCart(res?.data?.cart || [])
       }
     } catch (error) {
       console.error(error);
     }
   };
+  useEffect(() => {
+    useUserStore.persist.rehydrate()
+  }, [])
   return isLoading?<div className="w-[100vw] h-[100vh] flex items-center justify-center"><LoadingCircle /></div>:
   (
     <div className="bg-[rgba(245,247,248,1)] w-full flex flex-col p-5 pb-16 sm:p-3 sm:px-[2rem] pt-[16vh] sm:pt-[14vh]">
@@ -149,11 +151,11 @@ const Page = ({ params }) => {
           </div>
             }
           <div className="mt-[1rem] flex items-center">
-            <Button disabled={qnty == 1} variant="secondary" onClick={()=>setqnty((prev)=>prev-1)}>-</Button>
+            <Button disabled={quantity == 1} variant="secondary" onClick={()=>setquantity((prev)=>prev-1)}>-</Button>
             <div className="min-w-[2rem] flex items-center justify-center">
-            <span className=" font-[700]">{qnty}</span>
+            <span className=" font-[700]">{quantity}</span>
             </div>
-            <Button variant="secondary" onClick={()=>setqnty((prev)=>prev+1)} disabled={!product[0]?.isActive}>+</Button>
+            <Button variant="secondary" onClick={()=>setquantity((prev)=>prev+1)} disabled={!product[0]?.isActive}>+</Button>
           <Button onClick={()=>addProductToCart()} className="w-[100%] sm:w-auto ml-[1rem]" disabled={!product[0]?.isActive}>Add to Cart</Button>
           </div>
           <div className="mt-4">

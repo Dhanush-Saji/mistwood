@@ -70,3 +70,11 @@ export const verifyTokenFn = async(payload) =>{
         return error.response.data
     }
 }
+export const addProductToCartFn = async(payload) =>{
+    try {
+        const res = await axios.post(`/api/addToCart`,payload)
+        return res.data
+    } catch (error) {
+        return error.response.data
+    }
+}
