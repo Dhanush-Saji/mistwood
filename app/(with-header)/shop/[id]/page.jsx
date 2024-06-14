@@ -4,6 +4,7 @@ import LoadingCircle from "@/components/Loaders/LoadingCircle";
 import ProductSingle from "@/components/ProductSingle";
 import SliderComponent from "@/components/Slider";
 import { Button } from "@/components/ui/button";
+import { useUserStore } from "@/lib/zustandStore";
 import { changeNumberFormat } from "@/services/Formatter";
 import { getRelatedProduct, getSingleProduct } from "@/utils/APICalls";
 import { Truck } from "lucide-react";
@@ -11,8 +12,10 @@ import { useSession } from "next-auth/react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React, { useState,useEffect } from "react";
+import { toast } from "react-toastify";
 
 const Page = ({ params }) => {
+  const addToCart = useUserStore(state => state.addToCart)
   const router = useRouter();
   const data = useSession()
   const [qnty, setqnty] = useState(1)
@@ -64,8 +67,14 @@ const Page = ({ params }) => {
         userId:data?.data?.userData?._id,
         qnty
       }
+      console.log('test');
       const res = await addCartProduct(payload)
+      console.log('test');
       console.log(res);
+      if(res?.status){
+        toast.success('Added to cart')
+        // addToCart(res?.data)
+      }
     } catch (error) {
       console.error(error);
     }

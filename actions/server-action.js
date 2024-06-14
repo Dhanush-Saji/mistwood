@@ -21,22 +21,19 @@ export async function addCartProduct(payload) {
     await connectDb();
     const userData = await UserModel.findById({ _id: userId });
     if (userData) {
-      console.log('userData',userData)
       if (!userData?.cart) {
         userData.cart = [];
       }
       const existingCartItemIndex = userData.cart.findIndex(item => item.productId.toString() == productId);
-  console.log('existingCartItemIndex',existingCartItemIndex)
       if (existingCartItemIndex >= 0) {
         userData.cart[existingCartItemIndex].quantity += qnty;
       } else {
         userData.cart.push({ productId, quantity:qnty });
       }
       let res= await userData.save();
-      console.log(res)
-      return true
+      return {data:res,status:true}
     }else{
-      return false
+      return {status:false}
     }
   } catch (error) {
     console.log(error);
