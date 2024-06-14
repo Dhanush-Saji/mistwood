@@ -4,6 +4,7 @@ import NextAuth from 'next-auth/next'
 import { connectDb } from '@/config/dbConfig';
 import { UserModel } from '@/models/User.model';
 import bcryptjs from "bcryptjs";
+import { useUserStore } from '@/lib/zustandStore';
 
 export const authOptions = {
     providers:[
@@ -49,6 +50,11 @@ export const authOptions = {
         return token
       },
       async signIn({user,account}){
+        if (user && user.cart) {
+          useUserStore((set) => {
+            set({ cart: user.cart });
+          });
+        }
         if(account?.provider == 'credentials'){
           return true
         }

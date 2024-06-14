@@ -9,8 +9,10 @@ import { ReloadIcon } from "@radix-ui/react-icons";
 import GoogleButton from "react-google-button";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { useUserStore } from "@/lib/zustandStore";
 
 export default function Login() {
+  const addToCart = useUserStore(state => state.addToCart)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const router = useRouter();
   const { data: session, status } = useSession()
