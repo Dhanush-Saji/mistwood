@@ -10,14 +10,12 @@ import Section6 from "@/components/Sections/Section6/Section6";
 import Chair3d from "@/components/chair-3d/Chair3d";
 import { getServerSession } from "next-auth";
 import { authOptions } from "./api/auth/[...nextauth]/route";
-import LoginCartUpdationSection from "@/components/LoginCartUpdationSection";
 
 export default async function Home() {
   const session = await getServerSession(authOptions)
   return (
     <>
     <Header />
-    {/* <LoginCartUpdationSection /> */}
       <Section1 />
       <Section2 />
       <Section3 />

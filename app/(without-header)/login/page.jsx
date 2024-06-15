@@ -15,10 +15,9 @@ export default function Login() {
   const addToCart = useUserStore(state => state.addToCart)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const router = useRouter();
-  const { data: sessionData, status } = useSession()
+  const {data,status} = useSession()
   const [isLoading, setisLoading] = useState(false)
   const [formData, setformData] = useState({ email: '', password: '' })
-const [redirectPath, setRedirectPath] = useState(router.asPath); // Capture the previous path
 
 
   
@@ -35,15 +34,21 @@ const [redirectPath, setRedirectPath] = useState(router.asPath); // Capture the 
         toast.error(res?.error)
       } else if (res?.ok) {
         toast.success('Login Successful')
-        // router.push('/')
       }
-      setisLoading(false)
     } catch (error) {
       console.error(error);
       setisLoading(false)
     }
   };
-  
+  useEffect(()=>{
+    if(status == 'authenticated'){
+      setTimeout(() => {
+        setisLoading(false)
+        addToCart(data?.userData?.cart || [])
+        router.push('/')
+      }, 200);
+    }
+  },[status])
   return (
     <>
       <div className="bg-white overflow-hidden h-[100vh]">
