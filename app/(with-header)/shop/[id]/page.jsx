@@ -68,10 +68,8 @@ const Page = ({ params }) => {
         quantity
       }
       const res = await addProductToCartFn(payload)
-      console.log(res);
       if(res?.status){
         toast.success('Added to cart')
-        console.log('updated data',res?.data)
         addToCart(res?.data?.cart || [])
       }
     } catch (error) {

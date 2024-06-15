@@ -50,13 +50,8 @@ export const authOptions = {
         return token
       },
       async signIn({user,account}){
-        if (user && user.cart) {
-          useUserStore((set) => {
-            set({ cart: user.cart });
-          });
-        }
         if(account?.provider == 'credentials'){
-          return true
+          return user
         }
         if (account.provider && account.provider === "google") {
           const { email, name } = user;
