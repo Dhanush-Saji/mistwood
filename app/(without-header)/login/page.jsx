@@ -37,16 +37,16 @@ export default function Login() {
       }
     } catch (error) {
       console.error(error);
+    }finally{
       setisLoading(false)
     }
   };
   useEffect(()=>{
     if(status == 'authenticated'){
-      setTimeout(() => {
-        setisLoading(false)
         addToCart(data?.userData?.cart || [])
+      setTimeout(() => {
         router.push('/')
-      }, 200);
+      }, 1500);
     }
   },[status])
   return (

@@ -2,11 +2,14 @@
 import { useUserStore } from '@/lib/zustandStore'
 import { ShoppingCart } from 'lucide-react'
 import Link from 'next/link'
-import React from 'react'
+import React, { useEffect } from 'react'
 
 const CartShowBtn = () => {
     const cartArray = useUserStore(state => state.cart)
     const cartQnty = cartArray.reduce((accumulator, item) => accumulator + item?.quantity, 0);
+    useEffect(() => {
+        useUserStore.persist.rehydrate()
+      }, [])
     return (
         <Link href={'/cart'} prefetch={false}>
             <div className='rounded-full text-[#27282a] p-1.5 relative flex items-center justify-center'><ShoppingCart />

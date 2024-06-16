@@ -78,3 +78,11 @@ export const addProductToCartFn = async(payload) =>{
         return error.response.data
     }
 }
+export const updateCartAPI = async(payload) =>{
+    try {
+        const res = await axios.post(`/api/updateCart`,payload)
+        return res.data
+    } catch (error) {
+        return error.response.data
+    }
+}

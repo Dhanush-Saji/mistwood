@@ -1,0 +1,11 @@
+purchase_cost = price that seller are selling to the company
+price = Price that company puts
+tax_payable = (price * gst%) - (purchase_cost * gst%)
+sellingprice = price + (price * gst%)
+discountedPrice = is in percentage (20 means 20%)
+
+So when you show the price to the customer
+
+
+if discountedPrice, then
+        sellingprice - (sellingprice * discountedPrice/100)
