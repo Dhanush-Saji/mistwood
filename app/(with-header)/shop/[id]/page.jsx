@@ -134,10 +134,10 @@ const Page = ({ params }) => {
               <h1 className="text-md opacity-60 mt-3">{product[0]?.description}</h1>
             </div>
             {
-              product[0]?.discountedPrice ?
+              product[0]?.discounts?
                 <div className="flex gap-2 items-center">
                   <h1 className="text-[22px] m-0 font-semibold">
-                    ₹{changeNumberFormat((product[0]?.sellingprice * (100 - product[0]?.discountedPrice)) / 100)}
+                    ₹{changeNumberFormat((product[0]?.sellingprice * (100 - product[0]?.discounts?.percentage)) / 100)}
                   </h1>
                   <h1 className="text-[15px] line-through opacity-60 m-0">
                     ₹{changeNumberFormat(product[0]?.sellingprice)}

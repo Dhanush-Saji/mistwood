@@ -7,17 +7,18 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 import Image from 'next/image'
 import { changeNumberFormat } from '@/services/Formatter'
 import { Button } from '@/components/ui/button'
-import { updateCartAPI } from '@/utils/APICalls'
+import { deleteCartAPI, updateCartAPI } from '@/utils/APICalls'
 import { toast } from 'react-toastify'
 import { ReloadIcon } from '@radix-ui/react-icons'
 import { Input } from '@/components/ui/input'
+import CheckoutBtn from '@/components/Button/CheckoutBtn'
+import { IoMdCloseCircle } from "react-icons/io";
 
 const page = () => {
   const [isLoading, setisLoading] = useState(false)
-  const addToCart = useUserStore(state => state.addToCart)
+  const { addToCart, removeFromCart } = useUserStore();
   const data = useSession()
   const cartArray = useUserStore(state => state.cart) || []
-  console.log(cartArray)
   const cartUpdateFn = async (type, id) => {
     setisLoading(true)
     try {
@@ -31,6 +32,25 @@ const page = () => {
       if (res?.status) {
         toast.success('Cart updated')
         addToCart(res?.data?.cart || [])
+      }
+    } catch (error) {
+      console.error(error);
+    }finally{
+      setisLoading(false)
+    }
+  };
+  const deleteCartItem = async (id) => {
+    try {
+      setisLoading(true)
+      let payload = {
+        id,
+        userId: data?.data?.userData?._id,
+      }
+      const res = await deleteCartAPI(payload)
+      console.log(res?.data)
+      if (res?.status) {
+        toast.success('Cart item delete')
+        removeFromCart(id)
       }
     } catch (error) {
       console.error(error);
@@ -54,6 +74,7 @@ const page = () => {
                   <TableHead className="text-right">Price</TableHead>
                   <TableHead className="text-center">Quantity</TableHead>
                   <TableHead className="text-right">Total</TableHead>
+                  <TableHead className="text-center"></TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
@@ -113,6 +134,9 @@ const page = () => {
                             </h1>
                         }
                       </TableCell>
+                      <TableCell className="text-center">
+                      <IoMdCloseCircle cursor={'pointer'} fontSize={'1.4rem'} onClick={()=>deleteCartItem(item?._id)} />
+                      </TableCell>
                     </TableRow>
                   ))
                 }
@@ -150,7 +174,7 @@ const page = () => {
             <span className='text-[1.2rem]'>5</span>
           </div>
         </div>
-          <Button className='w-full mt-2 rounded-full py-0 bg-white text-[#27282a] hover:bg-white hover:text-[#27282a] font-bold'>Apply</Button>
+          <CheckoutBtn userId={data?.data?.userData?._id} productList={cartArray?.map(item => item?.productId?._id).filter(id => id)} />
         </div>
         </div>
         </div>

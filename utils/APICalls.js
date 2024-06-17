@@ -86,3 +86,19 @@ export const updateCartAPI = async(payload) =>{
         return error.response.data
     }
 }
+export const deleteCartAPI = async(payload) =>{
+    try {
+        const res = await axios.post(`/api/deleteCartItem`,payload)
+        return res.data
+    } catch (error) {
+        return error.response.data
+    }
+}
+export const checkoutCart = async(payload) =>{
+    try {
+        const res = await axios.post(`/api/checkoutSession`,payload)
+        return res.data
+    } catch (error) {
+        return error.response.data
+    }
+}

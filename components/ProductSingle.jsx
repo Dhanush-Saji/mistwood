@@ -27,14 +27,22 @@ const ProductSingle = ({ product }) => {
       <div className="prod-details m-auto overflow-hidden text-center w-[180px]">
       <h1 className="text-[16px] mb-[10px] font-semibold whitespace-nowrap overflow-hidden text-ellipsis block name">{product?.product_name}</h1>
       <span className='desc'>{product?.description}</span>
+      {
+        product?.discounts?
+      <div className='flex gap-2 items-center mt-auto justify-center'>
+      <h1 className="text-md font-bold m-0">
+        ₹{changeNumberFormat((product?.sellingprice * (100 - product?.discounts?.percentage)) / 100)}
+      </h1>
+      <h1 className="text-xs line-through opacity-60 m-0">
+        ₹{changeNumberFormat(product?.sellingprice)}
+      </h1>
+      </div>:
       <div className='flex gap-2 items-center mt-auto justify-center'>
       <h1 className="text-md font-bold m-0">
         ₹{changeNumberFormat(product?.sellingprice)}
       </h1>
-      <h1 className="text-xs line-through opacity-60 m-0">
-        ₹{changeNumberFormat(product?.price)}
-      </h1>
       </div>
+      }
         
       </div>
     </Link>
