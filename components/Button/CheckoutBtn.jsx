@@ -1,18 +1,35 @@
 'use client'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Button } from '../ui/button'
 import { checkoutCart } from '@/utils/APICalls'
 
-const CheckoutBtn = ({userId,productList}) => {
-    const checkoutCartFn = async () => {
-        try {
-            const res = await checkoutCart({userId,productList})
-        } catch (error) {
-            console.error(error);
-        }
-    };
+import { loadStripe } from '@stripe/stripe-js';
+import { checkoutSession } from '@/actions/server-action';
+
+loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY);
+
+const CheckoutBtn = ({ userId, productList }) => {
+  useEffect(() => {
+    // Check to see if this is a redirect back from Checkout
+    const query = new URLSearchParams(window.location.search);
+    if (query.get('success')) {
+      console.log('Order placed! You will receive an email confirmation.');
+    }
+
+    if (query.get('canceled')) {
+      console.log('Order canceled -- continue to shop around and checkout when you’re ready.');
+    }
+  }, []);
+  const checkoutCartFn = async () => {
+    try {
+      await checkoutSession({ userId, productList })
+    } catch (error) {
+      console.error(error);
+    }
+  };
   return (
-    <Button onClick={checkoutCartFn} className='w-full mt-2 rounded-full py-0 bg-white text-[#27282a] hover:bg-white hover:text-[#27282a] font-bold'>Buy</Button>
+      <Button onClick={checkoutCartFn} className='w-full mt-2 rounded-full py-0 bg-white text-[#27282a] hover:bg-white hover:text-[#27282a] font-bold'>Buy</Button>
+
   )
 }
 
