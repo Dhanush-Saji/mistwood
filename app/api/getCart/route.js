@@ -8,17 +8,11 @@ connectDb()
 export async function POST(req){
     try {
         const data = await req.json()
-        const { productId, userId, quantity } = data
+        const {userId} = data
         const userData = await UserModel.findById({ _id: userId });
         if (userData) {
             if(!userData?.cart){
                 userData.cart = []
-            }
-            const findCartIndex = userData.cart.findIndex(item=> item.productId.toString() == productId)
-            if(findCartIndex>=0){
-                userData.cart[findCartIndex].quantity += quantity;
-            }else{
-                userData.cart.push({ productId, quantity:quantity });
             }
             let updatedData= await userData.save();
             await updatedData.populate({

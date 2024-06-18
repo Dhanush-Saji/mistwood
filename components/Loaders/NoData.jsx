@@ -11,10 +11,10 @@ const NoData = () => {
       }, []);
   return (
     <div className="w-full items-center flex-col mt-[3rem]">
-      <div className="w-[10vw] m-auto">
+      <div className="w-[11vw] m-auto">
         {isClient && <Lottie animationData={noData} loop={true} height={30} width={30} />}
-      <p className="opacity-[0.5] text-center">No items available</p>
       </div>
+      <p className="opacity-[0.5] text-center ml-7 text-[1rem]">No items available</p>
     </div>
   );
 };

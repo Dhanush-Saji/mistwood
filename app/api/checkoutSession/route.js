@@ -9,21 +9,23 @@ export async function POST(req) {
     const data = await req.json();
     const {productList, userId } = data;
     const productPromises = productList.map(async (item) => {
-      const product = await ProductModel.findById({_id:item})
-        .select("sellingprice discounts")
+      const product = await ProductModel.findById({_id:item?.id})
+        .select("_id product_name description discounts sellingprice")
+        .populate('discounts')
         .exec();
 
       if (product) {
         let checkoutPrice = product.sellingprice;
-        if (product.discounts) {
-          const discount = product.discounts;
+        if (product?.discounts) {
+          const discount = product.discounts?.percentage;
           checkoutPrice =
             product.sellingprice - product.sellingprice * (discount / 100);
         }
 
         return {
-          ...product.toObject(), // Convert Mongoose document to plain object
+          ...product.toObject(),
           checkoutPrice,
+          quantity: item.quantity
         };
       }
     });

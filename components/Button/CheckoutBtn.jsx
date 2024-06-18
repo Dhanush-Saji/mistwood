@@ -4,7 +4,6 @@ import { Button } from '../ui/button'
 import { checkoutCart } from '@/utils/APICalls'
 
 const CheckoutBtn = ({userId,productList}) => {
-    console.log(userId,productList)
     const checkoutCartFn = async () => {
         try {
             const res = await checkoutCart({userId,productList})
