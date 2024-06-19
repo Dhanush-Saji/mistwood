@@ -48,7 +48,6 @@ export async function checkoutSession({ productList, userId }) {
     });
 
     const products = await Promise.all(productPromises);
-    console.log(products)
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ["card"],
       line_items: products.map((item) => ({
@@ -64,6 +63,7 @@ export async function checkoutSession({ productList, userId }) {
       })),
       metadata: {
         userId,
+        products:products?.map((item)=>({_id: item._id,checkoutPrice:item?.checkoutPrice,quantity:item?.quantity}))
       },
       mode: "payment",
       shipping_address_collection: {allowed_countries: ['IN']},
