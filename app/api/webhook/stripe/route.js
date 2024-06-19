@@ -34,6 +34,9 @@ export async function POST(req) {
     try {
       const newOrder = new OrderModel(order);
       const newData = await newOrder.save();
+      if(newData){
+        const updatedUser = await UserModel.findByIdAndUpdate({ _id: metadata?.userId },{cart:[]});
+      }
       return NextResponse.json({status:true,message:`Order added`},{status:200})
     } catch (error) {
         console.log('error',error)
