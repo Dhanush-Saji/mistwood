@@ -2,8 +2,8 @@ import mongoose from "mongoose"
 
 const productSchema = new mongoose.Schema({
   _id: { type: mongoose.Schema.Types.ObjectId, ref: "products" },
-  quantity: { type: Number},
-  checkoutPrice: { type: Number},
+  quantity: { type: String},
+  checkoutPrice: { type: String},
 });
 
 
