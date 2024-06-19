@@ -202,7 +202,7 @@ export default function ResetPassword({params}) {
       </div>
       <div className="h-[100vh] flex">
         <div className="text-center m-auto min-w-[84vw] sm:min-w-[25rem]">
-        <ErrorLottie width="50vw" />
+        <ErrorLottie />
           <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-4xl">
             Oops..!
           </h1>

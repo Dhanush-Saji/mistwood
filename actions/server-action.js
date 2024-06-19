@@ -68,7 +68,7 @@ export async function checkoutSession({ productList, userId }) {
       mode: "payment",
       shipping_address_collection: {allowed_countries: ['IN']},
       success_url: `${process.env.BACKEND_URL}/success?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${process.env.BACKEND_URL}/`,
+      cancel_url: `${process.env.BACKEND_URL}/error`,
    
     });
     return {url:session.url,status:true}
