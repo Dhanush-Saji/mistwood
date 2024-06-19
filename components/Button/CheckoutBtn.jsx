@@ -5,10 +5,14 @@ import { checkoutCart } from '@/utils/APICalls'
 
 import { loadStripe } from '@stripe/stripe-js';
 import { checkoutSession } from '@/actions/server-action';
+import { useSession } from 'next-auth/react';
 
 loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY);
 
-const CheckoutBtn = ({ userId, productList }) => {
+const CheckoutBtn = ({ productList }) => {
+  const data = useSession()
+  const userId=data?.data?.userData?._id
+  const userEmail=data?.data?.userData?.email
   useEffect(() => {
     // Check to see if this is a redirect back from Checkout
     const query = new URLSearchParams(window.location.search);
@@ -22,7 +26,7 @@ const CheckoutBtn = ({ userId, productList }) => {
   }, []);
   const checkoutCartFn = async () => {
     try {
-      const res = await checkoutSession({ userId, productList })
+      const res = await checkoutSession({ userId, productList,userEmail })
       if(res?.status){
         window.location.href = res?.url
       }

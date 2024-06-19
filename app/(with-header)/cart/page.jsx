@@ -213,7 +213,7 @@ const Page = () => {
                   <span className='text-[1.2rem]'>₹{changeNumberFormat(cartVal?.cartTotal)}</span>
                 </div>
               </div>
-              <CheckoutBtn userId={data?.data?.userData?._id} productList={cartArray?.map(item => ({id:item?.productId?._id,quantity:item?.quantity})).filter(id => id)} />
+              <CheckoutBtn productList={cartArray?.map(item => ({id:item?.productId?._id,quantity:item?.quantity})).filter(id => id)} />
             </div>
           </div>
         </div>}

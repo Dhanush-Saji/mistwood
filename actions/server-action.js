@@ -21,7 +21,7 @@ export async function getCategories() {
   }
 }
 
-export async function checkoutSession({ productList, userId }) {
+export async function checkoutSession({ productList, userId,userEmail }) {
   try {
     await connectDb();
     const userData = await UserModel.findById({ _id: userId });
@@ -61,6 +61,7 @@ export async function checkoutSession({ productList, userId }) {
         },
         quantity: item.quantity,
       })),
+      customer_email: userEmail,
       metadata: {
         userId,
         products: JSON.stringify(products.map((item) => ({
