@@ -63,6 +63,11 @@ export async function checkoutSession({ productList, userId }) {
       })),
       metadata: {
         userId,
+        products: JSON.stringify(products.map((item) => ({
+          _id: item._id,
+          checkoutPrice: item?.checkoutPrice,
+          quantity: item?.quantity
+        })))
       },
       mode: "payment",
       shipping_address_collection: {allowed_countries: ['IN']},
