@@ -22,7 +22,11 @@ const CheckoutBtn = ({ userId, productList }) => {
   }, []);
   const checkoutCartFn = async () => {
     try {
-      await checkoutSession({ userId, productList })
+      const res = await checkoutSession({ userId, productList })
+      if(res?.status){
+        window.location.href = res?.url
+      }
+      console.log(res);
     } catch (error) {
       console.error(error);
     }

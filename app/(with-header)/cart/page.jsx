@@ -15,7 +15,7 @@ import CheckoutBtn from '@/components/Button/CheckoutBtn'
 import { IoMdCloseCircle } from "react-icons/io";
 import NoData from '@/components/Loaders/NoData'
 
-const page = () => {
+const Page = () => {
   const [cartVal, setcartVal] = useState({subTotal:0,shipping:0,discounts:0,cartTotal:0})
   const [isLoading, setisLoading] = useState(false)
   const { addToCart, removeFromCart } = useUserStore();
@@ -222,4 +222,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Page

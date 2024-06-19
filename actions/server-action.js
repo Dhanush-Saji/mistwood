@@ -27,7 +27,7 @@ export async function checkoutSession({ productList, userId }) {
     const userData = await UserModel.findById({ _id: userId });
     const productPromises = productList.map(async (item) => {
       const product = await ProductModel.findById({ _id: item?.id })
-        .select("_id product_name description discounts sellingprice")
+        .select("_id product_name description discounts sellingprice product_image")
         .populate("discounts")
         .exec();
 
@@ -56,6 +56,7 @@ export async function checkoutSession({ productList, userId }) {
           currency: "inr",
           product_data: {
             name: item.product_name,
+            images:[item?.product_image?.img1?.url]
           },
           unit_amount: item.checkoutPrice * 100,
         },
@@ -70,10 +71,8 @@ export async function checkoutSession({ productList, userId }) {
       cancel_url: `${process.env.BACKEND_URL}/`,
    
     });
-    
-    console.log(session);
-    redirect(session.url)
-    return
+    return {url:session.url,status:true}
+    return 0
   } catch (error) {
     console.log(error);
     throw error;
