@@ -7,7 +7,6 @@ import { ProductModel } from "@/models/Product.model";
 import { UserModel } from "@/models/User.model";
 import { DiscountModel } from "@/models/Discount.model";
 import Stripe from "stripe";
-import { redirect } from "next/navigation";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
@@ -78,3 +77,4 @@ export async function checkoutSession({ productList, userId }) {
     throw error;
   }
 }
+

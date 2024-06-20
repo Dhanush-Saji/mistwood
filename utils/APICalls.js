@@ -110,3 +110,11 @@ export const checkoutCart = async(payload) =>{
         return error.response.data
     }
 }
+export const sendEnquiryAPI = async(payload) =>{
+    try {
+        const res = await axios.post(`/api/enquiryEmail`,payload)
+        return res.data
+    } catch (error) {
+        return error.response.data
+    }
+}

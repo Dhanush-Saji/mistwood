@@ -2,15 +2,12 @@ import { connectDb } from "@/config/dbConfig"
 import { UserModel } from "@/models/User.model"
 import { NextResponse } from "next/server"
 import crypto from "crypto"
-import jwt from "jsonwebtoken"
-import { Resend } from "resend"
 import ResetPassword from "@/components/Email-templates/ResetPassword"
 import nodemailer from 'nodemailer'
 
 connectDb() //connecting to database
 export async function POST(req){
     try {
-        const resend = new Resend(process.env.RESEND_API_KEY);
         const data = await req.json()
         const { email} = data
         const isUserExist = await UserModel.findOne({ email });
