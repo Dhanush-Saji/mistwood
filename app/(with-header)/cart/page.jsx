@@ -91,7 +91,7 @@ const Page = () => {
     }
   },[cartArray])
   return (
-    <div className="bg-[rgba(245,247,248,1)] min-w-[100vw] min-h-[100vh] flex flex-col p-5 pb-16 sm:p-3 sm:px-[2rem] pt-[16vh] sm:pt-[14vh]">
+    <div className="bg-[rgba(245,247,248,1)] min-w-[100vw] min-h-[100vh] flex flex-col p-5 pb-16 sm:p-3 sm:px-[2rem] pt-[5rem] sm:pt-[6rem]">
       <div className='grid grid-cols-custom gap-2'>
         <div className='flex flex-col'>
           <h1 className='text-left text-[22px] font-extrabold'>Shopping Bag</h1>

@@ -81,7 +81,7 @@ const Page = ({ params }) => {
   }, [])
   return isLoading ? <div className="w-[100vw] h-[100vh] flex items-center justify-center"><LoadingCircle /></div> :
     (
-      <div className="bg-[rgba(245,247,248,1)] w-full flex flex-col p-5 pb-16 sm:p-3 sm:px-[2rem] pt-[16vh] sm:pt-[14vh]">
+      <div className="bg-[rgba(245,247,248,1)] w-full flex flex-col p-5 pb-16 sm:p-3 sm:px-[2rem] pt-[5rem] sm:pt-[6rem]">
         <div className="bg-white rounded-lg p-6 py-4 w-full grid grid-cols-1 md:grid-cols-2 gap-x-0 md:gap-x-4 gap-y-4 md:gap-y-0">
           {imageArray?.length > 0 &&
             <SliderComponent imageArray={imageArray} />}
