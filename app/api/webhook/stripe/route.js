@@ -37,7 +37,7 @@ export async function POST(req) {
       const newOrder = new OrderModel(order);
       const newData = await newOrder.save();
       if(newData){
-        await UserModel.findByIdAndUpdate({ _id: metadata?.userId },{cart:[]});
+        const userData = await UserModel.findByIdAndUpdate({ _id: metadata?.userId },{cart:[]},{new:true});
         const orderData = await OrderModel.findById(newData._id).populate('products._id').exec();
         const transport = nodemailer.createTransport({
           service:'gmail',
@@ -49,9 +49,9 @@ export async function POST(req) {
       const testResult = await transport.verify()
       const sendResult = await transport.sendMail({
           from:process.env.SMTP_EMAIL,
-          to:user?.email,
+          to:userData?.email,
           subject:'Order Successful',
-          html:OrderDetails({username:user?.username,orderid:orderData?._id,orderdate:orderData?.createdAt,products:orderData?.products,totalAmount:orderData?.totalAmount})
+          html:OrderDetails({username:userData?.username,orderid:orderData?._id,orderdate:orderData?.createdAt,products:orderData?.products,totalAmount:orderData?.totalAmount})
       })
       }
       return NextResponse.json({status:true,message:`Order added`},{status:200})
