@@ -1,3 +1,4 @@
+'use client'
 import React from 'react'
 import {
   DropdownMenu,
@@ -23,11 +24,10 @@ import { useUserStore } from '@/lib/zustandStore'
 import CartShowBtn from './Button/CartShowBtn'
 
 
-const Header = async () => {
-  // const { data: session, status } = useSession()
-  const sessionData = await getServerSession(authOptions)
-  const userData = sessionData?.userData
-  const user = sessionData?.user
+const Header = () => {
+  const { data: session, status } = useSession()
+  const userData = session?.userData
+  const user = session?.user
   return (
     <div className='justify-between flex px-6 sm:px-4 py-3items-center fixed w-full z-[10] bg-white h-[4rem] items-center shadow-md'>
       <Link href={'/'} prefetch={false}>
