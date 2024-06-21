@@ -49,7 +49,7 @@ export async function POST(req) {
       const testResult = await transport.verify()
       const sendResult = await transport.sendMail({
           from:process.env.SMTP_EMAIL,
-          to:email,
+          to:user?.email,
           subject:'Order Successful',
           html:OrderDetails({username:user?.username,orderid:orderData?._id,orderdate:orderData?.createdAt,products:orderData?.products,totalAmount:orderData?.totalAmount})
       })
