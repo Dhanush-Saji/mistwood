@@ -39,20 +39,20 @@ export async function POST(req) {
       if(newData){
         const userData = await UserModel.findByIdAndUpdate({ _id: metadata?.userId },{cart:[]},{new:true});
         const orderData = await OrderModel.findById(newData._id).populate('products._id').exec();
-        const transport = nodemailer.createTransport({
-          service:'gmail',
-          auth:{
-              user:process.env.SMTP_EMAIL,
-              pass:process.env.SMTP_PASSWORD
-          }
-      })
-      const testResult = await transport.verify()
-      const sendResult = await transport.sendMail({
-          from:process.env.SMTP_EMAIL,
-          to:userData?.email,
-          subject:'Order Successful',
-          html:OrderDetails({username:userData?.username,orderid:orderData?._id,orderdate:orderData?.createdAt,products:orderData?.products,totalAmount:orderData?.totalAmount})
-      })
+      //   const transport = nodemailer.createTransport({
+      //     service:'gmail',
+      //     auth:{
+      //         user:process.env.SMTP_EMAIL,
+      //         pass:process.env.SMTP_PASSWORD
+      //     }
+      // })
+      // const testResult = await transport.verify()
+      // const sendResult = await transport.sendMail({
+      //     from:process.env.SMTP_EMAIL,
+      //     to:userData?.email,
+      //     subject:'Order Successful',
+      //     html:OrderDetails({username:userData?.username,orderid:orderData?._id,orderdate:orderData?.createdAt,products:orderData?.products,totalAmount:orderData?.totalAmount})
+      // })
       }
       return NextResponse.json({status:true,message:`Order added`},{status:200})
     } catch (error) {
