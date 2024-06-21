@@ -2,6 +2,7 @@ import { connectDb } from "@/config/dbConfig";
 import { UserModel } from "@/models/User.model";
 import { NextResponse } from "next/server";
 import { DiscountModel } from "@/models/Discount.model";
+import { ProductModel } from "@/models/Product.model";
 
 
 connectDb()
