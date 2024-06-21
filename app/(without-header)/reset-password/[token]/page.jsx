@@ -15,7 +15,7 @@ const ErrorLottie = dynamic(() => import("@/components/Loaders/ErrorLottie"), {
   ssr: false,
 });
 
-export default function ResetPassword({params}) {
+export default function Page({params}) {
   const [isTokenVerified, setisTokenVerified] = useState({isVerified:false,username:''})
   const [pageLoader, setpageLoader] = useState(true)
     const {token} = params;

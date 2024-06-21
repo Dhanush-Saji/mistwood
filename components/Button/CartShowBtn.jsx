@@ -11,10 +11,10 @@ const CartShowBtn = () => {
     useEffect(() => {
         useUserStore.persist.rehydrate()
       }, [])
-    //   const popUpMessage = () => {
-    //     if(cartQnty == 0)
-    //     toast.warning('First add something to cart')
-    //   };
+      const popUpMessage = () => {
+        // if(cartQnty == 0)
+        // toast.warning('First add something to cart')
+      };
     return (
         <Link href={cartQnty == 0?'#':'/cart'} prefetch={false} onClick={popUpMessage}>
             <div className='rounded-full text-[#27282a] p-1.5 relative flex items-center justify-center'><ShoppingCart />
