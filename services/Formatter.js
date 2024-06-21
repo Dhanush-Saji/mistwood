@@ -1,7 +1,6 @@
 export const changeNumberFormat = (number) =>{
-    let formattedWithOptions = number?.toLocaleString('en-US', { maximumFractionDigits: 0 });
+    let formattedWithOptions = number?.toLocaleString('en-IN', { maximumFractionDigits: 0 });
     return formattedWithOptions
-  
   }
 export const calculateDiscountedPrice = (price,productDis,categoryDis) =>{
   if(productDis == null && categoryDis == null){
@@ -34,3 +33,16 @@ export const calculateDiscountedTotal = (price,productDis,categoryDis) =>{
     return temp
 }
 }
+export function getDateddmmyyy(inputDate) {
+    if (inputDate == "" || inputDate == null || inputDate == undefined)
+      return inputDate;
+    let convertToString = inputDate.toString();
+    let customInput = convertToString?.includes("-")
+      ? convertToString?.split("-")?.join("")
+      : convertToString;
+    const year = customInput.substring(0, 4);
+    const month = customInput.substring(4, 6);
+    const day = customInput.substring(6, 8);
+    const outputDate = `${day}-${month}-${year}`;
+    return outputDate;
+  }

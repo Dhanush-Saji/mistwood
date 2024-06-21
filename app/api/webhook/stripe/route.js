@@ -4,6 +4,7 @@ import { NextResponse } from "next/server";
 import { DiscountModel } from "@/models/Discount.model";
 import Stripe from "stripe";
 import { OrderModel } from "@/models/Order.model";
+import nodemailer from 'nodemailer'
 
 connectDb();
 export async function POST(req) {
@@ -35,7 +36,22 @@ export async function POST(req) {
       const newOrder = new OrderModel(order);
       const newData = await newOrder.save();
       if(newData){
-        const updatedUser = await UserModel.findByIdAndUpdate({ _id: metadata?.userId },{cart:[]});
+        await UserModel.findByIdAndUpdate({ _id: metadata?.userId },{cart:[]},{ new: true });
+        const orderData = await OrderModel.findById(newData._id).populate('products._id').exec();
+        const transport = nodemailer.createTransport({
+          service:'gmail',
+          auth:{
+              user:process.env.SMTP_EMAIL,
+              pass:process.env.SMTP_PASSWORD
+          }
+      })
+      const testResult = await transport.verify()
+      const sendResult = await transport.sendMail({
+          from:process.env.SMTP_EMAIL,
+          to:email,
+          subject:'Reset Passwords',
+          html:ResetPassword({username:user?.username,link:resetUrl})
+      })
       }
       return NextResponse.json({status:true,message:`Order added`},{status:200})
     } catch (error) {

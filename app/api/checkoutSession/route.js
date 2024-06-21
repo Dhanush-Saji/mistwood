@@ -53,7 +53,6 @@ export async function POST(req) {
       success_url: `${process.env.BACKEND_URL}/success?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${process.env.BACKEND_URL}/canceled`,
     })
-    console.log(session)
     return NextResponse.redirect(session.url, { status: 302 })
     return NextResponse.json({url:'success_url'}, { status: 200 });
   } catch (error) {

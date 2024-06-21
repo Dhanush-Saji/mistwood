@@ -31,7 +31,7 @@ export async function POST(req){
             const sendResult = await transport.sendMail({
                 from:process.env.SMTP_EMAIL,
                 to:email,
-                subject:'Testing',
+                subject:'Reset Passwords',
                 html:ResetPassword({username,link:resetUrl})
             })
              await isUserExist.save()
