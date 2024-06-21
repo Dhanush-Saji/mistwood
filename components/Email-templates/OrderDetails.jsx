@@ -3,18 +3,7 @@ import React from 'react'
 
 const OrderDetails = ({username,orderid,orderdate,products,totalAmount}) => {
   const customOrderdate =orderdate?getDateddmmyyy(orderdate?.split('T')[0]):''
-  const productList = products.map(product => `
-    <div class="product-div">
-            <img height="150px" style="mix-blend-mode: multiply;" src=${product?._id?.product_image?.img1?.url} alt="image">
-            <div style="display: flex;gap: 0.5rem;align-items: center;width: 100%;justify-content: space-between;">
-                <div style="display: flex; flex-direction: column; gap: 0.5rem;">
-                    <h3 style="margin: 0;">${product?._id?.product_name}</h3>
-                    <p style="margin: 0;">Quantity: ${product?.quantity}</p>
-                </div>
-                <h3 style="margin: 0;">₹${product?.checkoutPrice}</h3>
-            </div>
-        </div>
-  `).join('');
+
 
   return (
     `<html lang="en">
@@ -60,7 +49,7 @@ const OrderDetails = ({username,orderid,orderdate,products,totalAmount}) => {
         <p>${customOrderdate}</p>
     </div>
     <div style="display: flex;flex-direction: column; gap: 0.5rem;background-color: #c6f5ff;border-radius: 10px;">
-        ${productList}
+
     </div>
     <p style="text-align: right;">Shipping charge: ₹0</p>
     <div style="width: 100%;background-color: black;height: 1px;opacity: 0.2;"></div>
