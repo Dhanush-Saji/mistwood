@@ -445,7 +445,7 @@ const OrderDetails = ({username,orderid,orderdate,products,totalAmount}) => {
 														<tr>
 															<td class="pad" style="padding-bottom:25px;">
 																<div
-																	style="color:#555555;font-family:Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif;font-size:20px;line-height:150%;text-align:left;mso-line-height-alt:30px;">
+																	style="color:#555555;font-family:Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif;font-size:18px;line-height:150%;text-align:left;mso-line-height-alt:30px;">
 																	<p style="margin: 0; word-break: break-word;"><span
 																			style="color: #2b303a;"><strong>#${orderid}</strong></span>
 																	</p>
@@ -810,7 +810,7 @@ const OrderDetails = ({username,orderid,orderdate,products,totalAmount}) => {
 																	<p style="margin: 0; word-break: break-word;"><span
 																			style="color: #2b303a;">Visa</span></p>
 																	<p style="margin: 0; word-break: break-word;"><span
-																			style="color: #2b303a;">₹0.00</span></p>
+																			style="color: #2b303a;">₹${Number(totalAmount).toFixed(2)}</span></p>
 																	<p style="margin: 0; word-break: break-word;"><span
 																			style="color: #2b303a;">₹0.00</span></p>
 																</div>
@@ -827,7 +827,7 @@ const OrderDetails = ({username,orderid,orderdate,products,totalAmount}) => {
 																	style="color:#555555;font-family:Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif;font-size:20px;line-height:180%;text-align:right;mso-line-height-alt:36px;">
 																	<p style="margin: 0; word-break: break-word;">
 																		<span><strong><span
-																					style="color: #2b303a;">₹50.00</span></strong></span>
+																					style="color: #2b303a;">₹${Number(totalAmount).toFixed(2)}</span></strong></span>
 																	</p>
 																</div>
 															</td>
