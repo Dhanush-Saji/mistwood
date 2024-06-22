@@ -671,7 +671,7 @@ const OrderDetails = ({username,orderid,orderdate,products,totalAmount}) => {
 																	style="color:#555555;font-family:Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif;font-size:12px;line-height:150%;text-align:left;mso-line-height-alt:18px;">
 																	<p style="margin: 0; word-break: break-word;"><span
 																			style="color: #aaacb0;"><strong><span>PRODUCTS
-																					ORDERED (2)</span></strong></span>
+																					ORDERED (${products?.length})</span></strong></span>
 																	</p>
 																</div>
 															</td>
@@ -914,6 +914,7 @@ const OrderDetails = ({username,orderid,orderdate,products,totalAmount}) => {
 <v:textbox inset="0px,0px,0px,0px">
 <center dir="false" style="color:#ffffff;font-family:Tahoma, sans-serif;font-size:13px">
 <![endif]-->
+<a href='https://mistwood.vercel.app/orders' target='_blank'>
 																	<div
 																		style="background-color:#1aa19c;border-bottom:0px solid transparent;border-left:0px solid transparent;border-radius:60px;border-right:0px solid transparent;border-top:0px solid transparent;color:#ffffff;display:inline-block;font-family:Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif;font-size:13px;font-weight:undefined;mso-border-alt:none;padding-bottom:10px;padding-top:10px;text-align:center;text-decoration:none;width:auto;word-break:keep-all;">
 																		<span
@@ -921,6 +922,7 @@ const OrderDetails = ({username,orderid,orderdate,products,totalAmount}) => {
 																				style="margin: 0; word-break: break-word; line-height: 26px;"><strong>View
 																					Order</strong></span></span>
 																	</div>
+                                                                    </a>
 																	<!--[if mso]></center></v:textbox></v:roundrect><![endif]-->
 																</div>
 															</td>
