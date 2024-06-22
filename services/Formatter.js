@@ -45,4 +45,14 @@ export function getDateddmmyyy(inputDate) {
     const day = customInput.substring(6, 8);
     const outputDate = `${day}-${month}-${year}`;
     return outputDate;
+}
+export const dateToTextMonth = (dateString) => {
+  if(!dateString){
+    return dateString;
   }
+  const dateObject = new Date(dateString);
+  
+  const options = { day: 'numeric', month: 'short', year: 'numeric' };
+  const formattedDate = dateObject.toLocaleDateString('en-GB', options).replace(/ /g, ' ');
+  return formattedDate
+};
