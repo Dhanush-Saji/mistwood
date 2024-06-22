@@ -48,7 +48,7 @@ export async function POST(req) {
           }
       })
       const testResult = await transport.verify()
-      const customOrderdate = orderData?.createdAt?getDateddmmyyy(orderData?.createdAt?.split('T')[0]):''
+      const customOrderdate = orderData?.createdAt || ''
       let emailTemplate = await OrderDetails({username:userData?.username,orderid:orderData?._id,orderdate:customOrderdate,products:orderData?.products,totalAmount:orderData?.totalAmount})
       const sendResult = await transport.sendMail({
           from:process.env.SMTP_EMAIL,
