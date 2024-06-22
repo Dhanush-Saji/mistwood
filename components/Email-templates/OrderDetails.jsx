@@ -447,7 +447,7 @@ const OrderDetails = ({username,orderid,orderdate,products,totalAmount}) => {
 																<div
 																	style="color:#555555;font-family:Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif;font-size:20px;line-height:150%;text-align:left;mso-line-height-alt:30px;">
 																	<p style="margin: 0; word-break: break-word;"><span
-																			style="color: #2b303a;"><strong>#1234567890</strong></span>
+																			style="color: #2b303a;"><strong>#${orderid}</strong></span>
 																	</p>
 																</div>
 															</td>
