@@ -6,6 +6,7 @@ import Stripe from "stripe";
 import { OrderModel } from "@/models/Order.model";
 import nodemailer from 'nodemailer'
 import OrderDetails from "@/components/Email-templates/OrderDetails";
+import { getDateddmmyyy } from "@/services/Formatter";
 
 connectDb();
 export async function POST(req) {
@@ -47,7 +48,8 @@ export async function POST(req) {
           }
       })
       const testResult = await transport.verify()
-      let emailTemplate = await OrderDetails({username:userData?.username,orderid:orderData?._id,orderdate:orderData?.createdAt,products:orderData?.products,totalAmount:orderData?.totalAmount})
+      const customOrderdate = orderData?.createdAt?getDateddmmyyy(orderData?.createdAt?.split('T')[0]):''
+      let emailTemplate = await OrderDetails({username:userData?.username,orderid:orderData?._id,orderdate:customOrderdate,products:orderData?.products,totalAmount:orderData?.totalAmount})
       const sendResult = await transport.sendMail({
           from:process.env.SMTP_EMAIL,
           to:userData?.email,

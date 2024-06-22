@@ -2,7 +2,6 @@ import { getDateddmmyyy } from '@/services/Formatter'
 import React from 'react'
 
 const OrderDetails = ({username,orderid,orderdate,products,totalAmount}) => {
-    const customOrderdate = orderdate?getDateddmmyyy(orderdate?.split('T')[0]):''
   return (
     `<!DOCTYPE html>
 
@@ -482,7 +481,7 @@ const OrderDetails = ({username,orderid,orderdate,products,totalAmount}) => {
 																<div
 																	style="color:#555555;font-family:Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif;font-size:14px;line-height:150%;text-align:right;mso-line-height-alt:21px;">
 																	<p style="margin: 0; word-break: break-word;"><span
-																			style="color: #2b303a;"><strong>${customOrderdate}</strong></span>
+																			style="color: #2b303a;"><strong>${orderdate}</strong></span>
 																	</p>
 																</div>
 															</td>
