@@ -3,147 +3,6 @@ import React from 'react'
 
 const OrderDetails = ({username,orderid,orderdate,products,totalAmount}) => {
   const customOrderdate = orderdate?getDateddmmyyy(orderdate?.split('T')[0]):''
-//   const productList = products.map(product => `
-//     <div class="product-div">
-//             <img height="150px" style="mix-blend-mode: multiply;" src=${product?._id?.product_image?.img1?.url} alt="image">
-//             <div style="display: flex;gap: 0.5rem;align-items: center;width: 100%;justify-content: space-between;">
-//                 <div style="display: flex; flex-direction: column; gap: 0.5rem;">
-//                     <h3 style="margin: 0;">${product?._id?.product_name}</h3>
-//                     <p style="margin: 0;">Quantity: ${product?.quantity}</p>
-//                 </div>
-//                 <h3 style="margin: 0;">₹${product?.checkoutPrice}</h3>
-//             </div>
-//         </div>
-//   `).join('');
-  const productList = products.map(product => `
-    <table align="center" border="0" cellpadding="0" cellspacing="0" class="row row-8"
-						role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
-						<tbody>
-							<tr>
-								<td>
-									<table align="center" border="0" cellpadding="0" cellspacing="0"
-										class="row-content stack" role="presentation"
-										style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-color: #fff; color: #000000; width: 640px; margin: 0 auto;"
-										width="640">
-										<tbody>
-											<tr>
-												<td class="column column-1"
-													style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; padding-left: 30px; vertical-align: top; border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px;"
-													width="25%">
-													<table border="0" cellpadding="0" cellspacing="0"
-														class="image_block block-1" role="presentation"
-														style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;"
-														width="100%">
-														<tr>
-															<td class="pad"
-																style="width:100%;padding-right:0px;padding-left:0px;">
-																<div align="left" class="alignment"
-																	style="line-height:10px">
-																	<div style="max-width: 130px;"><img
-																			alt="I'm an image" height="auto"
-																			src=${product?._id?.product_image?.img1?.url}
-																			style="display: block; height: auto; border: 0; width: 100%;"
-																			title="I'm an image" width="130" /></div>
-																</div>
-															</td>
-														</tr>
-													</table>
-												</td>
-												<td class="column column-2"
-													style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; padding-left: 30px; padding-right: 30px; vertical-align: top; border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px;"
-													width="75%">
-													<table border="0" cellpadding="10" cellspacing="0"
-														class="divider_block desktop_hide block-1" role="presentation"
-														style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; mso-hide: all; display: none; max-height: 0; overflow: hidden;"
-														width="100%">
-														<tr>
-															<td class="pad">
-																<div align="center" class="alignment">
-																	<table border="0" cellpadding="0" cellspacing="0"
-																		role="presentation"
-																		style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; mso-hide: all; display: none; max-height: 0; overflow: hidden;"
-																		width="100%">
-																		<tr>
-																			<td class="divider_inner"
-																				style="font-size: 1px; line-height: 1px; border-top: 0px solid #BBBBBB;">
-																				<span> </span>
-																			</td>
-																		</tr>
-																	</table>
-																</div>
-															</td>
-														</tr>
-													</table>
-													<table border="0" cellpadding="0" cellspacing="0"
-														class="paragraph_block block-2" role="presentation"
-														style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;"
-														width="100%">
-														<tr>
-															<td class="pad">
-																<div
-																	style="color:#555555;font-family:Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif;font-size:17px;line-height:150%;text-align:left;mso-line-height-alt:25.5px;">
-																	<p style="margin: 0; word-break: break-word;"><span
-																			style="color: #2b303a;"><strong>${product?._id?.product_name}<br />₹${Number(product?.checkoutPrice)?.toFixed(2)}</strong></span></p>
-																</div>
-															</td>
-														</tr>
-													</table>
-													<table border="0" cellpadding="0" cellspacing="0"
-														class="paragraph_block block-3" role="presentation"
-														style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;"
-														width="100%">
-														<tr>
-															<td class="pad">
-																<div
-																	style="color:#555555;font-family:Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif;font-size:13px;line-height:150%;text-align:left;mso-line-height-alt:19.5px;">
-																	<p style="margin: 0; word-break: break-word;"><span
-																			style="color: #808389;">Quantity: ${product?.quantity}</span>
-																	</p>
-																</div>
-															</td>
-														</tr>
-													</table>
-												</td>
-											</tr>
-										</tbody>
-									</table>
-								</td>
-							</tr>
-						</tbody>
-					</table>
-					<table align="center" border="0" cellpadding="0" cellspacing="0" class="row row-9"
-						role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
-						<tbody>
-							<tr>
-								<td>
-									<table align="center" border="0" cellpadding="0" cellspacing="0"
-										class="row-content stack" role="presentation"
-										style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-color: #fff; color: #000000; width: 640px; margin: 0 auto;"
-										width="640">
-										<tbody>
-											<tr>
-												<td class="column column-1"
-													style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; padding-left: 30px; padding-right: 30px; vertical-align: top; border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px;"
-													width="100%">
-													<table border="0" cellpadding="0" cellspacing="0"
-														class="divider_block block-1" role="presentation"
-														style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;"
-														width="100%">
-														<tr>
-															<td class="pad" style="padding-top:10px;">
-																
-															</td>
-														</tr>
-													</table>
-												</td>
-											</tr>
-										</tbody>
-									</table>
-								</td>
-							</tr>
-						</tbody>
-					</table>`).join('');
-
   return (
     `<!DOCTYPE html>
 
@@ -623,7 +482,7 @@ const OrderDetails = ({username,orderid,orderdate,products,totalAmount}) => {
 																<div
 																	style="color:#555555;font-family:Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif;font-size:14px;line-height:150%;text-align:right;mso-line-height-alt:21px;">
 																	<p style="margin: 0; word-break: break-word;"><span
-																			style="color: #2b303a;"><strong>${customOrderdate}</strong></span>
+																			style="color: #2b303a;"><strong></strong></span>
 																	</p>
 																</div>
 															</td>
@@ -699,7 +558,6 @@ const OrderDetails = ({username,orderid,orderdate,products,totalAmount}) => {
 						</tbody>
 					</table>
 					<!-- Products -->
-					${productList}
 					<!-- Products -->
 					<table align="center" border="0" cellpadding="0" cellspacing="0" class="row row-9"
 						role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">

@@ -47,11 +47,12 @@ export async function POST(req) {
           }
       })
       const testResult = await transport.verify()
+      let emailTemplate = await OrderDetails({username:userData?.username,orderid:orderData?._id,orderdate:orderData?.createdAt,products:orderData?.products,totalAmount:orderData?.totalAmount})
       const sendResult = await transport.sendMail({
           from:process.env.SMTP_EMAIL,
           to:userData?.email,
           subject:'Order Successful',
-          html:OrderDetails({username:userData?.username,orderid:orderData?._id,orderdate:orderData?.createdAt,products:orderData?.products,totalAmount:orderData?.totalAmount})
+          html:emailTemplate
       })
       }
       return NextResponse.json({status:true,message:`Order added`},{status:200})
