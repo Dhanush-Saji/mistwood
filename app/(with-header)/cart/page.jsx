@@ -14,6 +14,7 @@ import { Input } from '@/components/ui/input'
 import CheckoutBtn from '@/components/Button/CheckoutBtn'
 import { IoMdCloseCircle } from "react-icons/io";
 import NoData from '@/components/Loaders/NoData'
+import CheckoutVerification from '@/components/Modal/CheckoutVerification'
 
 const Page = () => {
   const [cartVal, setcartVal] = useState({subTotal:0,shipping:0,discounts:0,cartTotal:0})
@@ -48,7 +49,6 @@ const Page = () => {
       }
       const res = await getCart(payload)
       if (res?.status) {
-        toast.success('Cart updated')
         addToCart(res?.data?.cart || [])
       }
     } catch (error) {
@@ -213,7 +213,7 @@ const Page = () => {
                   <span className='text-[1.2rem]'>₹{changeNumberFormat(cartVal?.cartTotal)}</span>
                 </div>
               </div>
-              <CheckoutBtn productList={cartArray?.map(item => ({id:item?.productId?._id,quantity:item?.quantity})).filter(id => id)} />
+              <CheckoutVerification productList={cartArray?.map(item => ({id:item?.productId?._id,quantity:item?.quantity})).filter(id => id)} />
             </div>
           </div>
         </div>}
