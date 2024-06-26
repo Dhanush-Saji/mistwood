@@ -52,7 +52,7 @@ const CheckoutVerification = ({ productList }) => {
                             Close
                         </Button>
                     </DialogClose>
-                    <CheckoutBtn />
+                    <CheckoutBtn productList={productList} />
                 </DialogFooter>
             </DialogContent>
         </Dialog>
