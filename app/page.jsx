@@ -22,7 +22,7 @@ export default async function Home() {
       <Section4 />
       <DisableMobileWrapper><Section5 /></DisableMobileWrapper>
       <ScrollAnimations />
-      {/* <Chair3d /> */}
+      <Chair3d />
       <Section6 />
     </>
   );
