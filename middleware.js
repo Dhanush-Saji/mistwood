@@ -9,9 +9,9 @@ export default async function middleware(req) {
     return NextResponse.next();
   }
   const isProtectedRoute = pathname.startsWith("/cart") || pathname.startsWith("/shop/");
-  if (!session && isProtectedRoute) {
-    return NextResponse.redirect(new URL("/login", req.url));
-  }
+  // if (!session && isProtectedRoute) {
+  //   return NextResponse.redirect(new URL("/login", req.url));
+  // }
 
   return NextResponse.next();
 }
