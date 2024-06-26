@@ -4,7 +4,7 @@ import SuccessLottie from '@/components/Loaders/SuccessLottie'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useUserStore } from '@/lib/zustandStore'
 
 const Page = () => {
