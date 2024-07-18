@@ -58,6 +58,11 @@ const Header = () => {
             <DropdownMenuLabel>Welcome {user?.name || userData?.username}!</DropdownMenuLabel>
             <DropdownMenuGroup>
               <DropdownMenuItem>
+                <Link href={'/address'} prefetch={false}>
+                  My Address
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem>
                 <Link href={'/orders'} prefetch={false}>
                   My Orders
                 </Link>
