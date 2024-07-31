@@ -10,8 +10,10 @@ import GoogleButton from "react-google-button";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { useUserStore } from "@/lib/zustandStore";
+import { LuEye, LuEyeOff } from "react-icons/lu";
 
 export default function Login() {
+  const [passType, setpassType] = useState('password')
   const addToCart = useUserStore(state => state.addToCart)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const router = useRouter();
@@ -107,15 +109,19 @@ export default function Login() {
                 </label>
               </div>
               <div className="mt-1">
+              <div className="relative">
                 <input value={formData?.password} onChange={(e) => setformData({ ...formData, password: e.target.value })}
                   id="password"
                   name="password"
-                  type="password"
+                  type={passType}
                   autoComplete="current-password"
                   required
                   placeholder="Enter password"
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
+                {passType == 'password' && <LuEye onClick={()=>setpassType('text')} className="text-black text-md scale-125 absolute top-[50%] right-[3%] translate-y-[-50%] cursor-pointer" />}
+                {passType == 'text' && <LuEyeOff onClick={()=>setpassType('password')} className="text-black text-md scale-125 absolute top-[50%] right-[3%] translate-y-[-50%] cursor-pointer" />}
+              </div>
                 <div className="text-sm w-full flex">
                   <Link href="/forgot-password" className="font-semibold text-indigo-600 hover:text-indigo-500  ml-auto">
                     Forgot password?

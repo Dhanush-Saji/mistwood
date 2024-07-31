@@ -27,6 +27,7 @@ import CartShowBtn from './Button/CartShowBtn'
 const Header = () => {
   const { data: session, status } = useSession()
   const userData = session?.userData
+  console.log(!userData);
   const user = session?.user
   return (
     <div className='justify-between flex px-6 sm:px-4 py-3items-center fixed w-full z-[10] bg-white dark:bg-[rgba(69,69,69,0.8)] h-[4rem] items-center shadow-md'>
@@ -77,8 +78,11 @@ const Header = () => {
 
       </div>
       <div className='flex sm:hidden gap-2'>
-        <CartShowBtn />
-        <MobileNavbar />
+      {userData && <CartShowBtn />}
+      {!userData && <Link href={'/login'} prefetch={false}>
+          <Button>Login</Button>
+        </Link>}
+        {userData && <MobileNavbar />}
       </div>
 
     </div>

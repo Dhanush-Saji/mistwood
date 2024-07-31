@@ -6,11 +6,15 @@ import Image from 'next/image'
 import { Button } from './ui/button'
 import { DarkModeToggle } from './DarkModeToggle'
 import { Separator } from './ui/separator'
+import SignoutBtn from './Button/SignoutBtn'
+import SignoutBtn1 from './Button/SignoutBtn1'
 
 const MobileNavbar = () => {
   return (
     <Sheet>
-  <SheetTrigger><AlignLeft className='text-[#27282a]' /></SheetTrigger>
+  <SheetTrigger>
+    <AlignLeft className='text-[#27282a] dark:text-white' />
+    </SheetTrigger>
   <SheetContent className='bg-white dark:bg-[#313131]'>
     <SheetHeader>
       <SheetDescription>
@@ -35,7 +39,7 @@ const MobileNavbar = () => {
         </Link>
         <Separator className='dark:bg-[#919191]' />
           <SheetClose asChild className='mt-auto'>
-            <Button className='w-full'>Log Out</Button>
+            <SignoutBtn1 />
           </SheetClose>
     </div>
   </SheetContent>

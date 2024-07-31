@@ -9,8 +9,10 @@ import { toast } from "react-toastify";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { LuEye, LuEyeOff } from "react-icons/lu";
 
 export default function Register() {
+  const [passType, setpassType] = useState('password')
   const router = useRouter()
   const session = useSession()
   const [isLoading, setisLoading] = useState(false)
@@ -114,16 +116,18 @@ export default function Register() {
                   Password
                 </label>
               </div>
-              <div className="mt-1">
+              <div className="mt-1 relative">
                 <input value={formData?.password} onChange={(e) => setformData({ ...formData, password: e.target.value })}
                   id="password"
                   name="password"
-                  type="password"
+                  type={passType}
                   autoComplete="current-password"
                   required
                   placeholder="Enter password"
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
+                {passType == 'password' && <LuEye onClick={()=>setpassType('text')} className="text-black text-md scale-125 absolute top-[50%] right-[3%] translate-y-[-50%] cursor-pointer" />}
+                {passType == 'text' && <LuEyeOff onClick={()=>setpassType('password')} className="text-black text-md scale-125 absolute top-[50%] right-[3%] translate-y-[-50%] cursor-pointer" />}
               </div>
             </div>
             <div>
