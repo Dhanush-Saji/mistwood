@@ -1,4 +1,5 @@
 import { Button } from '@/components/ui/button'
+import Link from 'next/link'
 import React from 'react'
 
 const Section1 = () => {
@@ -14,7 +15,9 @@ const Section1 = () => {
       </div>
       </div>
       <p data-scroll data-scroll-speed='0.3' className='w-full sm:w-[60vw] font-medium'>Indulge in sensory bliss with furniture crafted with passion, where premium materials and meticulous detail whisper "forever love."</p>
+      <Link href={'/shop'}>
       <Button data-scroll data-scroll-speed='0.3' className='w-fit rounded-full px-5 mt-5 font-semibold text-md bg-[#ffde3c] hover:bg-[#ffe45b] text-[#27282a]'>Explore</Button>
+      </Link>
       </div>
     </div>
   )

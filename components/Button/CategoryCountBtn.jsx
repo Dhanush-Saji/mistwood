@@ -15,13 +15,13 @@ const CategoryCountBtn = ({ category, index }) => {
     const ImageArray = [AllImage,ChairImage,BedImage,TableImage,SofaImage]
     return (
         <>
-            <Link scroll={false} href={`/shop?category=${category.name}`} className={`${((search == category.name) || (category.name == 'All' && search == null)) ? 'bg-[#ffde3c] border-[#e6ca43]' : 'border-[rgba(0,0,0,0.2)] hover:border-slate-400'} border  flex rounded-[8px] p-2 gap-3 ease-in transition-all duration-200 hover:scale-105  hover:shadow-md`} key={index}>
-                <div className={`${((search == category.name) || (category.name == 'All' && search == null)) ? 'bg-[#cfc532]' : 'bg-[#ECECED]'} border border-[rgba(0,0,0,0.2)] rounded-[4px] flex items-center justify-center p-2 `}>
+            <Link scroll={false} href={`/shop?category=${category.name}`} className={`${((search == category.name) || (category.name == 'All' && search == null)) ? 'bg-[#ffde3c] border-[#e6ca43] dark:text-neutral-600' : 'border-[rgba(0,0,0,0.2)] dark:bg-neutral-700 hover:border-slate-400'} border  flex rounded-[8px] p-2 gap-3 ease-in transition-all duration-200 hover:scale-105  hover:shadow-md`} key={index}>
+                <div className={`${((search == category.name) || (category.name == 'All' && search == null)) ? 'bg-[#cfc532]' : 'bg-[#ECECED]'} border border-[rgba(0,0,0,0.2)] rounded-[4px] hidden md:flex items-center justify-center p-2 `}>
                     <Image width='50' height='50' className=" object-contain aspect-square w-[2rem]" src={ImageArray[index]} alt="chair-image" />
                 </div>
-                <div className="flex flex-col">
-                    <p className="font-medium">{category?.name}</p>
-                    <p className="opacity-50">({category?.count})</p>
+                <div className="flex flex-col items-center md:items-start w-full">
+                    <p className="text-sm md:text-md font-medium text-center md:text-left">{category?.name}</p>
+                    <p className="text-sm md:text-md opacity-50 text-center md:text-left">({category?.count})</p>
                 </div>
             </Link>
         </>

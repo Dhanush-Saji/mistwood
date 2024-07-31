@@ -18,7 +18,7 @@ const Section2Wrapper = ({children}) => {
         }
         },[])
   return (
-    <div className=' second-section relative flex w-screen h-screen px-7 sm:px-10 flex-col pt-[10vh] justify-center items-end text-[#252525] bg-white dark:bg-[#313131]'>
+    <div className=' second-section relative flex w-screen h-screen px-7 sm:px-10 flex-col pt-[10vh] justify-center items-end text-[#252525] bg-white dark:bg-neutral-700'>
 {children}
   </div>
   )

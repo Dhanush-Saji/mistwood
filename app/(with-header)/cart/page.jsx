@@ -48,7 +48,6 @@ const Page = () => {
       }
       const res = await getCart(payload)
       if (res?.status) {
-        toast.success('Cart updated')
         addToCart(res?.data?.cart || [])
       }
     } catch (error) {
@@ -91,14 +90,14 @@ const Page = () => {
     }
   },[cartArray])
   return (
-    <div className="bg-[rgba(245,247,248,1)] min-w-[100vw] min-h-[100vh] flex flex-col p-5 pb-16 sm:p-3 sm:px-[2rem] pt-[5rem] sm:pt-[6rem]">
+    <div className="bg-[rgba(245,247,248,1)] dark:bg-neutral-800 min-w-[100vw] min-h-[100vh] flex flex-col p-5 pb-16 sm:p-3 sm:px-[2rem] pt-[5rem] sm:pt-[6rem]">
       <div className='grid grid-cols-custom gap-2'>
         <div className='flex flex-col'>
           <h1 className='text-left text-[22px] font-extrabold'>Shopping Bag</h1>
           <h1 className='text-left text-[13px] font-normal'>
             <span className='font-bold mr-2'>{cartArray?.length} items</span>in your bag
           </h1>
-          {cartArray?.length > 0 ? <div className='flex flex-col gap-2 bg-white rounded-lg mt-4'>
+          {cartArray?.length > 0 ? <div className='flex flex-col gap-2 bg-white rounded-lg mt-4 dark:bg-zinc-700'>
             <Table>
               <TableHeader>
                 <TableRow>
@@ -182,18 +181,17 @@ const Page = () => {
               </TableBody>
             </Table>
 
-
           </div> : <NoData />}
         </div>
         {cartArray?.length > 0 && <div>
-          <div className='flex flex-col rounded-lg bg-white px-4 py-2 gap-4'>
+          <div className='flex flex-col rounded-lg bg-white px-4 py-2 gap-4 dark:bg-zinc-700'>
             <div className='flex flex-col'>
               <h1 className='text-left text-lg font-extrabold'>Coupon Code</h1>
               <p className='text-left text-sm opacity-50'>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
               <Input type="text" placeholder="coupon code" className='mt-2 rounded-full' />
               <Button className='w-full mt-2 rounded-full py-0'>Apply</Button>
             </div>
-            <div className='flex flex-col bg-[#FED28C] py-3 px-4 rounded-lg mb-2'>
+            <div className='flex flex-col bg-[#FED28C] py-3 px-4 rounded-lg mb-2 dark:text-zinc-700'>
               <h1 className='text-left text-[1.1rem] font-extrabold'>Cart Total</h1>
               <div className='flex flex-col my-3'>
                 <div className='flex justify-between'>

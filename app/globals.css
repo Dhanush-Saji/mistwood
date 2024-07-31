@@ -164,7 +164,7 @@ body {
 }
 @media only screen and (min-width: 768px){
   .product-grid-list {
-    grid-template-columns: repeat(auto-fill,minmax(200px,1fr));
+    grid-template-columns: repeat(auto-fill,minmax(250px,1fr));
 }
 }
 
@@ -182,7 +182,6 @@ body {
   font-size: 13px;
   font-weight: 600;
   line-height: 1;
-  margin: auto auto 10px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;

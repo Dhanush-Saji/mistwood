@@ -10,13 +10,13 @@ import { getCategories } from '@/actions/server-action'
 const Section4 = async() => {
   const category = await getCategories() || []
   return (
-    <div className='fourth-section flex-col justify-center bg-white dark:bg-[#313131] w-screen min-h-screen py-10 px-5 md:px-32 relative'>
- <div className='relative bg-white'>
+    <div className='fourth-section flex-col justify-center bg-white dark:bg-neutral-700 w-screen min-h-screen py-10 px-5 md:px-32 relative'>
+ <div className='relative'>
         <h1 className='text-6xl md:text-7xl font-bold text-center text-[#ecedef] m-0'>Category</h1>
-        <p className='text-[#27282a] text-sm md:text-lg font-bold absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 m-0'>MistWood Furniture</p>
+        <p className='text-[#27282a] flex dark:hidden text-sm md:text-lg font-bold absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 m-0'>MistWood Furniture</p>
         </div>
 
-        <div className='categories relative grid grid-cols-1 md:grid-cols-3 gap-3 mt-10 md:mt-16 bg-white'>
+        <div className='categories relative grid grid-cols-1 md:grid-cols-3 gap-3 mt-10 md:mt-16 bg-white dark:bg-transparent'>
           {/* {
             category?.map((cate,index)=>(
               <Link key={index} className='category1 overflow-hidden rounded-lg md:rounded-none md:rounded-tl-[4rem] max-h-[50vh] cursor-pointer relative' href={'/product-page?category=Chair'} prefetch={false}>

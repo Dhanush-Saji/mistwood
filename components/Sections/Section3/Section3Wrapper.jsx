@@ -19,7 +19,7 @@ const Section3Wrapper = ({children}) => {
       }
       },[])
   return (
-    <div className=' third-section flex flex-col md:flex-row w-screen h-screen px-7 items-center sm:px-10 text-[#27282a overflow-hidden relative bg-[#FFFBEA]'>
+    <div className=' third-section flex flex-col md:flex-row w-screen h-screen px-7 items-center sm:px-10 text-[#27282a overflow-hidden relative bg-[#FFFBEA] dark:bg-zinc-800'>
  {children}
     </div>
   )

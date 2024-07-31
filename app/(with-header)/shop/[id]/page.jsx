@@ -79,14 +79,14 @@ const Page = ({ params }) => {
   useEffect(() => {
     useUserStore.persist.rehydrate()
   }, [])
-  return isLoading ? <div className="w-[100vw] h-[100vh] flex items-center justify-center"><LoadingCircle /></div> :
+  return isLoading ? <div className="w-[100vw] h-[100vh] flex items-center justify-center bg-[rgba(245,247,248,1)] dark:bg-neutral-800"><LoadingCircle /></div> :
     (
-      <div className="bg-[rgba(245,247,248,1)] w-full flex flex-col p-5 pb-16 sm:p-3 sm:px-[2rem] pt-[5rem] sm:pt-[6rem]">
-        <div className="bg-white rounded-lg p-6 py-4 w-full grid grid-cols-1 md:grid-cols-2 gap-x-0 md:gap-x-4 gap-y-4 md:gap-y-0">
+      <div className="bg-[rgba(245,247,248,1)] dark:bg-neutral-800 w-full flex flex-col p-5 pb-16 sm:p-3 sm:px-[2rem] pt-[5rem] sm:pt-[6rem]">
+        <div className="bg-white dark:bg-white/20 rounded-lg p-6 py-4 w-full grid grid-cols-1 md:grid-cols-2 gap-x-0 md:gap-x-4 gap-y-4 md:gap-y-0">
           {imageArray?.length > 0 &&
             <SliderComponent imageArray={imageArray} />}
           <div className="hidden sm:flex flex-col justify-center gap-2">
-            <div className="bg-[rgba(0,0,0,.05)] rounded-md" >
+            <div className="bg-[rgba(0,0,0,.15)] dark:bg-neutral-300 rounded-md" >
               {imageArray?.length > 0 && <Image
                 priority={false}
                 placeholder='empty'
@@ -99,7 +99,7 @@ const Page = ({ params }) => {
             <div className="flex gap-2">
               {
                 imageArray?.length > 0 && imageArray?.map((imageUrl, index) => (
-                  <div key={index} onClick={() => setimageIndex(index)} className={`rounded-md w-[3rem] h-[3rem] cursor-pointer flex p-1 ${imageIndex == index ? 'border-2 border-[#27282a]' : 'border'}`}>
+                  <div key={index} onClick={() => setimageIndex(index)} className={`rounded-md w-[3rem] h-[3rem] cursor-pointer flex p-1 ${imageIndex == index ? 'border-2 border-[#27282a] dark:border-neutral-400' : 'border dark:border-transparent'}`}>
                     <Image
                       priority={true}
                       width={100}
@@ -157,7 +157,7 @@ const Page = ({ params }) => {
               <Button onClick={() => addProductToCart()} className="w-[100%] sm:w-auto ml-[1rem]" disabled={!product[0]?.isActive}>Add to Cart</Button>
             </div>
             <div className="mt-4">
-              <div className="flex gap-4 px-[0.8rem] py-[0.5rem] rounded-[8px] border-2 border-gray-300">
+              <div className="flex gap-4 px-[0.8rem] py-[0.5rem] rounded-[8px] bg-zinc-200 dark:bg-zinc-800">
                 <Truck />
                 <div>
                   <h2 className="font-[700]">Free Shipping</h2>
