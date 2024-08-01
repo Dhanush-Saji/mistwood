@@ -20,6 +20,7 @@ const Page = () => {
   const [isLoading, setisLoading] = useState(false)
   const { addToCart, removeFromCart } = useUserStore();
   const data = useSession()
+  console.log(data);
   const cartArray = useUserStore(state => state.cart) || []
   const cartUpdateFn = async (type, id) => {
     setisLoading(true)
@@ -91,7 +92,7 @@ const Page = () => {
   },[cartArray])
   return (
     <div className="bg-[rgba(245,247,248,1)] dark:bg-neutral-800 min-w-[100vw] min-h-[100vh] flex flex-col p-5 pb-16 sm:p-3 sm:px-[2rem] pt-[5rem] sm:pt-[6rem]">
-      <div className='grid grid-cols-custom gap-2'>
+      <div className={`grid grid-cols-1 md:grid-cols-[70%_30%] gap-2`}>
         <div className='flex flex-col'>
           <h1 className='text-left text-[22px] font-extrabold'>Shopping Bag</h1>
           <h1 className='text-left text-[13px] font-normal'>
@@ -101,11 +102,9 @@ const Page = () => {
             <Table>
               <TableHeader>
                 <TableRow>
-                  <TableHead className="w-[100px]">Product</TableHead>
-                  <TableHead className="text-center">Price</TableHead>
+                  <TableHead className="">Product</TableHead>
                   <TableHead className="text-center">Quantity</TableHead>
                   <TableHead className="text-right">Total</TableHead>
-                  <TableHead className="text-center"></TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
@@ -113,52 +112,46 @@ const Page = () => {
                   cartArray?.length > 0 && cartArray?.map((item, index) => (
                     <TableRow key={index}>
                       <TableCell>
-                        <div className='flex gap-4 w-max'>
+                        <div className='flex gap-4'>
                           <Image priority={true}
                             width={100}
-                            height={100} className="w-[50%] max-h-[15rem] object-cover"
+                            height={100} className="w-[10rem] max-h-[15rem] object-contain"
                             alt="image" src={item?.productId?.product_image?.img1?.url} />
                           <div className='flex flex-col'>
-                            {/* <div className="bg-[#06D79C] w-fit px-2 py-[1px] rounded-lg">
-                              <span className="text-md opacity-80">
-                                {product[0]?.category?.category_name}
-                              </span>
-                            </div> */}
-                            <h1 className="font-semibold overflow-hidden text-ellipsis max-w-[170px]">
+                            <p className="font-semibold">
                               {item?.productId?.product_name}
-                            </h1>
-                          </div>
-                        </div>
-                      </TableCell>
-                      <TableCell className="text-center">
-                        {
+                            </p>
+                            {
                           item?.productId?.discounts ?
-                            <div className="flex gap-2 items-center justify-center flex-col">
-                              <h1 className="m-0 font-semibold">
+                            <div className="flex gap-2 items-center">
+                              <h1 className="m-0 font-bold text-[1rem]">
                                 ₹{changeNumberFormat((item?.productId?.sellingprice * (100 - item?.productId?.discounts?.percentage)) / 100)}
                               </h1>
                               <h1 className="line-through opacity-60 m-0">
                                 ₹{changeNumberFormat(item?.productId?.sellingprice)}
                               </h1>
                             </div> :
-                            <div className="flex gap-2 items-center justify-center flex-col">
-                              <h1 className="m-0 font-semibold">
+                            <div className="flex gap-2 items-center">
+                              <h1 className="m-0 font-bold text-[1rem]">
                                 ₹{changeNumberFormat(item?.productId?.sellingprice)}
                               </h1>
                             </div>
                         }
+                          </div>
+                        </div>
                       </TableCell>
                       <TableCell className="text-center">
-                        <div className='flex gap-2 w-fit m-auto'>
-                          <Button onClick={() => cartUpdateFn(0, item?._id)} disabled={isLoading || item?.quantity == 1} variant="secondary" >
+                        <div className='flex items-center gap-2 justify-center'>
+                        <span className=" font-[700] text-lg">{item?.quantity}</span>
+                        <div className='flex flex-col gap-1 w-fit'>
+                          <Button className='rounded-full w-0 h-4' onClick={() => cartUpdateFn(0, item?._id)} disabled={isLoading || item?.quantity == 1}  >
                             -
                           </Button>
-                          <div className="min-w-[2rem] flex items-center justify-center">
-                            <span className=" font-[700]">{item?.quantity}</span>
-                          </div>
-                          <Button disabled={isLoading} onClick={() => cartUpdateFn(1, item?._id)} variant="secondary">
+                         
+                          <Button className='rounded-full w-0 h-4' disabled={isLoading} onClick={() => cartUpdateFn(1, item?._id)} >
                             +
                           </Button>
+                        </div>
                         </div>
                       </TableCell>
                       <TableCell className="text-right">
@@ -171,9 +164,6 @@ const Page = () => {
                               ₹{changeNumberFormat((item?.productId?.sellingprice) * item?.quantity)}
                             </h1>
                         }
-                      </TableCell>
-                      <TableCell className="text-center">
-                        <IoMdCloseCircle cursor={'pointer'} fontSize={'1.4rem'} onClick={() => deleteCartItem(item?._id)} />
                       </TableCell>
                     </TableRow>
                   ))

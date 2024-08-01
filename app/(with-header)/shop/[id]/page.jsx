@@ -24,6 +24,7 @@ const Page = ({ params }) => {
   const [imageArray, setimageArray] = useState([])
   const [relatedProduct, setrelatedProduct] = useState([])
   const [imageIndex, setimageIndex] = useState(0)
+  console.log(data?.data?.userData?._id);
   const getSinglepro = async () => {
     try {
       const res = await getSingleProduct(params.id) || [];

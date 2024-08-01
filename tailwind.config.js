@@ -72,6 +72,9 @@ module.exports = {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
       },
+      gridTemplateColumns: {
+        '70-30': '70% 30%',
+      },
     },
   },
   plugins: [require("tailwindcss-animate"),require('@tailwindcss/forms')],

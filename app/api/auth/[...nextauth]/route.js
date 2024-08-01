@@ -61,10 +61,11 @@ export const authOptions = {
             if (!isUserExist) {
               const newUser = new UserModel({username:name,email})
               const newData = await newUser.save();
-              return true
+              user._id = newUser._id;
             }else{
-              return true
+              user._id = isUserExist._id;
             }
+            return true;
           } catch (error) {
             console.error("Error saving user to MongoDB:", error);
           return null;
