@@ -1,5 +1,6 @@
 import ErrorLottie from '@/components/Loaders/ErrorLottie'
 import SuccessLottie from '@/components/Loaders/SuccessLottie'
+import Timer from '@/components/Timer'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 import React from 'react'
@@ -12,6 +13,9 @@ const Page = () => {
             <div className='flex flex-col gap-2 mt-[-2rem] items-center'>
             <h1 className='text-center font-[700] text-[1.5rem]'>Opps! Order failed! 🚫</h1>
             <p className='text-center  opacity-50'>We encountered an issue with your order. Please try again. Redirecting to the homepage shortly...</p>
+            <p className='text-center  opacity-50'>
+              <Timer link='/' />
+            </p>
             <Link href={'/'}>
             <Button>Home</Button>
             </Link>

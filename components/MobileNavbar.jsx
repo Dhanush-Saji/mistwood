@@ -22,21 +22,17 @@ const MobileNavbar = () => {
     </SheetHeader>
       <DarkModeToggle />
     <div className='flex flex-col items-center mt-5 gap-2'>
-    <SheetClose asChild>
-    <Link href={'/'}>
-        <h1 className='text-[#27282a] dark:text-[#919191] text-lg'>Profile</h1>
-        </Link>
-        </SheetClose>
         <Separator className='dark:bg-[#919191]' />
         <SheetClose asChild>
         <Link href={'/shop'}>
         <h1 className='text-[#27282a] dark:text-[#919191] text-lg'>Shop</h1>
         </Link>
         </SheetClose>
-        <Separator className='dark:bg-[#919191]' />
-        <Link href={'/'}>
-        <h1 className='text-[#27282a] dark:text-[#919191] text-lg'>Contact</h1>
+        <SheetClose asChild>
+        <Link href={'/orders'}>
+        <h1 className='text-[#27282a] dark:text-[#919191] text-lg'>Orders</h1>
         </Link>
+        </SheetClose>
         <Separator className='dark:bg-[#919191]' />
           <SheetClose asChild className='mt-auto'>
             <SignoutBtn1 />

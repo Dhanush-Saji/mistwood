@@ -45,7 +45,6 @@ const Header = () => {
         <Link href={'/shop'} prefetch={false}>
           <h1 className='text-[#464646] dark:text-white'>Shop</h1>
         </Link>
-        <h1 className='text-[#464646] dark:text-white'>Contact</h1>
         <DarkModeToggle />
         {userData && <CartShowBtn />}
         {!userData && <Link href={'/login'} prefetch={false}>
@@ -58,11 +57,6 @@ const Header = () => {
           <DropdownMenuContent className="w-56">
             <DropdownMenuLabel>Welcome {user?.name || userData?.username}!</DropdownMenuLabel>
             <DropdownMenuGroup>
-              <DropdownMenuItem>
-                <Link href={'/address'} prefetch={false}>
-                  My Address
-                </Link>
-              </DropdownMenuItem>
               <DropdownMenuItem>
                 <Link href={'/orders'} prefetch={false}>
                   My Orders

@@ -6,6 +6,7 @@ import { checkoutCart } from '@/utils/APICalls'
 import { loadStripe } from '@stripe/stripe-js';
 import { checkoutSession } from '@/actions/server-action';
 import { useSession } from 'next-auth/react';
+import FakeCreditCardModal from '../Modal/FakeCreditCardModal';
 
 loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY);
 
@@ -36,7 +37,8 @@ const CheckoutBtn = ({ productList }) => {
     }
   };
   return (
-      <Button onClick={checkoutCartFn} className='w-full mt-2 rounded-full py-0 bg-white text-[#27282a] hover:bg-white hover:text-[#27282a] font-bold'>Buy</Button>
+    <FakeCreditCardModal checkoutCartFn={checkoutCartFn} />
+      
 
   )
 }

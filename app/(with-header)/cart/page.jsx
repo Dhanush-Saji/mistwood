@@ -16,7 +16,7 @@ import { IoMdCloseCircle } from "react-icons/io";
 import NoData from '@/components/Loaders/NoData'
 
 const Page = () => {
-  const [cartVal, setcartVal] = useState({subTotal:0,shipping:0,discounts:0,cartTotal:0})
+  const [cartVal, setcartVal] = useState({ subTotal: 0, shipping: 0, discounts: 0, cartTotal: 0 })
   const [isLoading, setisLoading] = useState(false)
   const { addToCart, removeFromCart } = useUserStore();
   const data = useSession()
@@ -80,25 +80,26 @@ const Page = () => {
       getCartFn()
     }
   }, [data])
-  useEffect(()=>{
-    if(cartArray?.length>0){
-      let tempObj = {subTotal:0,shipping:0,discounts:0,cartTotal:0}
-      cartArray?.map((item,index)=>{
+  useEffect(() => {
+    if (cartArray?.length > 0) {
+      let tempObj = { subTotal: 0, shipping: 0, discounts: 0, cartTotal: 0 }
+      cartArray?.map((item, index) => {
         tempObj.subTotal += (item?.productId?.sellingprice * item?.quantity)
-        tempObj.discounts += ((item?.productId?.sellingprice - (item?.productId?.sellingprice * (item?.productId?.discounts?(100 - item?.productId?.discounts?.percentage):100)/100))*item?.quantity)
+        tempObj.discounts += ((item?.productId?.sellingprice - (item?.productId?.sellingprice * (item?.productId?.discounts ? (100 - item?.productId?.discounts?.percentage) : 100) / 100)) * item?.quantity)
       })
-      setcartVal({...tempObj,cartTotal:tempObj?.subTotal-tempObj?.discounts})
+      setcartVal({ ...tempObj, cartTotal: tempObj?.subTotal - tempObj?.discounts })
     }
-  },[cartArray])
+  }, [cartArray])
   return (
     <div className="bg-[rgba(245,247,248,1)] dark:bg-neutral-800 min-w-[100vw] min-h-[100vh] flex flex-col p-5 pb-16 sm:p-3 sm:px-[2rem] pt-[5rem] sm:pt-[6rem]">
-      <div className={`grid grid-cols-1 md:grid-cols-[70%_30%] gap-2`}>
+      <div className={`grid grid-cols-1 ${cartArray?.length > 0?'md:grid-cols-[70%_30%]':''} gap-2`}>
         <div className='flex flex-col'>
           <h1 className='text-left text-[22px] font-extrabold'>Shopping Bag</h1>
           <h1 className='text-left text-[13px] font-normal'>
             <span className='font-bold mr-2'>{cartArray?.length} items</span>in your bag
           </h1>
-          {cartArray?.length > 0 ? <div className='flex flex-col gap-2 bg-white rounded-lg mt-4 dark:bg-zinc-700'>
+          <div className='hidden md:block'>
+          {cartArray?.length > 0 ? <div className='hidden md:flex flex-col gap-2 bg-white rounded-lg mt-4 dark:bg-zinc-700'>
             <Table>
               <TableHeader>
                 <TableRow>
@@ -122,36 +123,38 @@ const Page = () => {
                               {item?.productId?.product_name}
                             </p>
                             {
-                          item?.productId?.discounts ?
-                            <div className="flex gap-2 items-center">
-                              <h1 className="m-0 font-bold text-[1rem]">
-                                ₹{changeNumberFormat((item?.productId?.sellingprice * (100 - item?.productId?.discounts?.percentage)) / 100)}
-                              </h1>
-                              <h1 className="line-through opacity-60 m-0">
-                                ₹{changeNumberFormat(item?.productId?.sellingprice)}
-                              </h1>
-                            </div> :
-                            <div className="flex gap-2 items-center">
-                              <h1 className="m-0 font-bold text-[1rem]">
-                                ₹{changeNumberFormat(item?.productId?.sellingprice)}
-                              </h1>
-                            </div>
-                        }
+                              item?.productId?.discounts ?
+                                <div className="flex gap-2 items-center">
+                                  <h1 className="m-0 font-bold text-[1rem]">
+                                    ₹{changeNumberFormat((item?.productId?.sellingprice * (100 - item?.productId?.discounts?.percentage)) / 100)}
+                                  </h1>
+                                  <h1 className="line-through opacity-60 m-0">
+                                    ₹{changeNumberFormat(item?.productId?.sellingprice)}
+                                  </h1>
+                                </div> :
+                                <div className="flex gap-2 items-center">
+                                  <h1 className="m-0 font-bold text-[1rem]">
+                                    ₹{changeNumberFormat(item?.productId?.sellingprice)}
+                                  </h1>
+                                </div>
+                            }
                           </div>
                         </div>
                       </TableCell>
                       <TableCell className="text-center">
                         <div className='flex items-center gap-2 justify-center'>
-                        <span className=" font-[700] text-lg">{item?.quantity}</span>
-                        <div className='flex flex-col gap-1 w-fit'>
-                          <Button className='rounded-full w-0 h-4' onClick={() => cartUpdateFn(0, item?._id)} disabled={isLoading || item?.quantity == 1}  >
-                            -
-                          </Button>
-                         
-                          <Button className='rounded-full w-0 h-4' disabled={isLoading} onClick={() => cartUpdateFn(1, item?._id)} >
-                            +
-                          </Button>
-                        </div>
+                          <span className=" font-[700] text-lg">{item?.quantity}</span>
+                          <div className='flex flex-col gap-1 w-fit'>
+                            <Button variant={item?.quantity == 1 ? 'destructive' : 'default'} className='rounded-full w-0 h-6' onClick={() => {
+                              item?.quantity == 1 ? deleteCartItem(item?._id) : cartUpdateFn(0, item?._id)
+                            }} disabled={isLoading}  >
+                              -
+                            </Button>
+
+                            <Button className='rounded-full w-0 h-6' disabled={isLoading} onClick={() => cartUpdateFn(1, item?._id)} >
+                              +
+                            </Button>
+                          </div>
                         </div>
                       </TableCell>
                       <TableCell className="text-right">
@@ -172,6 +175,55 @@ const Page = () => {
             </Table>
 
           </div> : <NoData />}
+          </div>
+          <div className='block md:hidden'>
+          {cartArray?.length > 0 ? <div className='flex md:hidden flex-col gap-2 bg-[rgba(245,247,248,1)] dark:bg-neutral-800 rounded-lg mt-4'>
+            {
+              cartArray?.length > 0 && cartArray?.map((item, index) => (
+                <div key={index} className='flex p-2 px-3 items-center dark:bg-zinc-700 rounded-lg'>
+                  <Image priority={true}
+                    width={100}
+                    height={100} className="w-[5rem] md:w-[10rem] h-full md:max-h-[15rem] object-cover md:object-contain rounded-lg"
+                    alt="image" src={item?.productId?.product_image?.img1?.url} />
+                  <div className='flex gap-4 ml-3'>
+                    <div className='flex flex-col'>
+                      <p className="font-semibold text-[0.8rem] md:text-[1rem]">
+                        {item?.productId?.product_name}
+                      </p>
+                      {
+                        item?.productId?.discounts ?
+                          <div className="flex gap-2 items-center">
+                            <h1 className="m-0 font-bold text-[1rem]">
+                              ₹{changeNumberFormat((item?.productId?.sellingprice * (100 - item?.productId?.discounts?.percentage)) / 100)}
+                            </h1>
+                            <h1 className="line-through opacity-60 m-0">
+                              ₹{changeNumberFormat(item?.productId?.sellingprice)}
+                            </h1>
+                          </div> :
+                          <div className="flex gap-2 items-center">
+                            <h1 className="m-0 font-bold text-[1rem]">
+                              ₹{changeNumberFormat(item?.productId?.sellingprice)}
+                            </h1>
+                          </div>
+                      }
+                    </div>
+                  </div>
+                  <div className='flex flex-col gap-1 w-fit justify-center'>
+                    <Button variant={item?.quantity == 1 ? 'destructive' : 'default'} className='rounded-full w-0 h-6' onClick={() => {
+                      item?.quantity == 1 ? deleteCartItem(item?._id) : cartUpdateFn(0, item?._id)
+                    }} disabled={isLoading}  >
+                      -
+                    </Button>
+                    <span className=" font-[700] text-lg text-center">{item?.quantity}</span>
+                    <Button className='rounded-full w-0 h-6' disabled={isLoading} onClick={() => cartUpdateFn(1, item?._id)} >
+                      +
+                    </Button>
+                  </div>
+                </div>
+              ))
+            }
+          </div> : <NoData />}
+          </div>
         </div>
         {cartArray?.length > 0 && <div>
           <div className='flex flex-col rounded-lg bg-white px-4 py-2 gap-4 dark:bg-zinc-700'>
@@ -201,7 +253,7 @@ const Page = () => {
                   <span className='text-[1.2rem]'>₹{changeNumberFormat(cartVal?.cartTotal)}</span>
                 </div>
               </div>
-              <CheckoutBtn productList={cartArray?.map(item => ({id:item?.productId?._id,quantity:item?.quantity})).filter(id => id)} />
+              <CheckoutBtn productList={cartArray?.map(item => ({ id: item?.productId?._id, quantity: item?.quantity })).filter(id => id)} />
             </div>
           </div>
         </div>}
