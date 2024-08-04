@@ -35,6 +35,10 @@ export async function POST(req) {
       totalAmount: Number(amount_total)/100,
     };
     try {
+      const existingOrder = await OrderModel.findOne({ stripeId: event.data.object.id });
+      if(existingOrder){
+        return NextResponse.json({status:false,message:`Order already exist`},{status:500})
+      }
       const newOrder = new OrderModel(order);
       const newData = await newOrder.save();
       if(newData){

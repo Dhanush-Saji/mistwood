@@ -73,6 +73,7 @@ export async function checkoutSession({ productList, userId,userEmail }) {
       shipping_address_collection: {allowed_countries: ['IN']},
       success_url: `${process.env.BACKEND_URL}/success?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${process.env.BACKEND_URL}/error`,
+      idempotency_key: Math.random().toString().substring(0, 10)
    
     });
     return {url:session.url,status:true}
