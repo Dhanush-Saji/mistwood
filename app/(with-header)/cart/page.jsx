@@ -14,10 +14,13 @@ import { Input } from '@/components/ui/input'
 import CheckoutBtn from '@/components/Button/CheckoutBtn'
 import { IoMdCloseCircle } from "react-icons/io";
 import NoData from '@/components/Loaders/NoData'
+import { AiTwotoneTag } from 'react-icons/ai'
+import CouponListModal from '@/components/Modal/CouponListModal'
 
 const Page = () => {
   const [cartVal, setcartVal] = useState({ subTotal: 0, shipping: 0, discounts: 0, cartTotal: 0 })
   const [isLoading, setisLoading] = useState(false)
+  const [cartQnty, setcartQnty] = useState(0)
   const { addToCart, removeFromCart } = useUserStore();
   const data = useSession()
   console.log(data);
@@ -83,10 +86,13 @@ const Page = () => {
   useEffect(() => {
     if (cartArray?.length > 0) {
       let tempObj = { subTotal: 0, shipping: 0, discounts: 0, cartTotal: 0 }
+      let tempQnty = 0
       cartArray?.map((item, index) => {
         tempObj.subTotal += (item?.productId?.sellingprice * item?.quantity)
+        tempQnty += item?.quantity
         tempObj.discounts += ((item?.productId?.sellingprice - (item?.productId?.sellingprice * (item?.productId?.discounts ? (100 - item?.productId?.discounts?.percentage) : 100) / 100)) * item?.quantity)
       })
+      setcartQnty(tempQnty)
       setcartVal({ ...tempObj, cartTotal: tempObj?.subTotal - tempObj?.discounts })
     }
   }, [cartArray])
@@ -96,7 +102,7 @@ const Page = () => {
         <div className='flex flex-col'>
           <h1 className='text-left text-[22px] font-extrabold'>Shopping Bag</h1>
           <h1 className='text-left text-[13px] font-normal'>
-            <span className='font-bold mr-2'>{cartArray?.length} items</span>in your bag
+            <span className='font-bold mr-2'>{cartQnty} items</span>in your bag
           </h1>
           <div className='hidden md:block'>
           {cartArray?.length > 0 ? <div className='hidden md:flex flex-col gap-2 bg-white rounded-lg mt-4 dark:bg-zinc-700'>
@@ -228,10 +234,14 @@ const Page = () => {
         {cartArray?.length > 0 && <div>
           <div className='flex flex-col rounded-lg bg-white px-4 py-2 gap-4 dark:bg-zinc-700'>
             <div className='flex flex-col'>
-              <h1 className='text-left text-lg font-extrabold'>Coupon Code</h1>
-              <p className='text-left text-sm opacity-50'>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
-              <Input type="text" placeholder="coupon code" className='mt-2 rounded-full' />
-              <Button className='w-full mt-2 rounded-full py-0'>Apply</Button>
+              <h1 className='text-left text-lg font-[600]'>Coupons</h1>
+              <div className='flex justify-between items-center'>
+                <div className='flex gap-2 items-center'>
+                <AiTwotoneTag className='scale-125' />
+              <p className='text-left text-sm whitespace-nowrap font-[600]'>Apply coupons</p>
+                </div>
+                <CouponListModal />
+              </div>
             </div>
             <div className='flex flex-col bg-[#FED28C] py-3 px-4 rounded-lg mb-2 dark:text-zinc-700'>
               <h1 className='text-left text-[1.1rem] font-extrabold'>Cart Total</h1>

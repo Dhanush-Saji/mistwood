@@ -7,6 +7,7 @@ import { ProductModel } from "@/models/Product.model";
 import { UserModel } from "@/models/User.model";
 import { DiscountModel } from "@/models/Discount.model";
 import Stripe from "stripe";
+import { CouponModel } from "@/models/Coupon.model";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
@@ -23,7 +24,6 @@ export async function getCategories() {
 export async function checkoutSession({ productList, userId,userEmail }) {
   try {
     await connectDb();
-    const userData = await UserModel.findById({ _id: userId });
     const productPromises = productList.map(async (item) => {
       const product = await ProductModel.findById({ _id: item?.id })
         .select("_id product_name description discounts sellingprice product_image")
