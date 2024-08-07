@@ -8,6 +8,7 @@ import { UserModel } from "@/models/User.model";
 import { DiscountModel } from "@/models/Discount.model";
 import Stripe from "stripe";
 import { CouponModel } from "@/models/Coupon.model";
+import { v4 as uuid } from 'uuid';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
@@ -21,7 +22,9 @@ export async function getCategories() {
   }
 }
 
-export async function checkoutSession({ productList, userId,userEmail }) {
+export async function checkoutSession({ productList, userId,userEmail,couponCode }) {
+  // Generate a unique idempotency key
+  const idempotencyKey = uuid();
   try {
     await connectDb();
     const productPromises = productList.map(async (item) => {
@@ -70,11 +73,13 @@ export async function checkoutSession({ productList, userId,userEmail }) {
         })))
       },
       mode: "payment",
+      // allow_promotion_codes: true,
+      discounts: couponCode ? [{ coupon: couponCode }] : [],
       shipping_address_collection: {allowed_countries: ['IN']},
       success_url: `${process.env.BACKEND_URL}/success?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${process.env.BACKEND_URL}/error`,
-      idempotency_key: Math.random().toString().substring(0, 10)
-   
+    },{
+      idempotencyKey: idempotencyKey // Pass the idempotency key here
     });
     return {url:session.url,status:true}
     return 0

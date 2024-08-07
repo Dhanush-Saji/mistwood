@@ -16,7 +16,7 @@ const FakeCreditCardModal = ({checkoutCartFn}) => {
   return (
     <Dialog>
     <DialogTrigger asChild>
-    <Button className='w-full mt-2 rounded-full py-0 bg-white text-[#27282a] hover:bg-white hover:text-[#27282a] font-bold'>Buy</Button>
+    <Button className='w-full mt-2 rounded-md py-0 bg-white text-[#27282a] hover:bg-white hover:text-[#27282a] font-bold'>Buy</Button>
     </DialogTrigger>
     <DialogContent className="sm:max-w-md">
       <DialogHeader>

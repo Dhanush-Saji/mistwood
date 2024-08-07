@@ -10,10 +10,9 @@ import FakeCreditCardModal from '../Modal/FakeCreditCardModal';
 
 loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY);
 
-const CheckoutBtn = ({ productList }) => {
+const CheckoutBtn = ({ productList,couponCode }) => {
   const data = useSession()
   const userId=data?.data?.userData?._id
-  console.log(userId);
   const userEmail=data?.data?.userData?.email
   useEffect(() => {
     // Check to see if this is a redirect back from Checkout
@@ -28,7 +27,7 @@ const CheckoutBtn = ({ productList }) => {
   }, []);
   const checkoutCartFn = async () => {
     try {
-      const res = await checkoutSession({ userId, productList,userEmail })
+      const res = await checkoutSession({ userId, productList,userEmail,couponCode })
       if(res?.status){
         window.location.href = res?.url
       }
