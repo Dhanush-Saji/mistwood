@@ -30,13 +30,15 @@
     "bcrypt": "^5.1.1",
     "bcryptjs": "^2.4.3",
     "class-variance-authority": "^0.7.0",
-    "clsx": "^2.1.0",
+    "clsx": "^2.1.1",
     "copy-to-clipboard": "^3.3.3",
     "crypto": "^1.0.1",
+    "framer-motion": "^11.3.24",
     "gsap": "^3.12.4",
     "jsonwebtoken": "^9.0.2",
     "lottie-react": "^2.4.0",
     "lucide-react": "^0.306.0",
+    "mini-svg-data-uri": "^1.4.4",
     "mongoose": "^8.1.0",
     "next": "^14.2.3",
     "next-auth": "^4.24.5",
@@ -52,7 +54,7 @@
     "resend": "^3.2.0",
     "stripe": "^15.11.0",
     "swiper": "^11.0.5",
-    "tailwind-merge": "^2.2.2",
+    "tailwind-merge": "^2.4.0",
     "tailwindcss-animate": "^1.0.7",
     "three": "^0.160.0",
     "ua-parser-js": "^1.0.37",
@@ -64,6 +66,6 @@
     "eslint": "^8",
     "eslint-config-next": "^14.2.3",
     "postcss": "^8",
-    "tailwindcss": "^3.3.0"
+    "tailwindcss": "^3.4.9"
   }
 }
