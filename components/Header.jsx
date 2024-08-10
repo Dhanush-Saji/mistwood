@@ -29,7 +29,7 @@ const Header = () => {
   const userData = session?.userData
   const user = session?.user
   return (
-    <div className='justify-between backdrop-blur-sm flex px-6 sm:px-4 py-3items-center fixed w-full z-[10] bg-white dark:bg-[rgba(69,69,69,0.8)] h-[4rem] items-center shadow-md'>
+    <div className='justify-between backdrop-blur-sm flex px-6 sm:px-4 py-3items-center w-full z-[10] bg-white dark:bg-[rgba(69,69,69,0.8)] h-[4rem] items-center shadow-md'>
       <Link href={'/'} prefetch={false}>
         <div className='flex gap-1 items-center'>
           <Image src={'/images/logo.png'} alt='logo' height={50} width={50} />

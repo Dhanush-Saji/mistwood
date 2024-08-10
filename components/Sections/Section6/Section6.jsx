@@ -44,7 +44,7 @@ const Section6 = () => {
         </span>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mt-10">
           <div className="flex flex-col gap-2">
-            <label for="">Your name</label>
+            <label>Your name</label>
             <input
               type="text"
               placeholder="Enter name"
@@ -52,7 +52,7 @@ const Section6 = () => {
             />
           </div>
           <div className="flex flex-col gap-2">
-            <label for="">Your email</label>
+            <label>Your email</label>
             <input
               type="email"
               placeholder="Enter email"
@@ -61,7 +61,7 @@ const Section6 = () => {
           </div>
         </div>
         <div className="flex flex-col gap-2 mt-5">
-          <label for="">Your message</label>
+          <label>Your message</label>
           <textarea
             placeholder="Enter message"
             name=""

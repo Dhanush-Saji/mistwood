@@ -3,11 +3,11 @@ import React from 'react'
 const Section2Content = () => {
   return (
     <>
-    <div data-scroll data-scroll-speed='0.1' className='flex flex-col items-end'>
-      <p className='text-[3rem] sm:text-[6rem] font-[800] m-0 text-right text-[#27282a] dark:text-[#eeeeee]'>Elevate Home</p>
-      <p className='text-[3rem] sm:text-[6rem] font-[800] m-0 text-right text-[#27282a] dark:text-[#eeeeee]'>Comfort</p>
+    <div data-scroll data-scroll-speed='0.1' className='flex flex-col items-end relative z-10'>
+      <p id='elevateHomeText' className='text-[3rem] sm:text-[6rem] font-[800] m-0 text-right text-[#27282a] dark:text-[#eeeeee] opacity-0'>Elevate Home</p>
+      <p id='comfortText' className='text-[3rem] sm:text-[6rem] font-[800] m-0 text-right text-[#27282a] dark:text-[#eeeeee] opacity-0'>Comfort</p>
       </div>
-      <p data-scroll data-scroll-speed='0.1' className='w-full sm:w-[40vw] font-medium text-right text-[#27282a] dark:text-[#919191]'>Transform your space into a haven of comfort</p>
+      <p id='transformYourSpaceText' data-scroll data-scroll-speed='0.1' className='w-full sm:w-[40vw] font-medium text-right text-[#27282a] dark:text-[#919191] opacity-0'>Transform your space into a haven of comfort</p>
     </>
   )
 }

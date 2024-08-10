@@ -4,6 +4,7 @@ import { ThemeProvider } from '@/components/ThemeProvider'
 import Header from '@/components/Header';
 import AuthContext from '@/context/AuthContext';
 import ToastContext from '@/context/ToastContext';
+import SmoothScroll from '@/utils/SmoothScroll';
 
 const inter = DM_Sans({ subsets: ['latin'], weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900', '1000'] });
 
@@ -19,6 +20,7 @@ export default function RootLayout({ children }) {
         <ToastContext>
       <ThemeProvider attribute='class' defaultTheme='system'>
       <AuthContext>
+      <SmoothScroll />
       {children}
     </AuthContext>
       </ThemeProvider>
