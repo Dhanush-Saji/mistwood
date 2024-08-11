@@ -13,8 +13,7 @@ const ScrollAnimations = () => {
         new ScrollTrigger({})
         gsap.to('.home-section-div', {
           opacity: 1, 
-          duration: 8,
-          ease: 'power2.out'
+          duration: 2,
       });
         tl
     .set('#mobile-gif', { x: '500'})
@@ -31,28 +30,47 @@ const ScrollAnimations = () => {
       })
       tl
       .to('#furnitureText', {
-          y:'-20%',
+          y:'-90px',
           scrollTrigger: {
             trigger: '.home-section',
-            start: "top+=100 top+=100",
-            end: "center+=300 center-=100",
+            start: "top+=40 top+=100",
+            end: "center center-=200",
             scrub: 1.5,
             immediateRender: false,
-            markers: true
           }
         })
       tl
       .to('#furnitureText1', {
-        y:'-20%',
-        scrollTrigger: {
-          trigger: '.home-section',
-          start: "top+=100 top+=100",
-          end: "center+=300 center-=100",
-          scrub: 1.5,
-          immediateRender: false,
-          markers: true
-        }
+        y:'-70px',
+          scrollTrigger: {
+            trigger: '.home-section',
+            start: "top+=40 top+=100",
+            end: "center center-=200",
+            scrub: 1.5,
+            immediateRender: false,
+            
+          }
         })
+        .to('#indulgeText', {
+          y:'-50px',
+          scrollTrigger: {
+            trigger: '.home-section',
+            start: "top+=40 top+=100",
+            end: "center center-=200",
+            scrub: 1.5,
+            immediateRender: false,
+          }
+          })
+          .to('#exploreBtn', {
+            y:'-50px',
+            scrollTrigger: {
+              trigger: '.home-section',
+              start: "top+=40 top+=100",
+            end: "center center-=200",
+              scrub: 1.5,
+              immediateRender: false,
+            }
+            })
       tl
       .to('#elevateHomeText', {
           x:'-20%',

@@ -59,7 +59,25 @@ function Model() {
   useLayoutEffect(()=>{
     new ScrollTrigger({})
     tl
-.to(camera.position,{x:1.39,y:-2,z:5.48,
+.to(camera.position,{x:1.39,y:-1.9,z:5.48,
+  scrollTrigger:{
+    trigger:'.second-section',
+    start:"top bottom",
+    end:"top top",
+    scrub:0.5,
+    immediateRender:false,
+  }
+},'key1')
+.to(scene.position,{x:3.25,y:2,z:2.5,
+  scrollTrigger:{
+    trigger:'.second-section',
+    start:"top bottom",
+    end:"top top",
+    scrub:0.5,
+    immediateRender:false,
+  }
+},'key1')
+.to(scene.rotation,{x:0.14,y:-4.86,z:0.03,
   scrollTrigger:{
     trigger:'.second-section',
     start:"top bottom",
@@ -67,34 +85,28 @@ function Model() {
     scrub:0.5,
     immediateRender:false
   }
-})
-.to(scene.position,{x:-0.25,y:1.2,z:2.5,
-  scrollTrigger:{
-    trigger:'.second-section',
-    start:"top bottom",
-    end:"top top",
-    scrub:0.5,
-    immediateRender:false
-  }
-})
-.to(scene.rotation,{x:0.14,y:-3.86,z:0.03,
-  scrollTrigger:{
-    trigger:'.second-section',
-    start:"top bottom",
-    end:"top top",
-    scrub:0.5,
-    immediateRender:false
-  }
-})
-.to(scene.position,{x:7,
-  scrollTrigger:{
-    trigger:'.third-section',
-    start:"top bottom",
-    end:"top top",
-    scrub:0.5,
-    immediateRender:false
-  }
-})
+},'key1')
+// .to(modelRef.current.rotation, {
+//   y: -4,
+//   scrollTrigger:{
+//     trigger:'.second-section',
+//     start:"top bottom",
+//     end:"top top",
+//     scrub:0.5,
+//     immediateRender:false
+//   }
+// },'key1')
+
+// .to(scene.position,{z:0,
+//   scrollTrigger:{
+//     trigger:'.third-section',
+//     start:"top bottom",
+//     end:"top top",
+//     scrub:0.5,
+//     immediateRender:false,
+//     markers:true
+//   }
+// })
 // .to(modelRef.current.rotation, {
 //   y: -Math.PI * 2.2,
 //   scrollTrigger: {
@@ -106,11 +118,11 @@ function Model() {
 //   }
 // })
 .to('#webgi-canvas', {
-  opacity:0,duration:0.5,
+  opacity:0,
   scrollTrigger: {
-    trigger: '.third-section',
-    start: "top bottom-=200",
-    end: "top bottom",
+    trigger:'.second-section',
+    start: "center-=200 top",
+    end: "bottom bottom",
     scrub: 0.5,
     immediateRender: false,
   }
@@ -127,7 +139,7 @@ function Model() {
         <AdaptiveEvents />
     {/* <Environment preset="warehouse" /> */}
     <OrbitControls  />
-    <group ref={modelRef} dispose={null} scale={5} rotation-y={[-Math.PI * 0.8]} position={[4,-4,-1]}> 
+    <group ref={modelRef} dispose={null} scale={5} rotation-y={[-Math.PI * 0.8]} position={[4,-4.2,-1]}> 
       <mesh geometry={nodes.koltuk.geometry} material={materials.chair}  />
     </group>
     </>
