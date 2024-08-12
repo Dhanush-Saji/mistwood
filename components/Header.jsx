@@ -31,34 +31,47 @@ const Header = () => {
   const [lastScroll, setlastScroll] = useState(0)
   const [scrollStatus, setscrollStatus] = useState('')
   const [shrinkNavbar, setshrinkNavbar] = useState(false)
-  const handleScroll = () => {
-       const currentScroll = window.scrollY
-       console.log(currentScroll);
-       if(currentScroll>lastScroll){
-         setscrollStatus('scroll-down')
-         setshrinkNavbar(true)
-       }else if(currentScroll>773){
-        setscrollStatus('scroll-up')
-        setshrinkNavbar(true)
-       }else if(0<currentScroll && currentScroll<10){
-        setscrollStatus('scroll-up')
-        setshrinkNavbar(false)
-       }
-       setlastScroll(currentScroll)
-  };
+  // const handleScroll = () => {
+  //      const currentScroll = window.scrollY
+  //      console.log(currentScroll);
+  //      if(currentScroll>lastScroll){
+  //        setscrollStatus('scroll-down')
+  //        setshrinkNavbar(true)
+  //      }else if(currentScroll>773){
+  //       setscrollStatus('scroll-up')
+  //       setshrinkNavbar(true)
+  //      }else if(0<currentScroll && currentScroll<10){
+  //       setscrollStatus('scroll-up')
+  //       setshrinkNavbar(false)
+  //      }
+  //      setlastScroll(currentScroll)
+  // };
   useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll',()=>{
+      const currentScroll = window.scrollY
+      if(currentScroll>lastScroll){
+        setscrollStatus('scroll-down')
+        setshrinkNavbar(true)
+      }else if(currentScroll>773){
+       setscrollStatus('scroll-up')
+       setshrinkNavbar(true)
+      }else if(0<currentScroll && currentScroll<10){
+       setscrollStatus('scroll-up')
+       setshrinkNavbar(false)
+      }
+      setlastScroll(currentScroll)
+    });
 
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, [window.scrollY]);
+    // return () => {
+    //   window.removeEventListener('scroll', handleScroll);
+    // };
+  }, [lastScroll]);
   return (
     <div className={`fixed glassNavbar ${scrollStatus == 'scroll-down'?'translate-y-[-100%]':'translate-y-[0%]'} top-0 transition-all duration-300 ease-in-out justify-between flex px-6 sm:px-4 py-3items-center w-full z-[9999] h-[4rem] items-center shadow-md`}>
       <Link href={'/'} prefetch={false}>
         <div className='flex gap-1 items-center'>
           <Image src={'/images/logo.png'} alt='logo' height={50} width={50} />
-          <div className={`flex-col ml-1`}>
+          <div className={`flex flex-col ml-1`}>
             <span className='text-[1.2rem] font-[800] text-[#27282a] dark:text-[#eeeeee]'>Mistwood</span>
             <span className='text-[0.7rem] font-[700] text-[#27282a] dark:text-[#eeeeee] mt-[-10px]'>Furniture</span>
 
