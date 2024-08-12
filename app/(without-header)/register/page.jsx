@@ -1,5 +1,4 @@
 'use client'
-
 import { useToast } from "@/components/ui/use-toast";
 import { registerFn } from "@/utils/APICalls";
 import Image from "next/image";
