@@ -16,18 +16,24 @@ import { IoMdCloseCircle } from "react-icons/io";
 import NoData from '@/components/Loaders/NoData'
 import { AiTwotoneTag } from 'react-icons/ai'
 import CouponListModal from '@/components/Modal/CouponListModal'
+import { Loader2 } from 'lucide-react'
 
 const Page = () => {
   const [couponCodeAPI, setcouponCodeAPI] = useState({ val: 0, id: '', title: '' })
   const [cartVal, setcartVal] = useState({ subTotal: 0, shipping: 0, discounts: 0, cartTotal: 0 })
   const [isLoading, setisLoading] = useState(false)
+  const [loadingStates, setloadingStates] = useState({min:false, add:false})
   const [couponIsLoading, setcouponIsLoading] = useState(false)
   const [cartQnty, setcartQnty] = useState(0)
   const { addToCart, removeFromCart } = useUserStore();
   const data = useSession()
   const cartArray = useUserStore(state => state.cart) || []
   const cartUpdateFn = async (type, id) => {
-    setisLoading(true)
+    if(type == 0){
+      setloadingStates({...loadingStates,min:true})
+    }else{
+      setloadingStates({...loadingStates,add:true})
+    }
     try {
       let payload = {
         id,
@@ -42,7 +48,11 @@ const Page = () => {
     } catch (error) {
       console.error(error);
     } finally {
-      setisLoading(false)
+      if(type == 0){
+        setloadingStates({...loadingStates,min:false})
+      }else{
+        setloadingStates({...loadingStates,add:false})
+      }
     }
   };
   const getCartFn = async () => {
@@ -63,7 +73,7 @@ const Page = () => {
   };
   const deleteCartItem = async (id) => {
     try {
-      setisLoading(true)
+      setloadingStates({...loadingStates,min:true})
       let payload = {
         id,
         userId: data?.data?.userData?._id,
@@ -76,7 +86,7 @@ const Page = () => {
     } catch (error) {
       console.error(error);
     } finally {
-      setisLoading(false)
+      setloadingStates({...loadingStates,min:false})
     }
   };
   const [couponList, setcouponList] = useState([])
@@ -127,7 +137,7 @@ const Page = () => {
             {cartArray?.length > 0 ? <div className='hidden md:flex flex-col gap-2 bg-white rounded-lg mt-4 dark:bg-zinc-700'>
               <Table>
                 <TableHeader>
-                  <TableRow>
+                  <TableRow className='hover:bg-transparent'>
                     <TableHead className="">Product</TableHead>
                     <TableHead className="text-center">Quantity</TableHead>
                     <TableHead className="text-right">Total</TableHead>
@@ -136,12 +146,12 @@ const Page = () => {
                 <TableBody>
                   {
                     cartArray?.length > 0 && cartArray?.map((item, index) => (
-                      <TableRow key={index}>
+                      <TableRow key={index} className='hover:bg-transparent'>
                         <TableCell>
                           <div className='flex gap-4'>
                             <Image priority={true}
                               width={100}
-                              height={100} className="w-[10rem] max-h-[15rem] object-contain"
+                              height={100} className="w-[10rem] max-h-[15rem] object-contain rounded-lg"
                               alt="image" src={item?.productId?.product_image?.img1?.url} />
                             <div className='flex flex-col'>
                               <p className="font-semibold mb-1">
@@ -170,14 +180,14 @@ const Page = () => {
                           <div className='flex items-center gap-2 justify-center'>
                             <span className=" font-[700] text-lg">{item?.quantity}</span>
                             <div className='flex flex-col gap-1 w-fit'>
-                              <Button variant={item?.quantity == 1 ? 'destructive' : 'default'} className='rounded-full w-0 h-6' onClick={() => {
+                              <Button variant={item?.quantity == 1 ? 'destructive' : 'default'} className='rounded-full w-6 h-6 p-0 flex justify-center items-center' onClick={() => {
                                 item?.quantity == 1 ? deleteCartItem(item?._id) : cartUpdateFn(0, item?._id)
-                              }} disabled={isLoading}  >
-                                -
+                              }} disabled={loadingStates?.min}  >
+                                {loadingStates?.min?<Loader2 className=" h-4 w-4 animate-spin" />:'-'}
                               </Button>
 
-                              <Button className='rounded-full w-0 h-6' disabled={isLoading} onClick={() => cartUpdateFn(1, item?._id)} >
-                                +
+                              <Button className='rounded-full w-6 h-6 p-0 flex justify-center items-center' disabled={loadingStates?.add} onClick={() => cartUpdateFn(1, item?._id)} >
+                              {loadingStates?.add?<Loader2 className=" h-4 w-4 animate-spin" />:'+'}
                               </Button>
                             </div>
                           </div>
@@ -234,14 +244,14 @@ const Page = () => {
                       </div>
                     </div>
                     <div className='flex flex-col gap-1 w-fit justify-center'>
-                      <Button variant={item?.quantity == 1 ? 'destructive' : 'default'} className='rounded-full w-0 h-6' onClick={() => {
+                      <Button variant={item?.quantity == 1 ? 'destructive' : 'default'} className='rounded-full w-6 h-6 p-0 flex justify-center items-center' onClick={() => {
                         item?.quantity == 1 ? deleteCartItem(item?._id) : cartUpdateFn(0, item?._id)
-                      }} disabled={isLoading}  >
-                        -
+                      }} disabled={loadingStates?.min}  >
+                        {loadingStates?.min?<Loader2 className=" h-4 w-4 animate-spin" />:'-'}
                       </Button>
                       <span className=" font-[700] text-lg text-center">{item?.quantity}</span>
-                      <Button className='rounded-full w-0 h-6' disabled={isLoading} onClick={() => cartUpdateFn(1, item?._id)} >
-                        +
+                      <Button className='rounded-full w-6 h-6 p-0 flex justify-center items-center' disabled={loadingStates?.add} onClick={() => cartUpdateFn(1, item?._id)} >
+                      {loadingStates?.add?<Loader2 className=" h-4 w-4 animate-spin" />:'+'}
                       </Button>
                     </div>
                   </div>

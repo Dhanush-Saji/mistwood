@@ -37,7 +37,7 @@ const CategoryListCount = async() => {
 export default CategoryListCount
 
 async function getData() {
-  const res = await fetch(`${url}/api/countCategory`,{next:{revalidate:1800}})
+  const res = await fetch(`${url}/api/countCategory`)
  
   if (!res.ok) {
     // This will activate the closest `error.js` Error Boundary

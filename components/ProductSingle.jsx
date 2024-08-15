@@ -13,12 +13,12 @@ const ProductSingle = ({ product }) => {
         <AiFillHeart className="text-[#f22749] " />
       </div> */}
       {product?.product_image?.img1 && (
-        <div className="h-[200px] items-center justify-center bg-[rgba(0,0,0,.15)] dark:bg-neutral-300 rounded-xl flex mb-[10px] p-[25px] w-[100%]">
+        <div className="h-[200px] overflow-hidden items-center justify-center bg-[rgba(0,0,0,.15)] dark:bg-neutral-300 rounded-xl flex mb-[10px] w-[100%]">
         <Image
         width={200}
         height={200}
         
-          className="w-[250px] object-cover mix-blend-multiply transition ease-in duration-150 hover:scale-110"
+          className="w-full h-full object-cover mix-blend-multiply transition ease-in duration-150 hover:scale-110 rounded-xl"
           src={product?.product_image?.img1?.url}
           alt="Dan Abramov"
         />

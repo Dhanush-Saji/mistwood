@@ -72,15 +72,15 @@ const Header = () => {
         <div className='flex gap-1 items-center'>
           <Image src={'/images/logo.png'} alt='logo' height={50} width={50} />
           <div className={`flex flex-col ml-1`}>
-            <span className='text-[1.2rem] font-[800] text-[#27282a] dark:text-[#eeeeee]'>Mistwood</span>
-            <span className='text-[0.7rem] font-[700] text-[#27282a] dark:text-[#eeeeee] mt-[-10px]'>Furniture</span>
+            <span className='text-[1.2rem] font-[800] text-[#27282a]'>Mistwood</span>
+            <span className='text-[0.7rem] font-[700] text-[#27282a] mt-[-10px]'>Furniture</span>
 
           </div>
         </div>
       </Link>
       <div className='gap-3 items-center hidden sm:flex'>
         <Link href={'/shop'} prefetch={false}>
-          <h1 className='text-[#464646] dark:text-white'>Shop</h1>
+          <h1 className='text-[#27282a]'>Shop</h1>
         </Link>
         <DarkModeToggle />
         {userData && <CartShowBtn />}

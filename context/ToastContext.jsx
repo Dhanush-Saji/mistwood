@@ -15,6 +15,7 @@ rtl={false}
 pauseOnFocusLoss={false}
 draggable={false}
 pauseOnHover={false}
+style={{ zIndex: 10000 }}
 theme="light" />
 {children}
     </>

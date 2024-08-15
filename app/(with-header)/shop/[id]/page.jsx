@@ -7,12 +7,13 @@ import { Button } from "@/components/ui/button";
 import { useUserStore } from "@/lib/zustandStore";
 import { changeNumberFormat } from "@/services/Formatter";
 import { addProductToCartFn, getRelatedProduct, getSingleProduct } from "@/utils/APICalls";
-import { Truck } from "lucide-react";
+import { Truck,Loader2 } from "lucide-react";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import React, { useState, useEffect } from "react";
 import { toast } from "react-toastify";
+import { MdOutlineShare } from "react-icons/md";
 
 const Page = ({ params }) => {
   const addToCart = useUserStore(state => state.addToCart)
@@ -24,7 +25,7 @@ const Page = ({ params }) => {
   const [imageArray, setimageArray] = useState([])
   const [relatedProduct, setrelatedProduct] = useState([])
   const [imageIndex, setimageIndex] = useState(0)
-  console.log(data?.data?.userData?._id);
+  const [loadingStates, setloadingStates] = useState({prev:false,next:false,addCart:false})
   const getSinglepro = async () => {
     try {
       const res = await getSingleProduct(params.id) || [];
@@ -68,11 +69,26 @@ const Page = ({ params }) => {
         userId: data?.data?.userData?._id,
         quantity
       }
+      setloadingStates({...loadingStates,addCart:true})
       const res = await addProductToCartFn(payload)
       if (res?.status) {
         toast.success('Added to cart')
         addToCart(res?.data?.cart || [])
       }
+      setquantity(1)
+    } catch (error) {
+      console.error(error);
+    }finally{
+      setloadingStates({...loadingStates,addCart:false})
+    }
+  };
+  const shareFn = async () => {
+    let link = `https://mistwood.vercel.app/shop/${params.id}`
+    try {
+      await navigator.share({
+        title: 'Link',
+        url: link
+      });
     } catch (error) {
       console.error(error);
     }
@@ -92,7 +108,7 @@ const Page = ({ params }) => {
                 priority={false}
                 placeholder='empty'
                 width={500}
-                height={500} className="w-[100%] max-h-[35rem] object-contain m-auto mix-blend-multiply"
+                height={500} className="w-[100%] max-h-[35rem] object-cover m-auto mix-blend-multiply rounded-md"
                 alt="image"
                 src={imageArray[imageIndex]}
               />}
@@ -104,7 +120,7 @@ const Page = ({ params }) => {
                     <Image
                       priority={true}
                       width={100}
-                      height={100} className="object-cover rounded-md"
+                      height={100} className="object-contain rounded-md"
                       alt="image"
                       src={imageUrl}
                     /></div>
@@ -113,10 +129,18 @@ const Page = ({ params }) => {
             </div>
           </div>
           <div className="flex gap-1 flex-col w-full">
+            <div className="flex w-full justify-between">
+            <div>
             <div className="bg-[#06D79C] w-fit px-2 py-[1px] rounded-lg">
               <span className="text-md opacity-80">
                 {product[0]?.category?.category_name}
               </span>
+            </div>
+            </div>
+            <button onClick={shareFn} className="border-[1px] border-neutral-500 px-2 py-1 rounded-sm flex items-center gap-1 hover:bg-slate-100">
+            <MdOutlineShare />
+              Share
+            </button>
             </div>
             <h1 className="text-[24px] font-semibold whitespace-nowrap overflow-hidden text-ellipsis">
               {product[0]?.product_name}
@@ -131,8 +155,9 @@ const Page = ({ params }) => {
               }
             </div>
             <div className="flex flex-col">
-              <h1 className="text-md opacity-60 mt-3">{product[0]?.description}</h1>
+              <h1 className="text-md opacity-60 mt-3 line-clamp-4 md:line-clamp-none">{product[0]?.description}</h1>
             </div>
+            <div className="flex flex-col">
             {
               product[0]?.discounts?
                 <div className="flex gap-2 items-center">
@@ -149,13 +174,17 @@ const Page = ({ params }) => {
                   </h1>
                 </div>
             }
+            <p className='text-sm opacity-50'>Inclusive of all taxes</p>
+            </div>
             <div className="mt-[1rem] flex items-center">
               <Button disabled={quantity == 1} variant="secondary" onClick={() => setquantity((prev) => prev - 1)}>-</Button>
               <div className="min-w-[2rem] flex items-center justify-center">
                 <span className=" font-[700]">{quantity}</span>
               </div>
               <Button variant="secondary" onClick={() => setquantity((prev) => prev + 1)} disabled={!product[0]?.isActive}>+</Button>
-              <Button onClick={() => addProductToCart()} className="w-[100%] sm:w-auto ml-[1rem]" disabled={!product[0]?.isActive}>Add to Cart</Button>
+              <Button onClick={() => addProductToCart()} className="w-[100%] sm:w-auto ml-[1rem]" disabled={!product[0]?.isActive || loadingStates?.addCart}>
+              {loadingStates?.addCart &&<Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+                Add to Cart</Button>
             </div>
             <div className="mt-4">
               <div className="flex gap-4 px-[0.8rem] py-[0.5rem] rounded-[8px] bg-zinc-200 dark:bg-zinc-800">
