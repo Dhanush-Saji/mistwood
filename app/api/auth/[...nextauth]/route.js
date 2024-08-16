@@ -46,6 +46,8 @@ export const authOptions = {
         }
         if (user) {
           token.uid = user;
+          // token.exp = Math.floor(Date.now() / 1000) + (24 * 60 * 60);
+          token.exp = Math.floor(Date.now() / 1000) + 900;
         }
         return token
       },
