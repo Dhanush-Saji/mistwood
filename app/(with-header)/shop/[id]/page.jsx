@@ -98,8 +98,8 @@ const Page = ({ params }) => {
   }, [])
   return isLoading ? <div className="w-[100vw] h-[100vh] flex items-center justify-center bg-[rgba(245,247,248,1)] dark:bg-neutral-800"><LoadingCircle /></div> :
     (
-      <div className="bg-[rgba(245,247,248,1)] dark:bg-neutral-800 w-full flex flex-col p-5 pb-16 sm:p-3 sm:px-[2rem] pt-[5rem] sm:pt-[6rem]">
-        <div className="bg-white dark:bg-white/20 rounded-lg p-6 py-4 w-full grid grid-cols-1 md:grid-cols-2 gap-x-0 md:gap-x-4 gap-y-4 md:gap-y-0">
+      <div className="bg-[rgba(245,247,248,1)] dark:bg-neutral-800 w-full flex flex-col pb-6 px-4 sm:px-[2rem] pt-[12vh] sm:pt-[12vh]">
+        <div className="bg-white dark:bg-white/20 rounded-lg p-4 w-full grid grid-cols-1 md:grid-cols-2 gap-x-0 md:gap-x-4 gap-y-4 md:gap-y-0">
           {imageArray?.length > 0 &&
             <SliderComponent imageArray={imageArray} />}
           <div className="hidden sm:flex flex-col justify-center gap-2">
@@ -199,7 +199,7 @@ const Page = ({ params }) => {
         </div>
         <div>
           <h1 className='text-left mt-7 text-[18px] font-bold'>Customers Also Viewed</h1>
-          <div className="product-grid-list mt-5 gap-[3rem] sm:gap-[1rem]">
+          <div className="product-grid-list mt-5 ">
             {relatedProduct?.length > 0 && relatedProduct?.map((product, index) => (
               <React.Fragment key={index}>
                 <ProductSingle product={product} />

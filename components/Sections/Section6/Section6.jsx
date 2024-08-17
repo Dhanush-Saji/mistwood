@@ -35,7 +35,7 @@ const Section6 = () => {
   };
   return (
     <div
-      className="sixth-section bg-[#ecedef] dark:bg-neutral-700 w-screen h-screen py-10 px-5 md:px-32 relative"
+      className="sixth-section bg-[#ecedef] dark:bg-neutral-700 w-screen min-h-screen py-10 px-5 md:px-32 relative !pb-[2rem]"
     >
       <div className="mt-10">
         <span className="text-5xl md:text-5xl font-extrabold">

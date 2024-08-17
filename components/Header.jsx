@@ -22,15 +22,16 @@ import { signOut, useSession } from 'next-auth/react'
 import SignoutBtn from './Button/SignoutBtn'
 import { useUserStore } from '@/lib/zustandStore'
 import CartShowBtn from './Button/CartShowBtn'
+import { usePathname } from 'next/navigation'
 
 
 const Header = () => {
+  const test = usePathname()
   const { data: session, status } = useSession()
   const userData = session?.userData
   const user = session?.user
   const [lastScroll, setlastScroll] = useState(0)
-  const [scrollStatus, setscrollStatus] = useState('')
-  const [shrinkNavbar, setshrinkNavbar] = useState(false)
+  const [scrollStatus, setscrollStatus] = useState('scroll-up')
   // const handleScroll = () => {
   //      const currentScroll = window.scrollY
   //      console.log(currentScroll);
@@ -49,19 +50,18 @@ const Header = () => {
   useEffect(() => {
     window.addEventListener('scroll',()=>{
       const currentScroll = window.scrollY
-      if(currentScroll>lastScroll){
-        setscrollStatus('scroll-down')
-        setshrinkNavbar(true)
-      }else if(currentScroll>773){
-       setscrollStatus('scroll-up')
-       setshrinkNavbar(true)
-      }else if(0<currentScroll && currentScroll<10){
-       setscrollStatus('scroll-up')
-       setshrinkNavbar(false)
+      let isNavbarVisibleFixed = test?.includes('cart') || test?.includes('error') || test?.includes('orders') || test?.includes('shop') || test?.includes('success')
+      if(!isNavbarVisibleFixed){
+        if(currentScroll>lastScroll){
+          setscrollStatus('scroll-down')
+        }else if(currentScroll>773){
+         setscrollStatus('scroll-up')
+        }else if(0<currentScroll && currentScroll<10){
+         setscrollStatus('scroll-up')
+        }
       }
       setlastScroll(currentScroll)
     });
-
     // return () => {
     //   window.removeEventListener('scroll', handleScroll);
     // };
@@ -87,11 +87,11 @@ const Header = () => {
         {!userData && <Link href={'/login'} prefetch={false}>
           <Button>Login</Button>
         </Link>}
-        {userData && <DropdownMenu>
+        {userData && <DropdownMenu >
           <DropdownMenuTrigger asChild className="focus-visible:!ring-0 focus-visible:!ring-offset-0 cursor-pointer">
             <Image alt='avatar' src={user?.image ? user?.image : Avatar} width='45' height='45' className='rounded-full' />
           </DropdownMenuTrigger>
-          <DropdownMenuContent className="w-56">
+          <DropdownMenuContent>
             <DropdownMenuLabel>Welcome {user?.name || userData?.username}!</DropdownMenuLabel>
             <DropdownMenuGroup>
               <DropdownMenuItem>

@@ -15,7 +15,7 @@ const MobileNavbar = () => {
   <SheetTrigger>
     <AlignLeft className='text-[#27282a] dark:text-white' />
     </SheetTrigger>
-  <SheetContent className='bg-white dark:bg-[#313131]'>
+  <SheetContent className='bg-white dark:bg-[#313131] z-[10000]'>
     <SheetHeader>
       <SheetDescription>
       </SheetDescription>

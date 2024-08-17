@@ -29,7 +29,7 @@ const ProductSingle = ({ product }) => {
       <span className='desc dark:text-white/30 max-w-[90%] text-left whitespace-nowrap overflow-hidden text-ellipsis mb-2'>{product?.description}</span>
       {
         product?.discounts?
-      <div className='flex gap-2 items-center mt-auto justify-center'>
+      <div className='flex gap-2 items-center mt-auto'>
       <h1 className="text-md font-bold m-0">
         ₹{changeNumberFormat((product?.sellingprice * (100 - product?.discounts?.percentage)) / 100)}
       </h1>
@@ -37,7 +37,7 @@ const ProductSingle = ({ product }) => {
         ₹{changeNumberFormat(product?.sellingprice)}
       </h1>
       </div>:
-      <div className='flex gap-2 items-center mt-auto justify-center'>
+      <div className='flex gap-2 items-center mt-auto'>
       <h1 className="text-md font-bold m-0">
         ₹{changeNumberFormat(product?.sellingprice)}
       </h1>

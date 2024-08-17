@@ -17,6 +17,7 @@ import NoData from '@/components/Loaders/NoData'
 import { AiTwotoneTag } from 'react-icons/ai'
 import CouponListModal from '@/components/Modal/CouponListModal'
 import { Loader2 } from 'lucide-react'
+import { Separator } from '@/components/ui/separator'
 
 const Page = () => {
   const [couponCodeAPI, setcouponCodeAPI] = useState({ val: 0, id: '', title: '' })
@@ -117,16 +118,16 @@ const Page = () => {
         tempObj.discounts += ((item?.productId?.sellingprice - (item?.productId?.sellingprice * (item?.productId?.discounts ? (100 - item?.productId?.discounts?.percentage) : 100) / 100)) * item?.quantity)
       })
       setcartQnty(tempQnty)
-      setcartVal({ ...tempObj, cartTotal: tempObj?.subTotal - tempObj?.discounts })
+      setcartVal({ ...tempObj, cartTotal: tempObj?.subTotal - tempObj?.discounts - couponCodeAPI?.val })
     }
-  }, [cartArray])
-  useEffect(() => {
-    if (couponCodeAPI?.id) {
-      setcartVal({ ...cartVal, cartTotal: cartVal.cartTotal + couponCodeAPI?.val })
-    }
-  }, [couponCodeAPI])
+  }, [cartArray,couponCodeAPI])
+  // useEffect(() => {
+  //   if (couponCodeAPI?.id) {
+  //     setcartVal({ ...cartVal, cartTotal: cartVal.cartTotal - couponCodeAPI?.val })
+  //   }
+  // }, [couponCodeAPI])
   return (
-    <div className="bg-[rgba(245,247,248,1)] dark:bg-neutral-800 min-w-[100vw] min-h-[100vh] flex flex-col p-5 pb-16 sm:p-3 sm:px-[2rem] pt-[5rem] sm:pt-[6rem]">
+    <div className="bg-[rgba(245,247,248,1)] dark:bg-neutral-800 min-w-[100vw] min-h-[100vh] flex flex-col pb-6 px-4 sm:px-[2rem] pt-[12vh] sm:pt-[12vh]">
       <div className={`grid grid-cols-1 ${cartArray?.length > 0 ? 'md:grid-cols-[70%_30%]' : ''} gap-2`}>
         <div className='flex flex-col'>
           <h1 className='text-left text-[22px] font-extrabold'>Shopping Bag</h1>
@@ -151,7 +152,7 @@ const Page = () => {
                           <div className='flex gap-4'>
                             <Image priority={true}
                               width={100}
-                              height={100} className="w-[10rem] max-h-[15rem] object-contain rounded-lg"
+                              height={100} className="w-[5rem] max-h-[12rem] object-contain rounded-lg"
                               alt="image" src={item?.productId?.product_image?.img1?.url} />
                             <div className='flex flex-col'>
                               <p className="font-semibold mb-1">
@@ -215,7 +216,8 @@ const Page = () => {
             {cartArray?.length > 0 ? <div className='flex md:hidden flex-col gap-2 bg-[rgba(245,247,248,1)] dark:bg-neutral-800 rounded-lg mt-4'>
               {
                 cartArray?.length > 0 && cartArray?.map((item, index) => (
-                  <div key={index} className='flex p-2 px-3 items-center dark:bg-zinc-700 rounded-lg'>
+                  <React.Fragment  key={index}>
+                  <div className='flex p-2 px-3 items-center dark:bg-zinc-700 rounded-lg'>
                     <Image priority={true}
                       width={100}
                       height={100} className="w-[5rem] md:w-[10rem] h-full md:max-h-[15rem] object-cover md:object-contain rounded-lg"
@@ -255,6 +257,8 @@ const Page = () => {
                       </Button>
                     </div>
                   </div>
+                  <Separator />
+                  </React.Fragment>
                 ))
               }
             </div> : <NoData />}
@@ -272,7 +276,10 @@ const Page = () => {
                     <span className='text-left text-xs whitespace-nowrap text-green-600 m-0'>you saved ₹{changeNumberFormat(couponCodeAPI?.val)}</span>
                   </div>
                 </div>
-                <Button onClick={()=>setcouponCodeAPI({ val: 0, id: '', title: '' })} variant="outline" className='w-[3rem] text-red-500 hover:text-red-500 border border-red-500 h-[2rem] bg-transparent hover:bg-transparent'>Clear</Button>
+                <Button onClick={()=>{
+                  setcartVal({ ...cartVal, cartTotal: cartVal.cartTotal + couponCodeAPI?.val })
+                  setcouponCodeAPI({ val: 0, id: '', title: '' })}
+                  } variant="outline" className='w-[3rem] text-red-500 hover:text-red-500 border border-red-500 h-[2rem] bg-transparent hover:bg-transparent'>Clear</Button>
               </div>:
               <div className='flex justify-between items-center'>
                 <div className='flex gap-2 items-center'>

@@ -8,7 +8,7 @@ import ProductPageSection from "@/components/ProductPageSection/ProductPageSecti
 const Page = () => {
   let customParams = ''
   return (
-    <div className="flex-col items-center bg-white dark:bg-neutral-800 w-screen min-h-screen relative p-2 px-4 pt-[5rem] sm:pt-[6rem] md:pt-[6rem] sm:p-7 md:p-16">
+    <div className="flex-col items-center bg-white dark:bg-neutral-800 w-screen min-h-screen relative pb-6 px-4 sm:px-[2rem] pt-[12vh] sm:pt-[12vh]">
     <div>
       <Image width={'150px'} height={400} className='w-full rounded-[8px]' src={ProductBanner} alt="product-banner" />
     </div>

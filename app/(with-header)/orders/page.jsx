@@ -1,5 +1,6 @@
 import { authOptions } from '@/app/api/auth/[...nextauth]/route'
 import NoData from '@/components/Loaders/NoData'
+import { Separator } from '@/components/ui/separator'
 import { Table, TableBody, TableCell, TableFooter, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 import { changeNumberFormat } from '@/services/Formatter'
 import { getServerSession } from 'next-auth'
@@ -13,19 +14,19 @@ const Page = async () => {
   const userId = sessionData?.userData?._id
   const countList = await getData(userId)
   return (
-    <div className="bg-[rgba(245,247,248,1)] dark:bg-neutral-800 min-w-[100vw] min-h-[100vh] flex flex-col p-5 pb-16 sm:p-3 sm:px-[2rem] pt-[16vh] sm:pt-[14vh]">
+    <div className="bg-[rgba(245,247,248,1)] dark:bg-neutral-800 min-w-[100vw] min-h-[100vh] flex flex-col pb-4 sm:px-[2rem] pt-[14vh] sm:pt-[12vh]">
       <div className='flex flex-col'>
         <h1 className='text-left text-[22px] font-extrabold'>My Orders</h1>
         <h1 className='text-left text-[13px] font-normal'>
           <span className='font-bold mr-1'>{countList?.length} Bag</span>in your Order history
         </h1>
       </div>
-      <div className='flex flex-col gap-4 mt-4'>
+      <div className='hidden md:flex flex-col gap-4 mt-4'>
         {
-          countList?.length > 0 ? countList?.map((item, index) => (
-            <div className='w-full bg-white rounded-lg p-4' key={index}>
+          countList?.length > 0 ? countList?.map((item, index) => {
+            return <div className='w-full bg-white dark:bg-[#515151] rounded-lg p-4 border-[1px] border-slate-300' key={index}>
               <div className='flex gap-4 mb-2'>
-                <div className='flex gap-2 bg-[rgba(0,0,0,0.08)] rounded-full p-2 px-3' >
+                <div className='flex gap-2 rounded-sm p-2 px-3 text-xs' >
                   <h1 className=' font-semibold'>Order:</h1>
                   <p>{item?._id}</p>
                 </div>
@@ -42,18 +43,18 @@ const Page = async () => {
                   </TableHeader>
                   <TableBody>
                     {
-                      item?.products.length > 0 && item?.products?.map((product, pindex) => (
-                        <TableRow key={pindex}>
+                      item?.products.length > 0 && item?.products?.map((product, pindex) => {
+                        return <TableRow key={pindex}>
                           <TableCell>
                             <Link href={`/shop/${product?._id?._id}`}>
-                            <div className='flex gap-3'>
-                              <Image width={100} height={100}
-                                className="w-[250px] object-cover mix-blend-multiply transition ease-in duration-150 hover:scale-110"
-                                src={product?._id?.product_image?.img1?.url}
-                                alt="product"
-                              />
-                              <p className='min-w-[200px]'>{product?._id?.product_name}</p>
-                            </div>
+                              <div className='flex gap-3'>
+                                <Image width={100} height={100}
+                                  className="w-[3rem] rounded-lg object-cover transition ease-in duration-150 hover:scale-110"
+                                  src={product?._id?.product_image?.img1?.url}
+                                  alt="product"
+                                />
+                                <p className='min-w-[200px]'>{product?._id?.product_name}</p>
+                              </div>
                             </Link>
                           </TableCell>
                           <TableCell className="text-right">
@@ -63,7 +64,7 @@ const Page = async () => {
                             <p>₹{changeNumberFormat(product?.checkoutPrice)}</p>
                           </TableCell>
                         </TableRow>
-                      ))
+                      })
                     }
                   </TableBody>
                   <TableFooter>
@@ -75,7 +76,47 @@ const Page = async () => {
                 </Table>
               }
             </div>
-          )) : <NoData />
+          }) : <NoData />
+        }
+      </div>
+      <div className='flex md:hidden flex-col gap-4 mt-4'>
+        {
+          countList?.length > 0 ? countList?.map((item, index) => {
+            return <div className='w-full bg-white dark:bg-[#515151] rounded-lg p-4 border-[1px] border-slate-300' key={index}>
+              <div className='flex gap-2 text-xs mb-2' >
+                {/* <h1 className=' font-semibold'>Order:</h1> */}
+                <p>#{item?._id}</p>
+              </div>
+              {
+                item?.products.length > 0 && item?.products?.map((product, pindex) => {
+                  return <div key={pindex}>
+                    <Separator className="my-4 dark:bg-white/20" />
+                    <Link href={`/shop/${product?._id?._id}`}>
+                      <div className='flex gap-3'>
+                        <Image width={100} height={100}
+                          className="w-[3rem] h-[3rem] rounded-lg object-cover transition ease-in duration-150 hover:scale-110"
+                          src={product?._id?.product_image?.img1?.url}
+                          alt="product"
+                        />
+                        <div className='flex flex-col gap-1'>
+                          <p className='min-w-[200px] text-sm'>{product?._id?.product_name}</p>
+                          <div className='flex gap-2 items-center w-full'>
+                            <p className=' text-sm'>Qty: {product?.quantity}</p>
+                            <p className='font-bold'>₹{changeNumberFormat(product?.checkoutPrice)}</p>
+                          </div>
+                        </div>
+                      </div>
+                    </Link>
+                  </div>
+                })
+              }
+              <Separator className="my-4 dark:bg-white/20" />
+              <div className='flex justify-between items-center'>
+                <p colSpan={2}>Total</p>
+                <h2 className="text-right text-[1.1rem] font-semibold">₹{changeNumberFormat(item?.totalAmount)}</h2>
+              </div>
+            </div>
+          }) : <NoData />
         }
       </div>
     </div>

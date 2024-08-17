@@ -41,26 +41,26 @@ export async function POST(req) {
       }
       const newOrder = new OrderModel(order);
       const newData = await newOrder.save();
-      if(newData){
-        const userData = await UserModel.findByIdAndUpdate({ _id: metadata?.userId },{cart:[]},{new:true});
-        const orderData = await OrderModel.findById(newData._id).populate('products._id').exec();
-        const transport = nodemailer.createTransport({
-          service:'gmail',
-          auth:{
-              user:process.env.SMTP_EMAIL,
-              pass:process.env.SMTP_PASSWORD
-          }
-      })
-      const testResult = await transport.verify()
-      const customOrderdate = dateToTextMonth(orderData?.createdAt) || ''
-      let emailTemplate = await OrderDetails({username:userData?.username,orderid:orderData?._id,orderdate:customOrderdate,products:orderData?.products,totalAmount:orderData?.totalAmount})
-      const sendResult = await transport.sendMail({
-          from:process.env.SMTP_EMAIL,
-          to:userData?.email,
-          subject:'Order Successful',
-          html:emailTemplate
-      })
-      }
+      // if(newData){
+      //   const userData = await UserModel.findByIdAndUpdate({ _id: metadata?.userId },{cart:[]},{new:true});
+      //   const orderData = await OrderModel.findById(newData._id).populate('products._id').exec();
+      //   const transport = nodemailer.createTransport({
+      //     service:'gmail',
+      //     auth:{
+      //         user:process.env.SMTP_EMAIL,
+      //         pass:process.env.SMTP_PASSWORD
+      //     }
+      // })
+      // const testResult = await transport.verify()
+      // const customOrderdate = dateToTextMonth(orderData?.createdAt) || ''
+      // let emailTemplate = await OrderDetails({username:userData?.username,orderid:orderData?._id,orderdate:customOrderdate,products:orderData?.products,totalAmount:orderData?.totalAmount})
+      // const sendResult = await transport.sendMail({
+      //     from:process.env.SMTP_EMAIL,
+      //     to:userData?.email,
+      //     subject:'Order Successful',
+      //     html:emailTemplate
+      // })
+      // }
       return NextResponse.json({status:true,message:`Order added`},{status:200})
     } catch (error) {
         console.log('error',error)

@@ -160,7 +160,8 @@ body {
     display: grid;
     height: max-content;
     width: 100%;
-  grid-template-columns: repeat(auto-fill,minmax(150px,1fr));
+  grid-template-columns: repeat(1,1fr);
+  gap:1rem
 }
 @media only screen and (min-width: 768px){
   .product-grid-list {

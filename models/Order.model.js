@@ -12,7 +12,8 @@ const orderSchema = new mongoose.Schema(
     user: { type: mongoose.Schema.Types.ObjectId, ref: "users" },
     stripeId:{type:String},
     products: [productSchema],
-    totalAmount:{type:Number}
+    totalAmount:{type:Number},
+    coupons:{type:Object,default:null}
   },
   { timestamps: true }
 );
