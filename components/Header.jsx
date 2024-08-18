@@ -91,7 +91,7 @@ const Header = () => {
           <DropdownMenuTrigger asChild className="focus-visible:!ring-0 focus-visible:!ring-offset-0 cursor-pointer">
             <Image alt='avatar' src={user?.image ? user?.image : Avatar} width='45' height='45' className='rounded-full' />
           </DropdownMenuTrigger>
-          <DropdownMenuContent>
+          <DropdownMenuContent style={{zIndex:10000}}>
             <DropdownMenuLabel>Welcome {user?.name || userData?.username}!</DropdownMenuLabel>
             <DropdownMenuGroup>
               <DropdownMenuItem>

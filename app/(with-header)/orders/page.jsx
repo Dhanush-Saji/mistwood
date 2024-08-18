@@ -14,7 +14,7 @@ const Page = async () => {
   const userId = sessionData?.userData?._id
   const countList = await getData(userId)
   return (
-    <div className="bg-[rgba(245,247,248,1)] dark:bg-neutral-800 min-w-[100vw] min-h-[100vh] flex flex-col pb-4 sm:px-[2rem] pt-[14vh] sm:pt-[12vh]">
+    <div className="bg-[rgba(245,247,248,1)] dark:bg-neutral-800 min-w-[100vw] min-h-[100vh] flex flex-col pb-6 px-4 sm:px-[2rem] pt-[12vh] sm:pt-[12vh]">
       <div className='flex flex-col'>
         <h1 className='text-left text-[22px] font-extrabold'>My Orders</h1>
         <h1 className='text-left text-[13px] font-normal'>
@@ -69,6 +69,10 @@ const Page = async () => {
                   </TableBody>
                   <TableFooter>
                     <TableRow>
+                      <TableCell colSpan={2}>Discount</TableCell>
+                      <TableCell className="text-right">-₹{changeNumberFormat(item?.couponDiscount)}</TableCell>
+                    </TableRow>
+                    <TableRow>
                       <TableCell colSpan={2}>Total</TableCell>
                       <TableCell className="text-right text-[1.1rem] font-semibold">₹{changeNumberFormat(item?.totalAmount)}</TableCell>
                     </TableRow>
@@ -111,8 +115,12 @@ const Page = async () => {
                 })
               }
               <Separator className="my-4 dark:bg-white/20" />
+              <div className='flex justify-between items-center opacity-50 text-[0.9rem]'>
+                <p colSpan={2}>Discounts</p>
+                <p className="text-right">-₹{changeNumberFormat(item?.couponDiscount)}</p>
+              </div>
               <div className='flex justify-between items-center'>
-                <p colSpan={2}>Total</p>
+                <p colSpan={2} className='font-semibold'>Total</p>
                 <h2 className="text-right text-[1.1rem] font-semibold">₹{changeNumberFormat(item?.totalAmount)}</h2>
               </div>
             </div>

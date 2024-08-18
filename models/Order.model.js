@@ -13,7 +13,7 @@ const orderSchema = new mongoose.Schema(
     stripeId:{type:String},
     products: [productSchema],
     totalAmount:{type:Number},
-    coupons:{type:Object,default:null}
+    coupons:{type:Number,default:0}
   },
   { timestamps: true }
 );
