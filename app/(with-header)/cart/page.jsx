@@ -29,7 +29,7 @@ const Page = () => {
   const { addToCart, removeFromCart } = useUserStore();
   const data = useSession()
   const cartArrayInitial = useUserStore(state => state.cart) || []
-  const cartArray = useMemo( () => cartArrayInitial,[cartArrayInitial])
+  const cartArray = useMemo(() => cartArrayInitial, [cartArrayInitial]);
   const cartUpdateFn = async (type, id) => {
     if(type == 0){
       setloadingStates({...loadingStates,min:true})
@@ -108,7 +108,7 @@ const Page = () => {
       getCartFn()
       getCouponFn()
     }
-  }, [data])
+  },[data])
   useEffect(() => {
     if (cartArray?.length > 0) {
       let tempObj = { subTotal: 0, shipping: 0, discounts: 0, cartTotal: 0 }
