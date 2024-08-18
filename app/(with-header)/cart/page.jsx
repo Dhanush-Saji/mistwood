@@ -26,10 +26,10 @@ const Page = () => {
   const [loadingStates, setloadingStates] = useState({min:false, add:false})
   const [couponIsLoading, setcouponIsLoading] = useState(false)
   const [cartQnty, setcartQnty] = useState(0)
+  const [cartArray, setcartArray] = useState([])
   const { addToCart, removeFromCart } = useUserStore();
   const data = useSession()
   const cartArrayInitial = useUserStore(state => state.cart) || []
-  const cartArray = useMemo(() => cartArrayInitial, [cartArrayInitial]);
   const cartUpdateFn = async (type, id) => {
     if(type == 0){
       setloadingStates({...loadingStates,min:true})
@@ -103,6 +103,9 @@ const Page = () => {
       setcouponIsLoading(false)
     }
   };
+  useEffect(()=>{
+    setcartArray(cartArrayInitial)
+  },[cartArrayInitial])
   useEffect(() => {
     if (data?.status == 'authenticated') {
       getCartFn()
