@@ -1,5 +1,5 @@
 'use client'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import './cart.css'
 import { useSession } from 'next-auth/react'
 import { useUserStore } from '@/lib/zustandStore'
@@ -28,7 +28,8 @@ const Page = () => {
   const [cartQnty, setcartQnty] = useState(0)
   const { addToCart, removeFromCart } = useUserStore();
   const data = useSession()
-  const cartArray = useUserStore(state => state.cart) || []
+  const cartArrayInitial = useUserStore(state => state.cart) || []
+  const cartArray = useMemo( () => cartArrayInitial,[cartArrayInitial])
   const cartUpdateFn = async (type, id) => {
     if(type == 0){
       setloadingStates({...loadingStates,min:true})
