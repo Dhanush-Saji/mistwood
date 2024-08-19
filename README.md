@@ -67,13 +67,14 @@
 </p>
 
 ## 🚀 Features
-- **Authentication**: users can sign up and log in to the platform
-- **Product browsing**: customers can browse and search for products based on category and price
-- **Product details**: customers can view detailed information about each product, including images, descriptions
-- **Shopping cart**: customers can add products to their shopping cart and proceed to checkout
-- **Payment integration**: the platform supports payment integration
-- **Order tracking**: customers can track the status of their orders
-- **Fully responsive**
+- **3D Object View**: Interact with furniture through immersive 3D models.
+- **Authentication**: Secure sign-up and logins.
+- **Product browsing**: Easily search and filter products by category.
+- **Product details**: View detailed product information, including images and descriptions.
+- **Shopping cart**: Add items to your cart and proceed to checkout seamlessly.
+- **Payment integration**: Enjoy secure transactions with integrated payment gateways.
+- **Order tracking**: Track your orders.
+- **Fully responsive**: Experience seamless browsing across all devices.
 
 ## 🖥️ Screenshots 
 <table>
