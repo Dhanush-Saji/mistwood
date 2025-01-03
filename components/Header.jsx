@@ -23,15 +23,35 @@ import SignoutBtn from './Button/SignoutBtn'
 import { useUserStore } from '@/lib/zustandStore'
 import CartShowBtn from './Button/CartShowBtn'
 import { usePathname } from 'next/navigation'
+import { getCart } from '@/utils/APICalls'
 
 
 const Header = () => {
+  const { addToCart, removeFromCart } = useUserStore()
   const test = usePathname()
   const { data: session, status } = useSession()
   const userData = session?.userData
   const user = session?.user
   const [lastScroll, setlastScroll] = useState(0)
   const [scrollStatus, setscrollStatus] = useState('scroll-up')
+  const getCartFn = async () => {
+    try {
+      let payload = {
+        userId: session?.userData?._id,
+      }
+      const res = await getCart(payload)
+      if (res?.status) {
+        addToCart(res?.data?.cart || [])
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  useEffect(() => {
+    if (status == 'authenticated') {
+      getCartFn()
+    }
+  },[session])
   // const handleScroll = () => {
   //      const currentScroll = window.scrollY
   //      console.log(currentScroll);

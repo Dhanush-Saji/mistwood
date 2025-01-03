@@ -28,14 +28,14 @@ const FakeCreditCardModal = ({checkoutCartFn}) => {
       <div className="flex items-center space-x-2">
         <div className="grid flex-1 gap-2">
           <Input
-            defaultValue="424242424242"
+            defaultValue="4242424242424242"
             readOnly
           />
         </div>
         <Button type="submit" size="sm" className="px-3">
           <span className="sr-only">Copy</span>
           <Copy className="h-4 w-4" onClick={()=>{
-            copy('424242424242')
+            copy('4242424242424242')
             toast.success('Copied successfully')
           }} />
         </Button>

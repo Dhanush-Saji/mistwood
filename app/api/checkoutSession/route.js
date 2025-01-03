@@ -54,7 +54,6 @@ export async function POST(req) {
       cancel_url: `${process.env.BACKEND_URL}/canceled`,
     })
     return NextResponse.redirect(session.url, { status: 302 })
-    return NextResponse.json({url:'success_url'}, { status: 200 });
   } catch (error) {
     return NextResponse.json({ error }, { status: 500 });
   }
