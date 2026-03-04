@@ -1,3 +1,4 @@
+"use client"
 import React, { Suspense, useLayoutEffect, useRef } from 'react';
 import {
   AdaptiveDpr,
