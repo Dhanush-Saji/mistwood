@@ -15,7 +15,7 @@ export default async function Home() {
   const session = await getServerSession(authOptions)
   return (
     <>
-    <Header />
+    {/* <Header />
       <Section1 />
       <Section2 />
       <Section3 />
@@ -23,7 +23,7 @@ export default async function Home() {
       <DisableMobileWrapper><Section5 /></DisableMobileWrapper>
       <ScrollAnimations />
       <Chair3d />
-      <Section6 />
+      <Section6 /> */}
     </>
   );
 }
