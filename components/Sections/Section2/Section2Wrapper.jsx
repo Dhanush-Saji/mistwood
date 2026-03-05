@@ -1,13 +1,13 @@
 "use client"
 import React, { useEffect, useLayoutEffect } from 'react'
-// import { gsap } from 'gsap';
-// import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import { cn } from '@/lib/utils';
 import { useSession } from 'next-auth/react';
 import { useUserStore } from '@/lib/zustandStore';
 import { getCart } from '@/utils/APICalls';
 import { DotPattern } from '@/components/ui/dot-pattern';
-// gsap.registerPlugin(ScrollTrigger)
+gsap.registerPlugin(ScrollTrigger)
 
 const Section2Wrapper = ({ children }) => {
   const { data: session, status } = useSession()
