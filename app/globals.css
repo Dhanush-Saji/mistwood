@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
 }
 
 @theme inline {
@@ -12,15 +12,129 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+body {
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+#webgi-canvas {
+  width: 100% !important;
+  height: 100% !important;
+  position: fixed !important;
+  pointer-events: none !important;
+  top: 0 !important;
+  right: 0 !important;
+}
+#sofa-canvas{
+  /* width: 100% !important;
+  height: 100% !important; */
+  pointer-events: none !important;
+  /* position: absolute;
+  z-index: 99; */
+}
+#webgi-canvas-container{
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  position: fixed;
+}
+.home-section{
+  background-image: url('/images/hero-bg.jpg'); /* Replace with the path to your image */
+  background-size: cover; /* This ensures the image covers the entire div */
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.overlay {
+  position: absolute;
+  top: -100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: top 0.5s;
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+.category1:hover .overlay,.category2:hover .overlay,.category3:hover .overlay,.category4:hover .overlay {
+  top: 0;
+}
+
+.category1:hover img,.category2:hover img,.category3:hover img,.category4:hover img{
+  transform: scale(1.2);
+}
+
+#mobile-video{
+  height: 70vh;
+}
+.text-transition{
+  height: auto !important;
+}
+.comic-text{
+  font-family: 'Comic Neue', cursive;
+}
+.wishIcon{
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.swiperSlide{
+  width: 70%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.swiperSlide img{
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.product-grid-list{
+    display: grid;
+    height: max-content;
+    width: 100%;
+  grid-template-columns: repeat(1,1fr);
+  gap:1rem
+}
+@media only screen and (min-width: 768px){
+  .product-grid-list {
+    grid-template-columns: repeat(auto-fill,minmax(250px,1fr));
+}
+}
+
+.prod-details .name:after {
+  background-color: rgba(141,45,226,.239);
+  content: "";
+  display: block;
+  height: 2px;
+  margin: auto;
+  width: 100px;
+}
+.prod-details .desc {
+  color: rgba(0,0,0,.459);
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 170px;
+}
+.second-section{
+  #elevateHomeText{
+    color: #ffde3c;
+  }
+}
+.glassNavbar{
+  /* From https://css.glass */
+background: rgba(255, 255, 255, 0.15);
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(10px);
+-webkit-backdrop-filter: blur(10px);
+border: 1px solid rgba(255, 255, 255, 0.19);
 }
