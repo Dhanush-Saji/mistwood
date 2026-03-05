@@ -50,6 +50,8 @@ const Header = () => {
       if(!isNavbarVisibleFixed){
         if(currentScroll>lastScroll){
           setscrollStatus('scroll-down')
+        }else if(currentScroll<lastScroll){
+         setscrollStatus('scroll-up')
         }else if(currentScroll>773){
          setscrollStatus('scroll-up')
         }else if(0<currentScroll && currentScroll<10){
