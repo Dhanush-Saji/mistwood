@@ -1,4 +1,5 @@
 export const changeNumberFormat = (number) =>{
+  if(!number) return
     let formattedWithOptions = number?.toLocaleString('en-IN', { maximumFractionDigits: 0 });
     return formattedWithOptions
   }

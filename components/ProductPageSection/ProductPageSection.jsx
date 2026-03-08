@@ -4,6 +4,7 @@ import dynamic from 'next/dynamic';
 import { useSearchParams } from 'next/navigation';
 import React, { Suspense, useEffect, useState } from 'react'
 import LoadingCircle from '../Loaders/LoadingCircle';
+import ProductSingle from '../ProductSingle';
 const NoData = dynamic(() => import("@/components/Loaders/NoData"), {
   ssr: false,
 });
@@ -36,7 +37,7 @@ const ProductPageSection = () => {
       <div className="product-grid-list mt-5 gap-4">
         <Suspense fallback={<LoadingCircle />}>
           {productData?.length > 0 && productData?.map((product, index) => (
-            <div key={index}></div>
+            <ProductSingle key={index} product={product} />
           ))}
         </Suspense>
       </div>
