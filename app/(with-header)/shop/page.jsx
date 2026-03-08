@@ -11,7 +11,7 @@ const Page = () => {
     <div>
       <Image width={'150px'} height={400} className='w-full rounded-[8px]' src={ProductBanner} alt="product-banner" />
     </div>
-    <CategoryListCount customParams={customParams} />
+    <CategoryListCount />
   </div>
   );
 };
