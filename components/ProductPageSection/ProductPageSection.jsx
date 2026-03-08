@@ -2,8 +2,9 @@
 import { getCommonApi } from '@/utils/APICalls';
 import dynamic from 'next/dynamic';
 import { useSearchParams } from 'next/navigation';
-import React, {  useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import LoadingCircle from '../Loaders/LoadingCircle';
+import ProductSingle from '../ProductSingle';
 const NoData = dynamic(() => import("@/components/Loaders/NoData"), {
   ssr: false,
 });
@@ -29,16 +30,16 @@ const ProductPageSection = () => {
     getPro();
   }, [search]);
   return (
-      <>
-        {isLoading ? <div className='w-full flex justify-center  mt-[2rem]'>
-          <LoadingCircle />
-        </div> : productData?.length == 0 ? <NoData /> : null}
-        <div className="product-grid-list mt-5 gap-4">
-          {productData?.length > 0 && productData?.map((product, index) => (
-            <div key={index}></div>
-          ))}
-        </div>
-      </>
+    <>
+      {isLoading ? <div className='w-full flex justify-center  mt-[2rem]'>
+        <LoadingCircle />
+      </div> : productData?.length == 0 ? <NoData /> : null}
+      <div className="product-grid-list mt-5 gap-4">
+        {productData?.length > 0 && productData?.map((product, index) => (
+          <ProductSingle key={index} product={product} />
+        ))}
+      </div>
+    </>
   )
 }
 
