@@ -5,7 +5,7 @@ import { NextResponse } from "next/server";
 
 connectDb(); //connecting to database
 export async function GET(req, { params }) {
-  const { id } = params;
+  const { id } = await params;
   try {
     // const discount = await DiscountModel.find({})
     const products = await ProductModel.find({ _id: id })

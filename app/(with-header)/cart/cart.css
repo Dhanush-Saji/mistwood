@@ -1,0 +1,3 @@
+.grid-cols-custom{
+    grid-template-columns: 70% 30%;
+}
