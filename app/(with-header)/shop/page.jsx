@@ -2,7 +2,6 @@ import Image from "next/image";
 import React from "react";
 import ProductBanner from '@/public/images/product-page-banner.png'
 import CategoryListCount from "@/components/CategoryListCount";
-import ProductPageSection from "@/components/ProductPageSection/ProductPageSection";
 
 
 const Page = () => {
@@ -12,7 +11,6 @@ const Page = () => {
       <Image width={'150px'} height={400} className='w-full rounded-[8px]' src={ProductBanner} alt="product-banner" />
     </div>
     <CategoryListCount />
-    <ProductPageSection />
   </div>
   );
 };
