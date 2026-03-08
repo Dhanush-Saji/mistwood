@@ -9,7 +9,7 @@ const NoData = dynamic(() => import("@/components/Loaders/NoData"), {
     ssr: false,
   });
 
-const ProductPageSection = ({customParams}) => {
+const ProductPageSection = () => {
     const searchParams = useSearchParams()
     const search = searchParams.get('category')
     const [productData, setproductData] = useState([]);
@@ -27,7 +27,6 @@ const ProductPageSection = ({customParams}) => {
       setisLoading(false)
     };
     useEffect(() => {
-        customParams=search
       getPro();
     }, [search]);
   return (
