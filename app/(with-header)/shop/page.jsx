@@ -1,8 +1,9 @@
 import Image from "next/image";
-import React from "react";
+import React, { Suspense } from "react";
 import ProductBanner from '@/public/images/product-page-banner.png'
 import CategoryListCount from "@/components/CategoryListCount";
 import ProductPageSection from "@/components/ProductPageSection/ProductPageSection";
+import LoadingCircle from "@/components/Loaders/LoadingCircle";
 
 
 const Page = () => {
@@ -12,7 +13,9 @@ const Page = () => {
       <Image width={'150px'} height={400} className='w-full rounded-[8px]' src={ProductBanner} alt="product-banner" />
     </div>
     <CategoryListCount />
+      <Suspense fallback={<LoadingCircle />}>
     <ProductPageSection />
+      </Suspense>
   </div>
   );
 };

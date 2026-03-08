@@ -2,7 +2,7 @@
 import { getCommonApi } from '@/utils/APICalls';
 import dynamic from 'next/dynamic';
 import { useSearchParams } from 'next/navigation';
-import React, { Suspense, useEffect, useState } from 'react'
+import React, {  useEffect, useState } from 'react'
 import LoadingCircle from '../Loaders/LoadingCircle';
 const NoData = dynamic(() => import("@/components/Loaders/NoData"), {
   ssr: false,
@@ -29,7 +29,6 @@ const ProductPageSection = () => {
     getPro();
   }, [search]);
   return (
-    <Suspense fallback={<LoadingCircle />}>
       <>
         {isLoading ? <div className='w-full flex justify-center  mt-[2rem]'>
           <LoadingCircle />
@@ -40,7 +39,6 @@ const ProductPageSection = () => {
           ))}
         </div>
       </>
-    </Suspense>
   )
 }
 
