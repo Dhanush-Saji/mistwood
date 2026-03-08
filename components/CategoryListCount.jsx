@@ -2,10 +2,11 @@ import Link from 'next/link'
 import React from 'react'
 import LoadingCircle from './Loaders/LoadingCircle'
 import CategoryCountBtn from './Button/CategoryCountBtn'
+import { getCommonApi } from '@/utils/APICalls'
 const url = process.env.BACKEND_URL
 
 const CategoryListCount = async() => {
-  const countList = await getData()
+  const countList = await getCommonApi('/api/countCategory')
   return (
     <>
     {
@@ -35,14 +36,3 @@ const CategoryListCount = async() => {
 }
 
 export default CategoryListCount
-
-async function getData() {
-  const res = await fetch(`${url}/api/countCategory`)
- 
-  if (!res.ok) {
-    // This will activate the closest `error.js` Error Boundary
-    throw new Error('Failed to fetch data')
-  }
- 
-  return res.json()
-}

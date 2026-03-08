@@ -1,6 +1,20 @@
 import axios from "axios"
 
 let url = process.env.NEXT_PUBLIC_FRONTEND_URL
+export const getCommonApi = async (link) => {
+    try {
+        const res = await fetch(`${url}${link}`, {
+            headers: {
+                "Content-Type": "application/json",
+            }
+        })
+        const data = await res.json()
+        return data
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 export const getProduct = async(query) =>{
     try {
         const res = await fetch(`/api/products?category=${query}`)
