@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import React from 'react'
+import React, { Suspense } from 'react'
 import LoadingCircle from './Loaders/LoadingCircle'
 import CategoryCountBtn from './Button/CategoryCountBtn'
 import { getCommonApi } from '@/utils/APICalls'
@@ -12,11 +12,13 @@ const CategoryListCount = async() => {
       countList?.length>0?
       <>
       <div className="grid grid-cols-5 gap-[0.5rem] w-full justify-center mt-[0.7rem]">
+      <Suspense fallback={<LoadingCircle />}>
       {
           countList?.length>0 && countList?.map((category,index)=>(
-            <div key={index}></div>
+            <CategoryCountBtn key={index} index={index} category={category} />
           ))
         }
+      </Suspense>
       </div>
       </>:
       <div className='w-full flex justify-center  mt-[2rem]'>
