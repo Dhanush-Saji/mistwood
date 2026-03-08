@@ -14,6 +14,14 @@ export const getCommonApi = async (link) => {
         console.log(error)
     }
 }
+export const postCommonApi = async(link,formData={}) =>{
+    try {
+        const res = await axios.post(`${url}${link}`,formData)
+        return res.data
+    } catch (error) {
+        return error.response.data
+    }
+}
 
 export const getProduct = async(query) =>{
     try {
